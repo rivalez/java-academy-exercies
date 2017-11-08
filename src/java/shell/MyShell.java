@@ -1,6 +1,6 @@
 package shell;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -14,7 +14,6 @@ public class MyShell {
     private final Consumer<Exception> exceptionHandler;
     private PromptManager promptManager;
 
-    @Autowired
     public MyShell(Supplier<String> consoleReader, CommandRegistry commandRegistry, Consumer<String> consoleWriter, Consumer<Exception> exceptionHandler, PromptManager promptManager) {
         this.consoleReader = consoleReader;
         this.commandRegistry = commandRegistry;
