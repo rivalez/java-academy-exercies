@@ -1,10 +1,13 @@
 package shell;
 
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+@Component
 public class MyShell {
 
     private final Supplier<String> consoleReader;
