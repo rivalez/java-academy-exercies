@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 @Component
-public class CommandRegistry implements BeanPostProcessor{
+public class CommandRegistry implements BeanPostProcessor {
 
     @Autowired
     private CdCommand cdCommand;
@@ -37,12 +37,12 @@ public class CommandRegistry implements BeanPostProcessor{
         register("cd", cdCommand);
         register("dir", dirCommand);
         register("prompt", promptCommand);
-        return null;
+        return bean;
     }
 
     @Nullable
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        return null;
+        return bean;
     }
 }

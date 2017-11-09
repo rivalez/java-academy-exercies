@@ -24,12 +24,12 @@ public class AppConfig {
 
 
     @Bean
-    public PromptManager promptManager(){
+    public PromptManager promptManager() {
         return new PromptManager(cwdManager);
     }
 
     @Bean
-    public MyShell myShell(){
+    public MyShell myShell() {
         return new MyShell(consoleReader, commandRegistry, System.out::println, exceptionHandler, promptManager());
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class CdCommand implements ShellCommand {
 
-    private CwdManager cwdManager;
+    private final CwdManager cwdManager;
 
     @Autowired
     public CdCommand(CwdManager cwdManager) {

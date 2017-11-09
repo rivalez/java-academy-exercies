@@ -25,10 +25,10 @@ public class MyShell {
     }
 
     public void loop() {
-        while(true){
-            try{
+        while (true) {
+            try {
                 readInputExecuteAndDisplayResult();
-            } catch (Exception e){
+            } catch (Exception e) {
                 exceptionHandler.accept(e);
             }
         }
