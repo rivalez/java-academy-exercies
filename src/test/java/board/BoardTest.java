@@ -14,7 +14,7 @@ public class BoardTest {
     }
 
     @Test
-    public void createSquareBoard(){
+    public void createSquareBoardTest(){
         //given
         Point2D point2D = new Point2D(3,3);
 
@@ -28,7 +28,7 @@ public class BoardTest {
     }
 
     @Test
-    public void createRectangleBoard(){
+    public void createRectangleBoardTest(){
         //given
         Point2D point2D = new Point2D(10,7);
 
@@ -41,16 +41,13 @@ public class BoardTest {
         Assert.assertEquals(gameField.getDimensions(), point2D);
     }
 
-    @Test
-    public void invalidBoard(){
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void invalidBoardTest(){
         //given
         Point2D point2D = new Point2D(-2,0);
 
         //when
-        GameField gameField = fieldProvider.create(point2D);
-
-        //then
-        Assert.assertNull(gameField);
+        fieldProvider.create(point2D);
     }
 
 }
