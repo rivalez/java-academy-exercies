@@ -13,7 +13,7 @@ public class SymbolResolverTest {
     }
 
     @Test(dataProvider = "getData")
-    public void resolveSecondPlayerSymbolTest(GameSymbol input, GameSymbol expected){
+    public void resolveSecondPlayerSymbol(GameSymbol input, GameSymbol expected){
         SymbolResolver symbolResolver = new SymbolResolver();
         GameSymbol symbol = symbolResolver.resolveSymbolForSecondPlayer(input);
         Assert.assertEquals(symbol, expected);

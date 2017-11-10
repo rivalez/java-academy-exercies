@@ -14,40 +14,40 @@ public class BoardTest {
     }
 
     @Test
-    public void createSquareBoardTest(){
+    public void createSquareBoard(){
         //given
-        Point2D point2D = new Point2D(3,3);
+        BoardDimensions boardDimensions = new BoardDimensions(3,3);
 
         //when
-        GameField gameField = fieldProvider.create(point2D);
-
+        GameBoard gameField = fieldProvider.create(boardDimensions);
+        
         //then
         Assert.assertNotNull(gameField);
         Assert.assertTrue(gameField.getField() instanceof SquareField);
-        Assert.assertEquals(gameField.getDimensions(), point2D);
+        Assert.assertEquals(gameField.getDimensions(), boardDimensions);
     }
 
     @Test
-    public void createRectangleBoardTest(){
+    public void createRectangleBoard(){
         //given
-        Point2D point2D = new Point2D(10,7);
+        BoardDimensions boardDimensions = new BoardDimensions(10,7);
 
         //when
-        GameField gameField = fieldProvider.create(point2D);
+        GameBoard gameField = fieldProvider.create(boardDimensions);
 
         //then
         Assert.assertNotNull(gameField);
         Assert.assertTrue(gameField.getField() instanceof RectangleField);
-        Assert.assertEquals(gameField.getDimensions(), point2D);
+        Assert.assertEquals(gameField.getDimensions(), boardDimensions);
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
-    public void invalidBoardTest(){
+    public void invalidBoard(){
         //given
-        Point2D point2D = new Point2D(-2,0);
+        BoardDimensions boardDimensions = new BoardDimensions(-2,0);
 
         //when
-        fieldProvider.create(point2D);
+        fieldProvider.create(boardDimensions);
     }
 
 }

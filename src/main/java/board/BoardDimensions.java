@@ -1,11 +1,11 @@
 package board;
 
-public class Point2D {
+public class BoardDimensions {
 
     private int x;
     private int y;
 
-    public Point2D(int x, int y) {
+    public BoardDimensions(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -23,10 +23,10 @@ public class Point2D {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Point2D point2D = (Point2D) o;
+        BoardDimensions boardDimensions = (BoardDimensions) o;
 
-        if (x != point2D.x) return false;
-        return y == point2D.y;
+        if (x != boardDimensions.x) return false;
+        return y == boardDimensions.y;
     }
 
     @Override

@@ -1,9 +1,9 @@
 package game;
 
 import board.FieldProvider;
-import board.GameField;
+import board.GameBoard;
 import board.MoveValidator;
-import board.Point2D;
+import board.BoardDimensions;
 import player.Player;
 import player.SymbolResolver;
 
@@ -44,10 +44,10 @@ public class GameEngine {
 
     private GameState configure() {
         ConfigurationProvider configurationProvider = new ConfigurationProvider();
-        Point2D point2D = configurationProvider.askForConfiguration();
+        BoardDimensions boardDimensions = configurationProvider.askForConfiguration();
         int gameSymbolsToWin = configurationProvider.askForGameSymbolsToWin();
-        Configuration configuration = new Configuration(point2D, gameSymbolsToWin);
-        GameField gameField = new FieldProvider().create(configuration.getBoard());
+        Configuration configuration = new Configuration(boardDimensions, gameSymbolsToWin);
+        GameBoard gameField = new FieldProvider().create(configuration.getBoard());
         GameState gameState = new GameState(gameField);
         gameState.listCreator();
         return gameState;

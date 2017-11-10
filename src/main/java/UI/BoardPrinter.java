@@ -1,7 +1,7 @@
 package UI;
 
 import board.Field;
-import board.Point2D;
+import board.BoardDimensions;
 import game.GameState;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class BoardPrinter {
     public String print() {
         StringBuilder stringBuilder = new StringBuilder();
         List<Field> board = gameState.getBoard();
-        Point2D dimensions = gameState.getGameField().getDimensions();
+        BoardDimensions dimensions = gameState.getGameField().getDimensions();
         int counter = 0;
         for(int i = 0 ; i < dimensions.getX(); i++){
             for(int j = 0; j < dimensions.getY(); j++){

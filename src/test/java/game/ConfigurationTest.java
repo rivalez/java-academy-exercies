@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class ConfigurationTest {
 
     @Test
-    public void boardConfigurationTest(){
+    public void boardConfiguration(){
 
 
     }

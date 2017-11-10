@@ -1,13 +1,13 @@
 package game;
 
-import board.Point2D;
+import board.BoardDimensions;
 
 public class Configuration {
-    private Point2D board;
+    private BoardDimensions board;
     private int gameSymbolsToWin;
     private boolean start = true;
 
-    public Configuration(Point2D board, int gameSymbolsToWin) {
+    public Configuration(BoardDimensions board, int gameSymbolsToWin) {
         this.board = board;
         this.gameSymbolsToWin = gameSymbolsToWin;
     }
@@ -16,7 +16,7 @@ public class Configuration {
         return start;
     }
 
-    public Point2D getBoard() {
+    public BoardDimensions getBoard() {
         return board;
     }
 

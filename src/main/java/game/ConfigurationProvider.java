@@ -1,19 +1,19 @@
 package game;
 
-import board.Point2D;
+import board.BoardDimensions;
 
 import java.util.Scanner;
 
 public class ConfigurationProvider {
 
-    public Point2D askForConfiguration(){
+    public BoardDimensions askForConfiguration(){
         Scanner scanner = new Scanner(System.in);
         new Communicate("Start game").getMessage();
         new Communicate("Type horizontal size of field:").getMessage();
         int x = scanner.nextInt();
         new Communicate("Type vertical size of field:").getMessage();
         int y = scanner.nextInt();
-        return new Point2D(x, y);
+        return new BoardDimensions(x, y);
     }
 
     public int askForGameSymbolsToWin(){

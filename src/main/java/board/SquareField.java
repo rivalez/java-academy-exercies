@@ -1,18 +1,18 @@
 package board;
 
-public class SquareField implements GameField {
+public class SquareField implements GameBoard {
 
-    private Point2D point2D;
+    private BoardDimensions boardDimensions;
 
-    SquareField(Point2D point2D){
-        this.point2D = point2D;
+    SquareField(BoardDimensions boardDimensions){
+        this.boardDimensions = boardDimensions;
     }
 
-    public GameField getField() {
+    public GameBoard getField() {
         return this;
     }
 
-    public Point2D getDimensions() {
-        return point2D;
+    public BoardDimensions getDimensions() {
+        return boardDimensions;
     }
 }

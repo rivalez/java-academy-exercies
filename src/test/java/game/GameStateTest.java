@@ -2,8 +2,8 @@ package game;
 
 import board.Field;
 import board.FieldProvider;
-import board.GameField;
-import board.Point2D;
+import board.GameBoard;
+import board.BoardDimensions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,10 +12,10 @@ public class GameStateTest {
     private GameState gameState;
 
     @Test
-    public void createEmptyGameListTest(){
+    public void createEmptyGameList(){
         FieldProvider fieldProvider = new FieldProvider();
-        Point2D board = new Point2D(3,3);
-        GameField gameField = fieldProvider.create(board);
+        BoardDimensions board = new BoardDimensions(3,3);
+        GameBoard gameField = fieldProvider.create(board);
         gameState = new GameState(gameField);
         //when
         gameState.listCreator();
@@ -26,10 +26,10 @@ public class GameStateTest {
     }
 
     @Test
-    public void createGameListAndPopulateItTest(){
+    public void createGameListAndPopulateIt(){
         FieldProvider fieldProvider = new FieldProvider();
-        Point2D board = new Point2D(3,3);
-        GameField gameField = fieldProvider.create(board);
+        BoardDimensions board = new BoardDimensions(3,3);
+        GameBoard gameField = fieldProvider.create(board);
         gameState = new GameState(gameField);
         //when
         gameState.listCreator();

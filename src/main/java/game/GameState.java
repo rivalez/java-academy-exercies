@@ -1,35 +1,33 @@
 package game;
 
 import board.Field;
-import board.GameField;
+import board.GameBoard;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class GameState {
 
     private List<Field> board = new ArrayList<Field>();
 
-    private GameField gameField;
+    private GameBoard gameField;
 
-    public GameState(GameField gameField) {
+    public GameState(GameBoard gameField) {
         this.gameField = gameField;
     }
 
     public void listCreator(){
         int numberOfFields = gameField.getDimensions().getX() * gameField.getDimensions().getY();
-        List<Field> fields = new ArrayList<Field>();
-        for(int i = 0 ; i < numberOfFields; i++){
-            fields.add(new Field(i));
-        }
-        board.addAll(fields);
+        board = IntStream.range(0, numberOfFields).mapToObj(c-> new Field(c)).collect(Collectors.toList());
     }
 
     public List<Field> getBoard() {
         return board;
     }
 
-    public GameField getGameField() {
+    public GameBoard getGameField() {
         return gameField;
     }
 

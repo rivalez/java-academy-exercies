@@ -1,8 +1,8 @@
 package UI;
 
 import board.FieldProvider;
-import board.GameField;
-import board.Point2D;
+import board.GameBoard;
+import board.BoardDimensions;
 import game.GameState;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -10,11 +10,11 @@ import org.testng.annotations.Test;
 public class BoardPrinterTest {
 
     @Test
-    public void BoardPrinterTest(){
+    public void boardPrinter(){
         //given
-        Point2D point2D = new Point2D(3,4);
+        BoardDimensions boardDimensions = new BoardDimensions(3,4);
         FieldProvider fieldProvider = new FieldProvider();
-        GameField gameField = fieldProvider.create(point2D);
+        GameBoard gameField = fieldProvider.create(boardDimensions);
         GameState gameState = new GameState(gameField);
         gameState.listCreator();
         BoardPrinter boardPrinter = new BoardPrinter(gameState);
@@ -23,8 +23,8 @@ public class BoardPrinterTest {
 
         //then
         Assert.assertEquals(result,
-                "....\n" +
-                "....\n" +
-                "....\n");
+                "0123\n" +
+                        "4567\n" +
+                        "891011\n");
     }
 }

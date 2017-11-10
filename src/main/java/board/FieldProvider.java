@@ -2,17 +2,17 @@ package board;
 
 public class FieldProvider  {
 
-    public GameField create(Point2D point2D) {
-        return provideField(point2D);
+    public GameBoard create(BoardDimensions boardDimensions) {
+        return provideField(boardDimensions);
     }
 
-    private GameField provideField(Point2D point2D){
-        GameField gameField;
-        if(point2D.getX() <= 2 || point2D.getY() <= 2) throw new IllegalArgumentException();
-        else if(point2D.getX() == point2D.getY()){
-            gameField = new SquareField(point2D);
+    private GameBoard provideField(BoardDimensions boardDimensions){
+        GameBoard gameField;
+        if(boardDimensions.getX() <= 2 || boardDimensions.getY() <= 2) throw new IllegalArgumentException();
+        else if(boardDimensions.getX() == boardDimensions.getY()){
+            gameField = new SquareField(boardDimensions);
         } else {
-            gameField = new RectangleField(point2D);
+            gameField = new RectangleField(boardDimensions);
         }
         return gameField;
     }

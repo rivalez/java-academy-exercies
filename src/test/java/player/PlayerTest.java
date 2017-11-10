@@ -13,7 +13,7 @@ public class PlayerTest {
     }
 
     @Test(dataProvider = "getData")
-    public void createPlayerTest(GameSymbol input, GameSymbol expected){
+    public void createPlayer(GameSymbol input, GameSymbol expected){
         //when
         Player player = new Player(input);
 
