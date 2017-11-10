@@ -33,9 +33,9 @@ public class GameEngine {
 
         //todo tura
         Move move = new Move();
-        Arbiter arbiter = new Arbiter();
+//        Arbiter arbiter = new Arbiter();
         MoveValidator moveValidator = new MoveValidator();
-        while (arbiter.isRunning()) {
+        while (true) {
             List<Player> players = Arrays.asList(firstPlayer, secondPlayer);
             moveValidator.validate(move.doMove(gameState, players.get(0)));
             moveValidator.validate(move.doMove(gameState, players.get(1)));

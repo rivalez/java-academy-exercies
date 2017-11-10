@@ -5,13 +5,19 @@ import game.GameSymbol;
 public class Field {
 
     private GameSymbol gameSymbol;
+    private int position;
 
     public Field(){
 
     }
 
-    public Field(GameSymbol gameSymbol){
+    public Field(int position){
+        this.position = position;
+    }
+
+    public Field(int position, GameSymbol gameSymbol){
         this.gameSymbol = gameSymbol;
+        this.position = position;
     }
 
     public boolean isEmpty(){
@@ -35,7 +41,7 @@ public class Field {
 
     @Override
     public String toString() {
-        String result = ".";
+        String result = String.valueOf(position);
         if(!isEmpty()){
             result = gameSymbol.toString();
         }

@@ -20,7 +20,7 @@ public class GameState {
         int numberOfFields = gameField.getDimensions().getX() * gameField.getDimensions().getY();
         List<Field> fields = new ArrayList<Field>();
         for(int i = 0 ; i < numberOfFields; i++){
-            fields.add(new Field());
+            fields.add(new Field(i));
         }
         board.addAll(fields);
     }
@@ -34,7 +34,7 @@ public class GameState {
     }
 
     public void addElement(int position, GameSymbol gameSymbol){
-        if(board.get(position).isEmpty()) board.set(position, new Field(gameSymbol));
+        if(board.get(position).isEmpty()) board.set(position, new Field(position, gameSymbol));
     }
 
 }
