@@ -21,4 +21,13 @@ public class PlayerTest {
         Assert.assertEquals(player.getGameSymbol(), expected);
     }
 
+    @Test
+    public void createPlayerWithScore(){
+        //given
+        Player player = new Player(null);
+
+        //then
+        Assert.assertEquals(player.getScore().getValue(), 0);
+    }
+
 }

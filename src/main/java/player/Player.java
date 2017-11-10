@@ -20,11 +20,4 @@ public class Player {
         return score;
     }
 
-    @Override
-    public String toString() {
-        return "Player{" +
-                "gameSymbol=" + gameSymbol +
-                ", score=" + score +
-                '}';
-    }
 }

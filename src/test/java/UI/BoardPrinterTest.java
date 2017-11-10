@@ -22,7 +22,8 @@ public class BoardPrinterTest {
         String result = boardPrinter.print();
 
         //then
-        Assert.assertEquals(result, "....\n" +
+        Assert.assertEquals(result,
+                "....\n" +
                 "....\n" +
                 "....\n");
     }

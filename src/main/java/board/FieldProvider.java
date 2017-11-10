@@ -2,9 +2,6 @@ package board;
 
 public class FieldProvider  {
 
-    private FieldValidator fieldValidator = new FieldValidator();
-    private Point2D point2D;
-
     public GameField create(Point2D point2D) {
         return provideField(point2D);
     }
@@ -18,9 +15,5 @@ public class FieldProvider  {
             gameField = new RectangleField(point2D);
         }
         return gameField;
-    }
-
-    public Point2D getDimensions() {
-        return point2D;
     }
 }

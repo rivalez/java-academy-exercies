@@ -15,7 +15,7 @@ public class BoardPrinter {
     }
 
     //todo stringbuilder 1 for co dimenstion.getY() % + "\n"
-    public String print(){
+    public String print() {
         StringBuilder stringBuilder = new StringBuilder();
         List<Field> board = gameState.getBoard();
         Point2D dimensions = gameState.getGameField().getDimensions();

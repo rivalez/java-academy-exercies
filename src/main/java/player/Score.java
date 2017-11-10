@@ -4,7 +4,7 @@ public class Score {
 
     private int score;
 
-    public int getScore() {
+    public int getValue() {
         return score;
     }
 
