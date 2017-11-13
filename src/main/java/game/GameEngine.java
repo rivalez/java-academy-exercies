@@ -35,34 +35,27 @@ public class GameEngine {
         new Communicate(String.format("Player with symbol %s starts first", firstPlayer.getGameSymbol())).getMessage();
 
 
-        //todo tura
 //        Arbiter arbiter = new Arbiter();
         MoveValidator moveValidator = new MoveValidator(gameState.getBoard().size());
         PositionAsker positionAsker = new PositionAsker();
+        Turn turn = new Turn(Arrays.asList(firstPlayer, secondPlayer));
+        BoardPrinter boardPrinter = new BoardPrinter(gameState);
+        System.out.println(boardPrinter.print());
+
         boolean isGameRunning = true;
         while (isGameRunning) {
-            Turn turn = new Turn(Arrays.asList(firstPlayer, secondPlayer));
-            BoardPrinter boardPrinter = new BoardPrinter(gameState);
-            System.out.println(boardPrinter.print());
-
             int suggestedPosition = positionAsker.askForPosition();
             RowValidator rowValidator = new RowValidator();
             if (moveValidator.validate(suggestedPosition)) {
                 Move move = new Move(suggestedPosition);
                 move.doMove(gameState, turn.getNext());
+                RowResolver rowResolver = new RowResolver();
+                isGameRunning = !rowValidator.validate(rowResolver.resolve(suggestedPosition, gameState));
+            } else {
+                System.out.println("wrong move bro, you lose turn");
             }
-
-            RowResolver rowResolver = new RowResolver();
-            isGameRunning = !rowValidator.validate(rowResolver.resolve(suggestedPosition, gameState));
-
-
-            /*suggestedPosition = positionAsker.askForPosition();
-            if (moveValidator.validate(suggestedPosition)) {
-                Move move = new Move(suggestedPosition);
-                move.doMove(gameState, players.get(1));
-            }
-            isGameRunning = !rowValidator.validate(rowResolver.resolve(suggestedPosition, gameState));*/
         }
+        System.out.println("Game is finished! %s player won! Congratulation!");
     }
 
     private GameState configure() {
