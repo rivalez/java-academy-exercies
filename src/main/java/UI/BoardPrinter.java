@@ -22,7 +22,7 @@ public class BoardPrinter {
         int counter = 0;
         for(int i = 0 ; i < dimensions.getX(); i++){
             for(int j = 0; j < dimensions.getY(); j++){
-                stringBuilder.append(board.get(counter++));
+                stringBuilder.append(board.get(counter++)).append(" ");
             }
             stringBuilder.append("\n");
         }

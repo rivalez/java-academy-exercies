@@ -1,6 +1,6 @@
 package board;
 
-public class FieldProvider  {
+public class BoardProvider {
 
     public GameBoard create(BoardDimensions boardDimensions) {
         return provideField(boardDimensions);

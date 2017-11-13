@@ -1,20 +1,33 @@
 package game;
 
-import board.FieldProvider;
-import board.MoveValidator;
-import board.BoardDimensions;
+import validators.MoveValidator;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class MoveValidatorTest {
 
-    @Test
-    public void validateTest(){
-        //given
-        FieldProvider fieldProvider = new FieldProvider();
-        GameState gameState = new GameState(fieldProvider.create(new BoardDimensions(3,3)));
-        MoveValidator moveValidator = new MoveValidator();
-        //when
-        moveValidator.validate(gameState);
-        //then
+    @DataProvider
+    private Object[][] getData(){
+        return new Object[][] {{9,10}, {10,-3}};
     }
+
+    @Test(dataProvider = "getData")
+    public void validateIncorrect(int boardSize, int position){
+        //given
+        MoveValidator moveValidator = new MoveValidator(boardSize);
+
+        //when - then
+        Assert.assertFalse(moveValidator.validate(position));
+    }
+
+    @Test
+    public void validateCorrect(){
+        //given
+        MoveValidator moveValidator = new MoveValidator(10);
+
+        //when - then
+        Assert.assertTrue(moveValidator.validate(0));
+    }
+
 }

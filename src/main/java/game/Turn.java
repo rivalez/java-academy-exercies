@@ -2,16 +2,18 @@ package game;
 
 import player.Player;
 
+import java.util.List;
+
 public class Turn {
 
-    private Player player;
+    private List<Player> players;
+    private Player currentPlayer;
 
-    public Turn(Player player) {
-        this.player = player;
+    public Turn(List<Player> players) {
+        this.players = players;
     }
 
-
-    public Player getPlayer() {
-        return player;
+    public Player getNext() {
+        return currentPlayer;
     }
 }

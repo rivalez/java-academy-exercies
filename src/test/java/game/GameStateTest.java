@@ -1,7 +1,7 @@
 package game;
 
 import board.Field;
-import board.FieldProvider;
+import board.BoardProvider;
 import board.GameBoard;
 import board.BoardDimensions;
 import org.testng.Assert;
@@ -13,7 +13,7 @@ public class GameStateTest {
 
     @Test
     public void createEmptyGameList(){
-        FieldProvider fieldProvider = new FieldProvider();
+        BoardProvider fieldProvider = new BoardProvider();
         BoardDimensions board = new BoardDimensions(3,3);
         GameBoard gameField = fieldProvider.create(board);
         gameState = new GameState(gameField);
@@ -27,7 +27,7 @@ public class GameStateTest {
 
     @Test
     public void createGameListAndPopulateIt(){
-        FieldProvider fieldProvider = new FieldProvider();
+        BoardProvider fieldProvider = new BoardProvider();
         BoardDimensions board = new BoardDimensions(3,3);
         GameBoard gameField = fieldProvider.create(board);
         gameState = new GameState(gameField);

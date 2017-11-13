@@ -1,11 +1,14 @@
 package game;
 
-import board.FieldProvider;
-import board.GameBoard;
-import board.MoveValidator;
+import UI.BoardPrinter;
 import board.BoardDimensions;
+import board.BoardProvider;
+import board.GameBoard;
+import board.RowResolver;
 import player.Player;
 import player.SymbolResolver;
+import validators.MoveValidator;
+import validators.RowValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,14 +34,34 @@ public class GameEngine {
         System.out.println(firstPlayer);
         new Communicate(String.format("Player with symbol %s starts first", firstPlayer.getGameSymbol())).getMessage();
 
+
         //todo tura
-        Move move = new Move();
 //        Arbiter arbiter = new Arbiter();
-        MoveValidator moveValidator = new MoveValidator();
-        while (true) {
-            List<Player> players = Arrays.asList(firstPlayer, secondPlayer);
-            moveValidator.validate(move.doMove(gameState, players.get(0)));
-            moveValidator.validate(move.doMove(gameState, players.get(1)));
+        MoveValidator moveValidator = new MoveValidator(gameState.getBoard().size());
+        PositionAsker positionAsker = new PositionAsker();
+        boolean isGameRunning = true;
+        while (isGameRunning) {
+            Turn turn = new Turn(Arrays.asList(firstPlayer, secondPlayer));
+            BoardPrinter boardPrinter = new BoardPrinter(gameState);
+            System.out.println(boardPrinter.print());
+
+            int suggestedPosition = positionAsker.askForPosition();
+            RowValidator rowValidator = new RowValidator();
+            if (moveValidator.validate(suggestedPosition)) {
+                Move move = new Move(suggestedPosition);
+                move.doMove(gameState, turn.getNext());
+            }
+
+            RowResolver rowResolver = new RowResolver();
+            isGameRunning = !rowValidator.validate(rowResolver.resolve(suggestedPosition, gameState));
+
+
+            /*suggestedPosition = positionAsker.askForPosition();
+            if (moveValidator.validate(suggestedPosition)) {
+                Move move = new Move(suggestedPosition);
+                move.doMove(gameState, players.get(1));
+            }
+            isGameRunning = !rowValidator.validate(rowResolver.resolve(suggestedPosition, gameState));*/
         }
     }
 
@@ -47,7 +70,7 @@ public class GameEngine {
         BoardDimensions boardDimensions = configurationProvider.askForConfiguration();
         int gameSymbolsToWin = configurationProvider.askForGameSymbolsToWin();
         Configuration configuration = new Configuration(boardDimensions, gameSymbolsToWin);
-        GameBoard gameField = new FieldProvider().create(configuration.getBoard());
+        GameBoard gameField = new BoardProvider().create(configuration.getBoard());
         GameState gameState = new GameState(gameField);
         gameState.listCreator();
         return gameState;

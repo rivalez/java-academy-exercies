@@ -1,6 +1,6 @@
 package UI;
 
-import board.FieldProvider;
+import board.BoardProvider;
 import board.GameBoard;
 import board.BoardDimensions;
 import game.GameState;
@@ -13,7 +13,7 @@ public class BoardPrinterTest {
     public void boardPrinter(){
         //given
         BoardDimensions boardDimensions = new BoardDimensions(3,4);
-        FieldProvider fieldProvider = new FieldProvider();
+        BoardProvider fieldProvider = new BoardProvider();
         GameBoard gameField = fieldProvider.create(boardDimensions);
         GameState gameState = new GameState(gameField);
         gameState.listCreator();
@@ -23,8 +23,8 @@ public class BoardPrinterTest {
 
         //then
         Assert.assertEquals(result,
-                "0123\n" +
-                        "4567\n" +
-                        "891011\n");
+                "0 1 2 3 \n" +
+                        "4 5 6 7 \n" +
+                        "8 9 10 11 \n");
     }
 }

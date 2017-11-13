@@ -6,11 +6,11 @@ import org.testng.annotations.Test;
 
 public class BoardTest {
 
-    private FieldProvider fieldProvider;
+    private BoardProvider fieldProvider;
 
     @BeforeTest
     public void setUp(){
-        fieldProvider = new FieldProvider();
+        fieldProvider = new BoardProvider();
     }
 
     @Test
