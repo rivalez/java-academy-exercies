@@ -11,7 +11,6 @@ import validators.MoveValidator;
 import validators.RowValidator;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class GameEngine {
@@ -22,7 +21,8 @@ public class GameEngine {
     }
 
     public void run() {
-        GameState gameState = configure();
+        Configuration configuration = configure();
+        GameState gameState = createGameState(configuration);
 
         new Communicate("Field created!").getMessage();
         new Communicate("Who start's: O or X ?").getMessage();
@@ -45,25 +45,29 @@ public class GameEngine {
         boolean isGameRunning = true;
         while (isGameRunning) {
             int suggestedPosition = positionAsker.askForPosition();
-            RowValidator rowValidator = new RowValidator();
+            RowValidator rowValidator = new RowValidator(configuration);
             if (moveValidator.validate(suggestedPosition)) {
                 Move move = new Move(suggestedPosition);
                 move.doMove(gameState, turn.getNext());
                 RowResolver rowResolver = new RowResolver();
                 isGameRunning = !rowValidator.validate(rowResolver.resolve(suggestedPosition, gameState));
             } else {
-                System.out.println("wrong move bro, you lose turn");
+                System.out.println("Wrong move dude, you lost turn!");
             }
         }
         System.out.println("Game is finished! %s player won! Congratulation!");
     }
 
-    private GameState configure() {
+    private Configuration configure() {
         ConfigurationProvider configurationProvider = new ConfigurationProvider();
         BoardDimensions boardDimensions = configurationProvider.askForConfiguration();
         int gameSymbolsToWin = configurationProvider.askForGameSymbolsToWin();
-        Configuration configuration = new Configuration(boardDimensions, gameSymbolsToWin);
-        GameBoard gameField = new BoardProvider().create(configuration.getBoard());
+        return new Configuration(boardDimensions, gameSymbolsToWin);
+
+    }
+
+    private GameState createGameState(Configuration configuration){
+        GameBoard gameField = new BoardProvider().create(configuration.getBoardDimensions());
         GameState gameState = new GameState(gameField);
         gameState.listCreator();
         return gameState;

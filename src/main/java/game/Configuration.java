@@ -3,12 +3,12 @@ package game;
 import board.BoardDimensions;
 
 public class Configuration {
-    private BoardDimensions board;
+    private BoardDimensions boardDimensions;
     private int gameSymbolsToWin;
     private boolean start = true;
 
     public Configuration(BoardDimensions board, int gameSymbolsToWin) {
-        this.board = board;
+        this.boardDimensions = board;
         this.gameSymbolsToWin = gameSymbolsToWin;
     }
 
@@ -16,8 +16,8 @@ public class Configuration {
         return start;
     }
 
-    public BoardDimensions getBoard() {
-        return board;
+    public BoardDimensions getBoardDimensions() {
+        return boardDimensions;
     }
 
     public int getGameSymbolsToWin() {

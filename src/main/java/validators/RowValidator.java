@@ -1,12 +1,29 @@
 package validators;
 
 import board.Field;
+import game.Configuration;
 
 import java.util.List;
 
 public class RowValidator {
+
+    private Configuration configuration;
+
+    public RowValidator(Configuration configuration){
+        this.configuration = configuration;
+    }
+
     public boolean validate(List<Field> fields) {
-        int i = fields.size() / 2;
-        return fields.get(i - 1).equals(fields.get(i)) && fields.get(i).equals(fields.get(i + 1)) ;
+        int symbolsToWin = configuration.getGameSymbolsToWin() - 1;
+        int counter = 0;
+        for (int i = 0; i < fields.size(); i++) {
+            if(i + 1 < fields.size() && fields.get(i).equals(fields.get(i + 1))){
+                counter++;
+                if (counter == symbolsToWin) return true;
+            } else {
+                counter = 0;
+            }
+        }
+        return false;
     }
 }
