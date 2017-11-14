@@ -5,11 +5,11 @@ import game.Configuration;
 
 import java.util.List;
 
-public class RowValidator {
+public class boardPartValidator {
 
     private Configuration configuration;
 
-    public RowValidator(Configuration configuration){
+    public boardPartValidator(Configuration configuration){
         this.configuration = configuration;
     }
 

@@ -1,16 +1,14 @@
 package game;
 
 import UI.BoardPrinter;
-import board.BoardDimensions;
-import board.BoardProvider;
-import board.GameBoard;
-import board.RowResolver;
+import board.*;
 import player.Player;
 import player.SymbolResolver;
 import validators.MoveValidator;
-import validators.RowValidator;
+import validators.boardPartValidator;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class GameEngine {
@@ -45,12 +43,22 @@ public class GameEngine {
         boolean isGameRunning = true;
         while (isGameRunning) {
             int suggestedPosition = positionAsker.askForPosition();
-            RowValidator rowValidator = new RowValidator(configuration);
+            boardPartValidator boardPartValidator = new boardPartValidator(configuration);
             if (moveValidator.validate(suggestedPosition)) {
                 Move move = new Move(suggestedPosition);
                 move.doMove(gameState, turn.getNext());
                 RowResolver rowResolver = new RowResolver();
-                isGameRunning = !rowValidator.validate(rowResolver.resolve(suggestedPosition, gameState));
+                ColumnResolver columnResolver = new ColumnResolver();
+                List<Field> column = columnResolver.resolve(suggestedPosition, gameState);
+                List<Field> row = rowResolver.resolve(suggestedPosition, gameState);
+
+                if (boardPartValidator.validate(row)) {
+                    isGameRunning = false;
+                }
+                if (boardPartValidator.validate(column)) {
+                    isGameRunning = false;
+                }
+
             } else {
                 System.out.println("Wrong move dude, you lost turn!");
             }
@@ -66,7 +74,7 @@ public class GameEngine {
 
     }
 
-    private GameState createGameState(Configuration configuration){
+    private GameState createGameState(Configuration configuration) {
         GameBoard gameField = new BoardProvider().create(configuration.getBoardDimensions());
         GameState gameState = new GameState(gameField);
         gameState.listCreator();
