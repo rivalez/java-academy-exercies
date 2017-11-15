@@ -7,6 +7,7 @@ import player.SymbolResolver;
 import validators.MoveValidator;
 import validators.BoardPartValidator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -32,33 +33,33 @@ public class GameEngine {
         System.out.println(firstPlayer);
         new Communicate(String.format("Player with symbol %s starts first", firstPlayer.getGameSymbol())).getMessage();
 
-
-//        Arbiter arbiter = new Arbiter();
         MoveValidator moveValidator = new MoveValidator(gameState.getBoard().size());
         PositionAsker positionAsker = new PositionAsker();
         Turn turn = new Turn(Arrays.asList(firstPlayer, secondPlayer));
         BoardPrinter boardPrinter = new BoardPrinter(gameState);
         System.out.println(boardPrinter.print());
 
+        BoardPartValidator boardPartValidator = new BoardPartValidator(configuration);
+        WinResolver rowResolver = new RowResolver();
+        WinResolver columnResolver = new ColumnResolver();
+        WinResolver diagonalResolver = new DiagonalResolver();
+
         boolean isGameRunning = true;
         while (isGameRunning) {
             int suggestedPosition = positionAsker.askForPosition();
-            BoardPartValidator boardPartValidator = new BoardPartValidator(configuration);
             if (moveValidator.validate(suggestedPosition)) {
-                Move move = new Move(suggestedPosition);
-                move.doMove(gameState, turn.getNext());
-                RowResolver rowResolver = new RowResolver();
-                ColumnResolver columnResolver = new ColumnResolver();
-                List<Field> column = columnResolver.resolve(suggestedPosition, gameState);
-                List<Field> row = rowResolver.resolve(suggestedPosition, gameState);
+                Mover mover = new Mover(suggestedPosition);
+                mover.doMove(gameState, turn.getNext());
+                List<List<Move>> checks = new ArrayList<>();
+                checks.add(columnResolver.resolve(suggestedPosition, gameState));
+                checks.add(rowResolver.resolve(suggestedPosition, gameState));
+                checks.add(diagonalResolver.resolve(suggestedPosition, gameState));
 
-                if (boardPartValidator.validate(row)) {
-                    isGameRunning = false;
+                for(List<Move> part : checks){
+                    if (boardPartValidator.validate(part)) {
+                        isGameRunning = false;
+                    }
                 }
-                if (boardPartValidator.validate(column)) {
-                    isGameRunning = false;
-                }
-
             } else {
                 System.out.println("Wrong move dude, you lost turn!");
             }

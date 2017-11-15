@@ -2,20 +2,20 @@ package board;
 
 import game.GameSymbol;
 
-public class Field {
+public class Move {
 
     private GameSymbol gameSymbol;
     private int position;
 
-    public Field(){
+    public Move(){
 
     }
 
-    public Field(int position){
+    public Move(int position){
         this.position = position;
     }
 
-    public Field(int position, GameSymbol gameSymbol){
+    public Move(int position, GameSymbol gameSymbol){
         this.gameSymbol = gameSymbol;
         this.position = position;
     }
@@ -24,19 +24,26 @@ public class Field {
         return gameSymbol == null;
     }
 
+    public GameSymbol getGameSymbol() {
+        return gameSymbol;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Field field = (Field) o;
+        Move field = (Move) o;
 
+        if (position != field.position) return false;
         return gameSymbol == field.gameSymbol;
     }
 
     @Override
     public int hashCode() {
-        return gameSymbol != null ? gameSymbol.hashCode() : 0;
+        int result = gameSymbol != null ? gameSymbol.hashCode() : 0;
+        result = 31 * result + position;
+        return result;
     }
 
     @Override

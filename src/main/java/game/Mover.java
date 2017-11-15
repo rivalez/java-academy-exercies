@@ -3,11 +3,11 @@ package game;
 import UI.BoardPrinter;
 import player.Player;
 
-public class Move {
+public class Mover {
 
     private int position;
 
-    public Move(int position){
+    public Mover(int position){
         this.position = position;
     }
 

@@ -25,11 +25,11 @@ public class RowResolverTest {
         RowResolver rowResolver = new RowResolver();
 
         //when
-        List<Field> result = rowResolver.resolve(1, gameState);
+        List<Move> result = rowResolver.resolve(1, gameState);
 
         //then
         Assert.assertEquals(result, Arrays.asList(
-                new Field(0, GameSymbol.X), new Field(1, GameSymbol.X), new Field(2, GameSymbol.X)));
+                new Move(0, GameSymbol.X), new Move(1, GameSymbol.X), new Move(2, GameSymbol.X)));
     }
 
     @Test
@@ -47,11 +47,11 @@ public class RowResolverTest {
         RowResolver rowResolver = new RowResolver();
 
         //when
-        List<Field> result = rowResolver.resolve(4, gameState);
+        List<Move> result = rowResolver.resolve(4, gameState);
 
         //then
         Assert.assertNotEquals(result, Arrays.asList(
-                new Field(0, GameSymbol.X), new Field(1, GameSymbol.X), new Field(2, GameSymbol.X)));
+                new Move(0, GameSymbol.X), new Move(1, GameSymbol.X), new Move(2, GameSymbol.X)));
     }
 
     @Test
@@ -72,11 +72,11 @@ public class RowResolverTest {
         RowResolver rowResolver = new RowResolver();
 
         //when
-        List<Field> result = rowResolver.resolve(6, gameState);
+        List<Move> result = rowResolver.resolve(6, gameState);
 
         //then
         Assert.assertEquals(result, Arrays.asList(
-                new Field(6, GameSymbol.O), new Field(7, GameSymbol.O), new Field(8, GameSymbol.O)));
+                new Move(6, GameSymbol.O), new Move(7, GameSymbol.O), new Move(8, GameSymbol.O)));
     }
 
 

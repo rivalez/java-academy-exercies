@@ -26,11 +26,11 @@ public class ColumnResolverTest {
         ColumnResolver columnResolver = new ColumnResolver();
 
         //when
-        List<Field> result = columnResolver.resolve(0, gameState);
+        List<Move> result = columnResolver.resolve(0, gameState);
 
         //then
         Assert.assertEquals(result, Arrays.asList(
-                new Field(0, GameSymbol.X), new Field(3, GameSymbol.X), new Field(6, GameSymbol.X)));
+                new Move(0, GameSymbol.X), new Move(3, GameSymbol.X), new Move(6, GameSymbol.X)));
     }
 
 
@@ -50,11 +50,11 @@ public class ColumnResolverTest {
         ColumnResolver columnResolver = new ColumnResolver();
 
         //when
-        List<Field> result = columnResolver.resolve(6, gameState);
+        List<Move> result = columnResolver.resolve(6, gameState);
 
         //then
         Assert.assertEquals(result, Arrays.asList(
-                new Field(0, GameSymbol.X), new Field(3, GameSymbol.X), new Field(6, GameSymbol.X)));
+                new Move(0, GameSymbol.X), new Move(3, GameSymbol.X), new Move(6, GameSymbol.X)));
     }
 
     @Test
@@ -75,10 +75,10 @@ public class ColumnResolverTest {
         ColumnResolver columnResolver = new ColumnResolver();
 
         //when
-        List<Field> result = columnResolver.resolve(2, gameState);
+        List<Move> result = columnResolver.resolve(2, gameState);
 
         //then
         Assert.assertEquals(result, Arrays.asList(
-                new Field(2, GameSymbol.O), new Field(5, GameSymbol.O), new Field(8, GameSymbol.O)));
+                new Move(2, GameSymbol.O), new Move(5, GameSymbol.O), new Move(8, GameSymbol.O)));
     }
 }

@@ -28,11 +28,11 @@ public class DiagonalResolverTest {
         DiagonalResolver diagonalResolver = new DiagonalResolver();
 
         //when
-        List<Field> result = diagonalResolver.resolve(4, gameState);
+        List<Move> result = diagonalResolver.resolve(0, gameState);
 
         //then
         Assert.assertEquals(result, Arrays.asList(
-                new Field(0, GameSymbol.X), new Field(3, GameSymbol.X), new Field(8, GameSymbol.X)));
+                new Move(0, GameSymbol.X), new Move(4, GameSymbol.X), new Move(8, GameSymbol.X)));
     }
 
     @Test
@@ -53,11 +53,11 @@ public class DiagonalResolverTest {
         DiagonalResolver diagonalResolver = new DiagonalResolver();
 
         //when
-        List<Field> result = diagonalResolver.resolve(8, gameState);
+        List<Move> result = diagonalResolver.resolve(8, gameState);
 
         //then
         Assert.assertEquals(result, Arrays.asList(
-                new Field(0, GameSymbol.X), new Field(3, GameSymbol.X), new Field(8, GameSymbol.X)));
+                new Move(8, GameSymbol.X), new Move(4, GameSymbol.X), new Move(0, GameSymbol.X)));
     }
 
 

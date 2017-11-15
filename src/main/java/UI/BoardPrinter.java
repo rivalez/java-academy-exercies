@@ -1,6 +1,6 @@
 package UI;
 
-import board.Field;
+import board.Move;
 import board.BoardDimensions;
 import game.GameState;
 
@@ -17,8 +17,8 @@ public class BoardPrinter {
     //todo stringbuilder 1 for co dimenstion.getY() % + "\n"
     public String print() {
         StringBuilder stringBuilder = new StringBuilder();
-        List<Field> board = gameState.getBoard();
-        BoardDimensions dimensions = gameState.getGameField().getDimensions();
+        List<Move> board = gameState.getBoard();
+        BoardDimensions dimensions = gameState.getGameBoard().getDimensions();
         int counter = 0;
         for(int i = 0 ; i < dimensions.getX(); i++){
             for(int j = 0; j < dimensions.getY(); j++){
