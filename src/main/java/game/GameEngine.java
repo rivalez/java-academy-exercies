@@ -5,7 +5,7 @@ import board.*;
 import player.Player;
 import player.SymbolResolver;
 import validators.MoveValidator;
-import validators.boardPartValidator;
+import validators.BoardPartValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +43,7 @@ public class GameEngine {
         boolean isGameRunning = true;
         while (isGameRunning) {
             int suggestedPosition = positionAsker.askForPosition();
-            boardPartValidator boardPartValidator = new boardPartValidator(configuration);
+            BoardPartValidator boardPartValidator = new BoardPartValidator(configuration);
             if (moveValidator.validate(suggestedPosition)) {
                 Move move = new Move(suggestedPosition);
                 move.doMove(gameState, turn.getNext());

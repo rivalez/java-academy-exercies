@@ -80,7 +80,5 @@ public class ColumnResolverTest {
         //then
         Assert.assertEquals(result, Arrays.asList(
                 new Field(2, GameSymbol.O), new Field(5, GameSymbol.O), new Field(8, GameSymbol.O)));
-
     }
-
 }

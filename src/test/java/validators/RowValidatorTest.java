@@ -12,12 +12,12 @@ import java.util.Arrays;
 public class RowValidatorTest {
 
     private Configuration configuration = new Configuration(new BoardDimensions(3,3), 3);
-    private boardPartValidator rowValidator = new boardPartValidator(configuration);
+    private BoardPartValidator boardPartValidator = new BoardPartValidator(configuration);
 
     @Test
     public void validateXXXRow(){
         //when-then
-        Assert.assertTrue(rowValidator.validate(Arrays.asList(
+        Assert.assertTrue(boardPartValidator.validate(Arrays.asList(
                 new Field(1, GameSymbol.X),
                 new Field(2, GameSymbol.X),
                 new Field(3, GameSymbol.X))));
@@ -26,7 +26,7 @@ public class RowValidatorTest {
     @Test
     public void validateXOXRowIncorrect(){
         //when-then
-        Assert.assertFalse(rowValidator.validate(Arrays.asList(
+        Assert.assertFalse(boardPartValidator.validate(Arrays.asList(
                 new Field(0, GameSymbol.X),
                 new Field(2, GameSymbol.O),
                 new Field(3, GameSymbol.X))));
@@ -35,7 +35,7 @@ public class RowValidatorTest {
     @Test
     public void validateXXNXRowIncorrect(){
         //when-then
-        Assert.assertFalse(rowValidator.validate(Arrays.asList(
+        Assert.assertFalse(boardPartValidator.validate(Arrays.asList(
                 new Field(100, GameSymbol.X),
                 new Field(),
                 new Field(2, GameSymbol.X),
@@ -45,7 +45,7 @@ public class RowValidatorTest {
     @Test
     public void validateXX0XXRowIncorrect(){
         //when-then
-        Assert.assertFalse(rowValidator.validate(Arrays.asList(
+        Assert.assertFalse(boardPartValidator.validate(Arrays.asList(
                 new Field(0, GameSymbol.X),
                 new Field(1, GameSymbol.X),
                 new Field(2, GameSymbol.O),
@@ -56,7 +56,7 @@ public class RowValidatorTest {
     @Test
     public void validateOOOOXRow(){
         //when-then
-        Assert.assertTrue(rowValidator.validate(Arrays.asList(
+        Assert.assertTrue(boardPartValidator.validate(Arrays.asList(
                 new Field(0, GameSymbol.O),
                 new Field(1, GameSymbol.O),
                 new Field(2, GameSymbol.O),

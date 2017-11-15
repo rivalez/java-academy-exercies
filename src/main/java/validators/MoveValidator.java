@@ -10,6 +10,5 @@ public class MoveValidator {
 
     public boolean validate(int position) {
         return position <= boardSize && position >= 0;
-
     }
 }

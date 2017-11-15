@@ -5,11 +5,11 @@ import game.Configuration;
 
 import java.util.List;
 
-public class boardPartValidator {
+public class BoardPartValidator {
 
     private Configuration configuration;
 
-    public boardPartValidator(Configuration configuration){
+    public BoardPartValidator(Configuration configuration){
         this.configuration = configuration;
     }
 
@@ -17,7 +17,7 @@ public class boardPartValidator {
         int symbolsToWin = configuration.getGameSymbolsToWin() - 1;
         int counter = 0;
         for (int i = 0; i < fields.size(); i++) {
-            if(i + 1 < fields.size() && fields.get(i).equals(fields.get(i + 1))){
+            if(i + 1 < fields.size() && fields.get(i).equals(fields.get(i + 1)) && !fields.get(i).isEmpty()){
                 counter++;
                 if (counter == symbolsToWin) return true;
             } else {
