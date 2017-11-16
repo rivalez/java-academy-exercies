@@ -1,7 +1,6 @@
 package game;
 
-import
-        board.Move;
+import board.Move;
 import board.GameBoard;
 
 import java.util.ArrayList;

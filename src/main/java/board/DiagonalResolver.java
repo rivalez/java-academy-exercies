@@ -14,10 +14,15 @@ public class DiagonalResolver implements WinResolver {
         int row = suggestedPosition / dimensions.getX() + 1;
         int column = suggestedPosition % dimensions.getY() + 1;
 
+
+
+
         int lastIndex = row * column - 1;
 
         return board;
     }
+
+
 
 //    public List<Move> resolve(int position, GameProgress gameProgress) {
 //        List<Move> moves = gameProgress.getMoves();

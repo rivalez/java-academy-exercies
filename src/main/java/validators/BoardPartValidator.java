@@ -20,7 +20,9 @@ public class BoardPartValidator {
             if(i + 1 < moves.size()){
                 if(isNotNull(moves, i) && isNotTheSame(moves, i) && isSymbolEquals(moves, i)){
                     counter++;
-                    if (counter == symbolsToWin) return true;
+                    if (counter == symbolsToWin) {
+                        return true;
+                    }
                 } else {
                     counter = 0;
                 }
