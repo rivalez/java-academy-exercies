@@ -11,23 +11,22 @@ public class DiagonalResolver implements WinResolver {
         BoardDimensions dimensions = gameState.getGameBoard().getDimensions();
         List<Move> board = new ArrayList<>();
 
-        int row = suggestedPosition / dimensions.getX() + 1;
-        int column = suggestedPosition % dimensions.getY() + 1;
+        int row = suggestedPosition / dimensions.getX();
+        int column = suggestedPosition % dimensions.getY();
 
-
-
-
-        int lastIndex = row * column - 1;
+        board.add(gameState.getBoard().get(column));
+        int f = dimensions.getX() + column + 1;
+        for (int i = 0; i < gameState.getBoard().size(); i++) {
+            if(f < gameState.getBoard().size()){
+                if(!gameState.getBoard().get(f).isEmpty()){
+                    board.add(gameState.getBoard().get(f));
+                }
+            } else {
+                break;
+            }
+            f += dimensions.getX() + 1;
+        }
 
         return board;
     }
-
-
-
-//    public List<Move> resolve(int position, GameProgress gameProgress) {
-//        List<Move> moves = gameProgress.getMoves();
-//
-//        GameState gameState = boardBuilder.build(moves);
-//
-//    }
 }

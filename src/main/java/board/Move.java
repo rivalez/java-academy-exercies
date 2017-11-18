@@ -5,6 +5,7 @@ import game.GameSymbol;
 public class Move {
 
     private GameSymbol gameSymbol;
+
     private int position;
 
     public Move(){
@@ -26,6 +27,10 @@ public class Move {
 
     public GameSymbol getGameSymbol() {
         return gameSymbol;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override

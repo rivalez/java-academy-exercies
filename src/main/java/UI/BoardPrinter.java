@@ -1,21 +1,15 @@
 package UI;
 
-import board.Move;
 import board.BoardDimensions;
+import board.Move;
 import game.GameState;
 
 import java.util.List;
 
 public class BoardPrinter {
 
-    private final GameState gameState;
-
-    public BoardPrinter(GameState gameState) {
-        this.gameState = gameState;
-    }
-
     //todo stringbuilder 1 for co dimenstion.getY() % + "\n"
-    public String print() {
+    public String print(GameState gameState) {
         StringBuilder stringBuilder = new StringBuilder();
         List<Move> board = gameState.getBoard();
         BoardDimensions dimensions = gameState.getGameBoard().getDimensions();

@@ -5,6 +5,7 @@ import game.GameSymbol;
 public class Player {
 
     private GameSymbol gameSymbol;
+    private String name;
     private Score score;
 
     public Player(GameSymbol gameSymbol) {
@@ -20,4 +21,10 @@ public class Player {
         return score;
     }
 
+    @Override
+    public String toString() {
+        return "Player{" +
+                "gameSymbol=" + gameSymbol +
+                ", name='" + name;
+    }
 }

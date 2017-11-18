@@ -32,7 +32,9 @@ public class GameState {
     }
 
     public void addElement(int position, GameSymbol gameSymbol){
-        if(board.get(position).isEmpty()) board.set(position, new Move(position, gameSymbol));
+        if(board.get(position).isEmpty()) {
+            board.set(position, new Move(position, gameSymbol));
+        }
     }
 
 }

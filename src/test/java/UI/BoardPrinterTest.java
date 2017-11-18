@@ -17,9 +17,9 @@ public class BoardPrinterTest {
         GameBoard gameField = fieldProvider.create(boardDimensions);
         GameState gameState = new GameState(gameField);
         gameState.listCreator();
-        BoardPrinter boardPrinter = new BoardPrinter(gameState);
+        BoardPrinter boardPrinter = new BoardPrinter();
         //when
-        String result = boardPrinter.print();
+        String result = boardPrinter.print(gameState);
 
         //then
         Assert.assertEquals(result,

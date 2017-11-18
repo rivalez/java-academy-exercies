@@ -2,15 +2,12 @@ package game;
 
 import UI.BoardPrinter;
 import board.*;
-import jdk.nashorn.internal.ir.annotations.Ignore;
-import jdk.nashorn.internal.ir.annotations.Immutable;
+import gameHistory.GameProgress;
 import player.Player;
 import player.SymbolResolver;
-import validators.MoveValidator;
 import validators.BoardPartValidator;
+import validators.MoveValidator;
 
-import javax.xml.ws.soap.Addressing;
-import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,29 +28,34 @@ public class GameEngine {
         new Communicate("Who start's: O or X ?").getMessage();
         Scanner scanner = new Scanner(System.in);
         String symbol = scanner.next();
-        Player firstPlayer = new Player(GameSymbol.valueOf(symbol));
         SymbolResolver symbolResolver = new SymbolResolver();
+        Player firstPlayer = new Player(GameSymbol.valueOf(symbol));
         Player secondPlayer = new Player(symbolResolver.resolveSymbolForSecondPlayer(firstPlayer.getGameSymbol()));
-        System.out.println(firstPlayer);
-        new Communicate(String.format("Player with symbol %s starts first", firstPlayer.getGameSymbol())).getMessage();
+        new Communicate(String.format("Player with symbol %s starts first", firstPlayer.toString()));
 
+        Turn turn = new Turn(Arrays.asList(firstPlayer, secondPlayer));
         MoveValidator moveValidator = new MoveValidator(gameState.getBoard().size());
         PositionAsker positionAsker = new PositionAsker();
-        Turn turn = new Turn(Arrays.asList(firstPlayer, secondPlayer));
-        BoardPrinter boardPrinter = new BoardPrinter(gameState);
-        System.out.println(boardPrinter.print());
+        BoardPrinter boardPrinter = new BoardPrinter();
 
         BoardPartValidator boardPartValidator = new BoardPartValidator(configuration);
         WinResolver rowResolver = new RowResolver();
         WinResolver columnResolver = new ColumnResolver();
         WinResolver diagonalResolver = new DiagonalResolver();
+        System.out.println(boardPrinter.print(gameState));
 
         boolean isGameRunning = true;
         while (isGameRunning) {
             int suggestedPosition = positionAsker.askForPosition();
             if (moveValidator.validate(suggestedPosition)) {
+                GameProgress gameProgress = new GameProgress();
+                Player currentPlayer = turn.getNext();
+                gameProgress.addMove(new Move(suggestedPosition, currentPlayer.getGameSymbol()));
                 Mover mover = new Mover(suggestedPosition);
-                mover.doMove(gameState, turn.getNext());
+                mover.doMove(gameState, currentPlayer);
+
+                System.out.println(boardPrinter.print(gameState));
+
                 List<List<Move>> checks = new ArrayList<>();
                 checks.add(columnResolver.resolve(suggestedPosition, gameState));
                 checks.add(rowResolver.resolve(suggestedPosition, gameState));
