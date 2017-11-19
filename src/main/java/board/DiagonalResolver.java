@@ -1,38 +1,32 @@
 package board;
 
-import game.GameState;
+import game.GameSymbol;
 import gameHistory.GameProgress;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DiagonalResolver implements WinResolver {
 
-    public List<Move> resolve(int suggestedPosition, GameState gameState) {
-        BoardDimensions dimensions = gameState.getGameBoard().getDimensions();
-        List<Move> board = new ArrayList<>();
-
-        int row = suggestedPosition / dimensions.getX();
-        int column = suggestedPosition % dimensions.getY();
-
-        board.add(gameState.getBoard().get(column));
-        int f = dimensions.getX() + column + 1;
-        for (int i = 0; i < gameState.getBoard().size(); i++) {
-            if(f < gameState.getBoard().size()){
-                if(!gameState.getBoard().get(f).isEmpty()){
-                    board.add(gameState.getBoard().get(f));
-                }
-            } else {
-                break;
-            }
-            f += dimensions.getX() + 1;
-        }
-
-        return board;
-    }
-
     @Override
     public boolean resolve(GameProgress gameProgress) {
+        BoardDimensions dimensions = gameProgress.getConfiguration().getBoardDimensions();
+        List<Move> moves = gameProgress.getMoves();
+
+        GameSymbol symbol = moves.get(moves.size() - 1).getGameSymbol();
+        moves = moves.stream().filter(c -> c.getGameSymbol().equals(symbol)).collect(Collectors.toList());
+        int counter = 1;
+        for (int i = 0; i < moves.size(); i++) {
+            if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){
+                return true;
+            }
+            Move lastMove = moves.get(i);
+            int row = lastMove.getPosition() / dimensions.getX();
+            int column = lastMove.getPosition() % dimensions.getX();
+            if(lastMove.getPosition() / dimensions.getX() == row && lastMove.getPosition() % dimensions.getX() == column){
+                counter++;
+            }
+        }
         return false;
     }
 }
