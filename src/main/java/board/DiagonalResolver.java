@@ -17,16 +17,14 @@ public class DiagonalResolver implements WinResolver {
         moves = moves.stream().filter(c -> c.getGameSymbol().equals(symbol)).collect(Collectors.toList());
         int counter = 1;
         for (int i = 0; i < moves.size(); i++) {
-            if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){
-                return true;
-            }
             Move lastMove = moves.get(i);
             int row = lastMove.getPosition() / dimensions.getX();
             int column = lastMove.getPosition() % dimensions.getX();
-            if(lastMove.getPosition() / dimensions.getX() == row && lastMove.getPosition() % dimensions.getX() == column){
+            if(lastMove.getPosition() / dimensions.getX() == row
+                    && lastMove.getPosition() % dimensions.getX() == column){
                 counter++;
             }
         }
-        return false;
+        return counter == gameProgress.getConfiguration().getGameSymbolsToWin();
     }
 }

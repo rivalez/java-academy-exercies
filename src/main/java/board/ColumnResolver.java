@@ -15,19 +15,20 @@ public class ColumnResolver implements WinResolver {
 
         GameSymbol symbol = moves.get(moves.size() - 1).getGameSymbol();
         moves = moves.stream().filter(c -> c.getGameSymbol().equals(symbol)).collect(Collectors.toList());
-        int counter = 1;
+        int counter = 0;
         Move lastMove = moves.get(moves.size() - 1);
         int column = lastMove.getPosition() % dimensions.getX();
+        boolean result = false;
         for (int i = 0; i < moves.size(); i++) {
-            if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){
-                return true;
-            }
             lastMove = moves.get(i);
             if(lastMove.getPosition() % dimensions.getX() == column){
                 counter++;
             }
+            if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){
+                result = true;
+            }
         }
-        return false;
+        return result;
 
     }
 

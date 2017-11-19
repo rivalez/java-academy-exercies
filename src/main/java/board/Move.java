@@ -2,7 +2,7 @@ package board;
 
 import game.GameSymbol;
 
-public class Move {
+public class Move implements Comparable<Move> {
 
     private GameSymbol gameSymbol;
 
@@ -58,5 +58,10 @@ public class Move {
             result = gameSymbol.toString();
         }
         return result;
+    }
+
+    @Override
+    public int compareTo(Move move) {
+        return Integer.compare(this.getPosition(), move.getPosition());
     }
 }
