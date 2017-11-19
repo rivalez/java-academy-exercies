@@ -1,14 +1,28 @@
 package board;
 
+import game.Configuration;
 import game.GameState;
 import game.GameSymbol;
+import gameHistory.GameProgress;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class ColumnResolverTest {
+public class ColumnResolverTest extends ColumnData {
+
+    private BoardCreator boardCreator = new BoardCreator();
+
+    @Test(dataProvider = "getData")
+    public void simpleColumnTest(List<Move> moves, Configuration configuration){
+        //given
+        ColumnResolver columnResolver = new ColumnResolver();
+        GameProgress gameProgress = boardCreator.createGame(moves, configuration);
+
+        //when-then
+        Assert.assertTrue(columnResolver.resolve(gameProgress));
+    }
 
     @Test
     public void columnResolve(){

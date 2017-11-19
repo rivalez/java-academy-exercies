@@ -1,9 +1,8 @@
 package UI;
 
-import board.BoardProvider;
-import board.GameBoard;
 import board.BoardDimensions;
-import game.GameState;
+import game.Configuration;
+import gameHistory.GameProgress;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -13,13 +12,11 @@ public class BoardPrinterTest {
     public void boardPrinter(){
         //given
         BoardDimensions boardDimensions = new BoardDimensions(3,4);
-        BoardProvider fieldProvider = new BoardProvider();
-        GameBoard gameField = fieldProvider.create(boardDimensions);
-        GameState gameState = new GameState(gameField);
-        gameState.listCreator();
-        BoardPrinter boardPrinter = new BoardPrinter();
+        Configuration configuration = new Configuration(boardDimensions, 3);
+        GameProgress gameProgress = new GameProgress(configuration);
+        BoardPrinter boardPrinter = new BoardPrinter(configuration);
         //when
-        String result = boardPrinter.print(gameState);
+        String result = boardPrinter.print(gameProgress);
 
         //then
         Assert.assertEquals(result,

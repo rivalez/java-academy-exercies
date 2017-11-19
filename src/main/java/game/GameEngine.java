@@ -5,12 +5,9 @@ import board.*;
 import gameHistory.GameProgress;
 import player.Player;
 import player.SymbolResolver;
-import validators.BoardPartValidator;
 import validators.MoveValidator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class GameEngine {
@@ -22,8 +19,6 @@ public class GameEngine {
 
     public void run() {
         Configuration configuration = configure();
-        GameState gameState = createGameState(configuration);
-
         new Communicate("Field created!").getMessage();
         new Communicate("Who start's: O or X ?").getMessage();
         Scanner scanner = new Scanner(System.in);
@@ -34,38 +29,31 @@ public class GameEngine {
         new Communicate(String.format("Player with symbol %s starts first", firstPlayer.toString()));
 
         Turn turn = new Turn(Arrays.asList(firstPlayer, secondPlayer));
-        MoveValidator moveValidator = new MoveValidator(gameState.getBoard().size());
+        MoveValidator moveValidator = new MoveValidator(configuration.getBoardDimensions().getX() * configuration.getBoardDimensions().getY());
         PositionAsker positionAsker = new PositionAsker();
-        BoardPrinter boardPrinter = new BoardPrinter();
+        BoardPrinter boardPrinter = new BoardPrinter(configuration);
 
-        BoardPartValidator boardPartValidator = new BoardPartValidator(configuration);
         WinResolver rowResolver = new RowResolver();
         WinResolver columnResolver = new ColumnResolver();
         WinResolver diagonalResolver = new DiagonalResolver();
-        System.out.println(boardPrinter.print(gameState));
+        System.out.println(boardPrinter.print());
+        GameProgress gameProgress = new GameProgress(configuration);
 
         boolean isGameRunning = true;
         while (isGameRunning) {
             int suggestedPosition = positionAsker.askForPosition();
             if (moveValidator.validate(suggestedPosition)) {
-                GameProgress gameProgress = new GameProgress();
                 Player currentPlayer = turn.getNext();
                 gameProgress.addMove(new Move(suggestedPosition, currentPlayer.getGameSymbol()));
-                Mover mover = new Mover(suggestedPosition);
-                mover.doMove(gameState, currentPlayer);
 
-                System.out.println(boardPrinter.print(gameState));
+                System.out.println(boardPrinter.print(gameProgress));
 
-                List<List<Move>> checks = new ArrayList<>();
-                checks.add(columnResolver.resolve(suggestedPosition, gameState));
-                checks.add(rowResolver.resolve(suggestedPosition, gameState));
-                checks.add(diagonalResolver.resolve(suggestedPosition, gameState));
-
-                for(List<Move> part : checks){
-                    if (boardPartValidator.validate(part)) {
-                        isGameRunning = false;
-                    }
+                if(columnResolver.resolve(gameProgress) ||
+                rowResolver.resolve(gameProgress) ||
+                diagonalResolver.resolve(gameProgress)){
+                    isGameRunning = false;
                 }
+
             } else {
                 System.out.println("Wrong move dude, you lost turn!");
             }
@@ -81,10 +69,4 @@ public class GameEngine {
 
     }
 
-    private GameState createGameState(Configuration configuration) {
-        GameBoard gameField = new BoardProvider().create(configuration.getBoardDimensions());
-        GameState gameState = new GameState(gameField);
-        gameState.listCreator();
-        return gameState;
-    }
 }

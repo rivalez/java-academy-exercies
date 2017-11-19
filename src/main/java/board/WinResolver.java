@@ -1,10 +1,8 @@
 package board;
 
-import game.GameState;
-
-import java.util.List;
+import gameHistory.GameProgress;
 
 public interface WinResolver {
-    List<Move> resolve(int suggestedPosition, GameState gameState);
+    boolean resolve(GameProgress gameProgress);
 
 }

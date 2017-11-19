@@ -1,9 +1,12 @@
 package board;
 
 import game.GameState;
+import game.GameSymbol;
+import gameHistory.GameProgress;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ColumnResolver implements WinResolver {
 
@@ -17,5 +20,36 @@ public class ColumnResolver implements WinResolver {
             }
         }
         return result;
+    }
+
+    @Override
+    public boolean resolve(GameProgress gameProgress) {
+        BoardDimensions dimensions = gameProgress.getConfiguration().getBoardDimensions();
+        List<Move> moves = gameProgress.getMoves();
+        GameSymbol symbol = moves.get(moves.size() - 1).getGameSymbol();
+        moves = moves.stream().filter(c -> c.getGameSymbol().equals(symbol)).collect(Collectors.toList());
+        int counter = 1;
+        for (int i = moves.size() - 1; i >= 0; i--) {
+            if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){
+                return true;
+            }
+            if(i - 1 >= 0){
+                Move lastMove = moves.get(i);
+                Move prevMove = moves.get(i - 1);
+                if(isNext(dimensions, lastMove, prevMove) || isPrev(dimensions, lastMove, prevMove)){
+                    counter++;
+                }
+            }
+        }
+        return false;
+
+    }
+
+    private boolean isPrev(BoardDimensions dimensions, Move lastMove, Move prevMove) {
+        return lastMove.getPosition() - dimensions.getX() == prevMove.getPosition();
+    }
+
+    private boolean isNext(BoardDimensions dimensions, Move lastMove, Move prevMove) {
+        return lastMove.getPosition() + dimensions.getX() == prevMove.getPosition();
     }
 }

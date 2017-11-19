@@ -1,6 +1,7 @@
 package board;
 
 import game.GameState;
+import gameHistory.GameProgress;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,5 +29,10 @@ public class DiagonalResolver implements WinResolver {
         }
 
         return board;
+    }
+
+    @Override
+    public boolean resolve(GameProgress gameProgress) {
+        return false;
     }
 }
