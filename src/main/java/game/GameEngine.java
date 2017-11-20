@@ -8,6 +8,7 @@ import player.SymbolResolver;
 import validators.MoveValidator;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class GameEngine {
@@ -33,7 +34,7 @@ public class GameEngine {
         name = scanner.next();
         Player secondPlayer = new Player(symbolResolver.resolveSymbolForSecondPlayer(firstPlayer.getGameSymbol()), name);
 
-        new Communicate(String.format("Player %s with symbol %s starts first",firstPlayer.getName(), firstPlayer.getGameSymbol().name())).getMessage();
+        new Communicate(String.format("Player %s with symbol %s starts first", firstPlayer.getName(), firstPlayer.getGameSymbol().name())).getMessage();
 
         Turn turn = new Turn(Arrays.asList(firstPlayer, secondPlayer));
         MoveValidator moveValidator = new MoveValidator(configuration.getBoardDimensions().getX() * configuration.getBoardDimensions().getY());
@@ -45,6 +46,7 @@ public class GameEngine {
         WinResolver diagonalResolver = new DiagonalResolver();
         System.out.println(boardPrinter.print());
         GameProgress gameProgress = new GameProgress(configuration);
+
 
         boolean isGameRunning = true;
         while (isGameRunning) {

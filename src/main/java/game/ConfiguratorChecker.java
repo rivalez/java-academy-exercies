@@ -2,6 +2,8 @@ package game;
 
 import board.BoardDimensions;
 
+import java.util.Optional;
+
 public class ConfiguratorChecker {
 
     public Configuration check(Configuration configuration){
@@ -11,6 +13,7 @@ public class ConfiguratorChecker {
             return new Configuration(boardDimensions, 3);
         }
         return configuration;
+//        Optional
 
     }
 

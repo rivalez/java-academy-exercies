@@ -27,9 +27,7 @@ public class ColumnResolver implements WinResolver {
             if(i + 1 < moves.size()) {
                 prevMove = moves.get(i + 1);
             }
-            if(lastMove.getPosition() % dimensions.getX() == column &&
-                    prevMove.getPosition() - lastMove.getPosition() == dimensions.getY() ||
-                    prevMove.getPosition() - lastMove.getPosition() == 0){
+            if(lastMove.getPosition() % dimensions.getX() == column){
                 counter++;
             }
             if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){
