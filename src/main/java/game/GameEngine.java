@@ -18,7 +18,8 @@ public class GameEngine {
     }
 
     public void run() {
-        Configuration configuration = configure();
+        Configuration configuration = new ConfiguratorChecker().check(configure());
+
         new Communicate("Field created!").getMessage();
         new Communicate("Who start's: O or X ?").getMessage();
         Scanner scanner = new Scanner(System.in);
@@ -26,7 +27,7 @@ public class GameEngine {
         SymbolResolver symbolResolver = new SymbolResolver();
         Player firstPlayer = new Player(GameSymbol.valueOf(symbol));
         Player secondPlayer = new Player(symbolResolver.resolveSymbolForSecondPlayer(firstPlayer.getGameSymbol()));
-        new Communicate(String.format("Player with symbol %s starts first", firstPlayer.toString()));
+        new Communicate(String.format("Player with symbol %s starts first", firstPlayer.toString())).getMessage();
 
         Turn turn = new Turn(Arrays.asList(firstPlayer, secondPlayer));
         MoveValidator moveValidator = new MoveValidator(configuration.getBoardDimensions().getX() * configuration.getBoardDimensions().getY());
@@ -48,7 +49,7 @@ public class GameEngine {
 
                 System.out.println(boardPrinter.print(gameProgress));
 
-                if(rowResolver.resolve(gameProgress)){
+                if(rowResolver.resolve(gameProgress) || columnResolver.resolve(gameProgress)){
                     isGameRunning = false;
                 }
 

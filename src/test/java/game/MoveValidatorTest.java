@@ -9,7 +9,7 @@ public class MoveValidatorTest {
 
     @DataProvider
     private Object[][] getData(){
-        return new Object[][] {{9,10}, {10,-3}};
+        return new Object[][] {{9,10}, {10,-3}, {3, 13000}};
     }
 
     @Test(dataProvider = "getData")
