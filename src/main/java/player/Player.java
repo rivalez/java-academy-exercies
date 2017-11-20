@@ -8,9 +8,10 @@ public class Player {
     private String name;
     private Score score;
 
-    public Player(GameSymbol gameSymbol) {
+    public Player(GameSymbol gameSymbol, String name) {
         this.gameSymbol = gameSymbol;
         this.score = new Score();
+        this.name = name;
     }
 
     public GameSymbol getGameSymbol() {
@@ -19,6 +20,10 @@ public class Player {
 
     public Score getScore() {
         return score;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

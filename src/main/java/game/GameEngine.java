@@ -25,9 +25,15 @@ public class GameEngine {
         Scanner scanner = new Scanner(System.in);
         String symbol = scanner.next();
         SymbolResolver symbolResolver = new SymbolResolver();
-        Player firstPlayer = new Player(GameSymbol.valueOf(symbol));
-        Player secondPlayer = new Player(symbolResolver.resolveSymbolForSecondPlayer(firstPlayer.getGameSymbol()));
-        new Communicate(String.format("Player with symbol %s starts first", firstPlayer.toString())).getMessage();
+        new Communicate("Provide Name of first player: ").getMessage();
+        String name = scanner.next();
+        Player firstPlayer = new Player(GameSymbol.valueOf(symbol), name);
+
+        new Communicate("Provide Name of second player: ").getMessage();
+        name = scanner.next();
+        Player secondPlayer = new Player(symbolResolver.resolveSymbolForSecondPlayer(firstPlayer.getGameSymbol()), name);
+
+        new Communicate(String.format("Player %s with symbol %s starts first",firstPlayer.getName(), firstPlayer.getGameSymbol().name())).getMessage();
 
         Turn turn = new Turn(Arrays.asList(firstPlayer, secondPlayer));
         MoveValidator moveValidator = new MoveValidator(configuration.getBoardDimensions().getX() * configuration.getBoardDimensions().getY());

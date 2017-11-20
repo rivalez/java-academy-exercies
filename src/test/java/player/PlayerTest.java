@@ -15,7 +15,7 @@ public class PlayerTest {
     @Test(dataProvider = "getData")
     public void createPlayer(GameSymbol input, GameSymbol expected){
         //when
-        Player player = new Player(input);
+        Player player = new Player(input, "Stasiu");
 
         //then
         Assert.assertEquals(player.getGameSymbol(), expected);
@@ -24,7 +24,7 @@ public class PlayerTest {
     @Test
     public void createPlayerWithScore(){
         //given
-        Player player = new Player(null);
+        Player player = new Player(null, "Franek");
 
         //then
         Assert.assertEquals(player.getScore().getValue(), 0);
