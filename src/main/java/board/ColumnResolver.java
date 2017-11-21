@@ -18,15 +18,11 @@ public class ColumnResolver implements WinResolver {
         moves = moves.stream().filter(c -> c.getGameSymbol().equals(symbol)).collect(Collectors.toList());
         int counter = 0;
         Move lastMove = moves.get(moves.size() - 1);
-        Move prevMove = moves.get(0);
         int column = lastMove.getPosition() % dimensions.getX();
         boolean result = false;
         Collections.sort(moves);
         for (int i = 0; i < moves.size(); i++) {
             lastMove = moves.get(i);
-            if(i + 1 < moves.size()) {
-                prevMove = moves.get(i + 1);
-            }
             if(lastMove.getPosition() % dimensions.getX() == column){
                 counter++;
             }

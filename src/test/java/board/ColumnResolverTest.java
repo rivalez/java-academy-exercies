@@ -12,7 +12,7 @@ public class ColumnResolverTest extends ColumnData {
     private BoardCreator boardCreator = new BoardCreator();
 
     @Test(dataProvider = "getData")
-    public void simpleColumnTest(List<Move> moves, Configuration configuration){
+    public void simpleColumn(List<Move> moves, Configuration configuration){
         //given
         WinResolver resolver = new ColumnResolver();
         GameProgress gameProgress = boardCreator.createGame(moves, configuration);
@@ -21,4 +21,13 @@ public class ColumnResolverTest extends ColumnData {
         Assert.assertTrue(resolver.resolve(gameProgress));
     }
 
+    @Test(dataProvider = "getAssertFailData")
+    public void invalidColumnMoves(List<Move> moves, Configuration configuration) {
+        //given
+        WinResolver resolver = new ColumnResolver();
+        GameProgress gameProgress = boardCreator.createGame(moves, configuration);
+
+        //when-then
+        Assert.assertFalse(resolver.resolve(gameProgress));
+    }
 }

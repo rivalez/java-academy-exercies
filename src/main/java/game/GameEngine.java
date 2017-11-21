@@ -8,7 +8,6 @@ import player.SymbolResolver;
 import validators.MoveValidator;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class GameEngine {
@@ -57,7 +56,7 @@ public class GameEngine {
 
                 System.out.println(boardPrinter.print(gameProgress));
 
-                if(rowResolver.resolve(gameProgress) || columnResolver.resolve(gameProgress)){
+                if(columnResolver.resolve(gameProgress)){
                     isGameRunning = false;
                 }
 
