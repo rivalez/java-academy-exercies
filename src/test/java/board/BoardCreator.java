@@ -6,7 +6,6 @@ import gameHistory.GameProgress;
 import java.util.List;
 
 /**
- * Created by marek on 18.11.2017.
  * @author
  * @since
  */
