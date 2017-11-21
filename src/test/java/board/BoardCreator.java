@@ -11,9 +11,9 @@ import java.util.List;
  * @author
  * @since
  */
-public class BoardCreator {
+class BoardCreator {
 
-    protected GameProgress createGame(List<Move> moves, Configuration configuration){
+    GameProgress createGame(List<Move> moves, Configuration configuration){
         GameProgress gameProgress = new GameProgress(configuration);
         for(Move move : moves){
             gameProgress.addMove(move);

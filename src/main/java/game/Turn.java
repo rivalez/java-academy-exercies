@@ -17,4 +17,8 @@ public class Turn {
         Collections.reverse(players);
         return players.get(1);
     }
+
+    public Player getCurrent() {
+        return players.get(0);
+    }
 }

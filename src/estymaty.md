@@ -1,0 +1,1 @@
+Optymistycznie   Realistycznie   Pesymistycznie

@@ -1,6 +1,4 @@
-package game;
-
-import UI.Communicate;
+package UI;
 
 import java.util.Scanner;
 

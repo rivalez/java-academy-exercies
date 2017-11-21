@@ -6,9 +6,6 @@ import org.testng.annotations.DataProvider;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by marek on 19.11.2017.
- */
 public class RowData extends BaseTest {
 
     private List<Move> simpleCase1 = Arrays.asList(

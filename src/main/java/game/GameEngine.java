@@ -37,32 +37,19 @@ public class GameEngine {
 
         Turn turn = new Turn(Arrays.asList(firstPlayer, secondPlayer));
         MoveValidator moveValidator = new MoveValidator(configuration.getBoardDimensions().getX() * configuration.getBoardDimensions().getY());
-        PositionAsker positionAsker = new PositionAsker();
         BoardPrinter boardPrinter = new BoardPrinter(configuration);
-
         List<WinResolver> resolvers = Arrays.asList(new RowResolver(), new ColumnResolver(), new DiagonalResolver());
-        System.out.println(boardPrinter.print());
         GameProgress gameProgress = new GameProgress(configuration);
 
-        boolean isGameRunning = true;
-        while (isGameRunning) {
-            int suggestedPosition = positionAsker.askForPosition();
-            if (moveValidator.validate(suggestedPosition)) {
-                Player currentPlayer = turn.getNext();
-                gameProgress.addMove(new Move(suggestedPosition, currentPlayer.getGameSymbol()));
-                System.out.println(boardPrinter.print(gameProgress));
-                for(WinResolver resolver : resolvers){
-                    if(resolver.resolve(gameProgress)){
-                        isGameRunning = false;
-                    }
-                }
-            } else {
-                System.out.println("Wrong move dude, you lost turn!");
-            }
+        int numbersOfGames = 3;
+        while(numbersOfGames > 0) {
+            System.out.println(boardPrinter.print());
+            new Game(moveValidator, configuration).start(turn, gameProgress, resolvers);
+            numbersOfGames--;
+            gameProgress.getMoves().clear();
         }
-        System.out.println("Game is finished! %s player won! Congratulation!");
-    }
 
+    }
     private Configuration configure() {
         ConfigurationProvider configurationProvider = new ConfigurationProvider();
         BoardDimensions boardDimensions = configurationProvider.askForConfiguration();

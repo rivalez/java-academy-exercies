@@ -19,7 +19,6 @@ public class BoardPrinter {
         this.boardBuilder = new BoardBuilder(configuration);
     }
 
-    //todo stringbuilder 1 for co dimenstion.getY() % + "\n"
     public String print(GameProgress gameProgress) {
         StringBuilder stringBuilder = new StringBuilder();
         List<Move> board = boardBuilder.build(gameProgress.getMoves());
