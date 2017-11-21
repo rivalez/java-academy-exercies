@@ -35,14 +35,6 @@ public class ColumnData extends BaseTest {
             new Move(1, GameSymbol.X)
     );
 
-    private List<Move> simpleCase4 = Arrays.asList(
-            new Move(2, GameSymbol.X),
-            new Move(6, GameSymbol.X),
-            new Move(7, GameSymbol.O),
-            new Move(11, GameSymbol.O),
-            new Move(10, GameSymbol.X)
-    );
-
     private List<Move> advancedCase1 = Arrays.asList(
             new Move(0, GameSymbol.O),
             new Move(30, GameSymbol.X),
@@ -214,7 +206,6 @@ public class ColumnData extends BaseTest {
                 {simpleCase1, configuration2},
                 {simpleCase2, configuration2},
                 {simpleCase3, configuration2},
-                {simpleCase4, configuration7},
                 {advancedCase1, configuration3},
                 {advancedCase2, configuration3},
                 {advancedCase3, configuration4},

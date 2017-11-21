@@ -8,7 +8,9 @@ import player.Player;
 import player.SymbolResolver;
 import validators.MoveValidator;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 public class GameEngine {
 
@@ -42,7 +44,7 @@ public class GameEngine {
         GameProgress gameProgress = new GameProgress(configuration);
 
         int numbersOfGames = 3;
-        while(numbersOfGames > 0) {
+        while (numbersOfGames > 0) {
             System.out.println(boardPrinter.print());
             new Game(moveValidator, configuration).start(turn, gameProgress, resolvers);
             numbersOfGames--;
@@ -50,6 +52,7 @@ public class GameEngine {
         }
 
     }
+
     private Configuration configure() {
         ConfigurationProvider configurationProvider = new ConfigurationProvider();
         BoardDimensions boardDimensions = configurationProvider.askForConfiguration();

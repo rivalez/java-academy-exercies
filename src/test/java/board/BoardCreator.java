@@ -1,7 +1,6 @@
 package board;
 
 import game.Configuration;
-import game.GameState;
 import gameHistory.GameProgress;
 
 import java.util.List;
