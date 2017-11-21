@@ -1,6 +1,5 @@
 package board;
 
-import game.Configuration;
 import game.GameSymbol;
 import org.testng.annotations.DataProvider;
 
@@ -10,7 +9,7 @@ import java.util.List;
 /**
  * Created by marek on 19.11.2017.
  */
-public class RowData {
+public class RowData extends BaseTest {
 
     private List<Move> simpleCase1 = Arrays.asList(
             new Move(0, GameSymbol.X),
@@ -49,9 +48,58 @@ public class RowData {
             new Move(5, GameSymbol.O)
     );
 
-    private Configuration configuration1 = new Configuration(new BoardDimensions(3,3), 3);
-    private Configuration configuration2 = new Configuration(new BoardDimensions(3,3), 2);
-    private Configuration configuration3 = new Configuration(new BoardDimensions(5,7), 4);
+    private List<Move> simpleWrongCase1 = Arrays.asList(
+            new Move(8, GameSymbol.O),
+            new Move(30, GameSymbol.X),
+            new Move(31, GameSymbol.X),
+            new Move(1, GameSymbol.X),
+            new Move(7, GameSymbol.X),
+            new Move(13, GameSymbol.X),
+            new Move(2, GameSymbol.X),
+            new Move(6, GameSymbol.O),
+            new Move(20, GameSymbol.X),
+            new Move(21, GameSymbol.X),
+            new Move(5, GameSymbol.X)
+    );
+
+    private List<Move> simpleWrongCase2 = Arrays.asList(
+            new Move(2, GameSymbol.X),
+            new Move(6, GameSymbol.O),
+            new Move(1, GameSymbol.O),
+            new Move(0, GameSymbol.O),
+            new Move(3, GameSymbol.O),
+            new Move(5, GameSymbol.X),
+            new Move(7, GameSymbol.O),
+            new Move(8, GameSymbol.X)
+    );
+
+    private List<Move> simpleWrongCase3 = Arrays.asList(
+            new Move(2, GameSymbol.X),
+            new Move(6, GameSymbol.O),
+            new Move(1, GameSymbol.O),
+            new Move(0, GameSymbol.X),
+            new Move(3, GameSymbol.O),
+            new Move(5, GameSymbol.X),
+            new Move(7, GameSymbol.O),
+            new Move(8, GameSymbol.X)
+    );
+
+    private List<Move> advancedWrongCase1 = Arrays.asList(
+            new Move(2, GameSymbol.X),
+            new Move(6, GameSymbol.O),
+            new Move(1, GameSymbol.O),
+            new Move(0, GameSymbol.X),
+            new Move(3, GameSymbol.O),
+            new Move(5, GameSymbol.X),
+            new Move(7, GameSymbol.O),
+            new Move(8, GameSymbol.X),
+            new Move(20, GameSymbol.X),
+            new Move(21, GameSymbol.X),
+            new Move(22, GameSymbol.X),
+            new Move(23, GameSymbol.O),
+            new Move(24, GameSymbol.O)
+    );
+
 
     @DataProvider
     public Object[][] getData() {
@@ -63,6 +111,16 @@ public class RowData {
                 {simpleCase2, configuration2},
                 {simpleCase3, configuration2},
                 {advancedCase1, configuration3},
+        };
+    }
+
+    @DataProvider
+    public Object[][] getInvalidData() {
+        return new Object[][] {
+                {simpleWrongCase1, configuration3},
+                {simpleWrongCase2, configuration1},
+                {simpleWrongCase3, configuration2},
+                {advancedWrongCase1, configuration3},
         };
     }
 }

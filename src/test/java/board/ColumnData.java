@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by marek on 19.11.2017.
  */
-public class ColumnData {
+public class ColumnData extends BaseTest {
 
     private List<Move> simpleCase1 = Arrays.asList(
             new Move(0, GameSymbol.X),
@@ -165,10 +165,23 @@ public class ColumnData {
             new Move(40, GameSymbol.O)
     );
 
-    private Configuration configuration1 = new Configuration(new BoardDimensions(3,3), 3);
-    private Configuration configuration2 = new Configuration(new BoardDimensions(3,3), 2);
-    private Configuration configuration3 = new Configuration(new BoardDimensions(5,7), 4);
-    private Configuration configuration4 = new Configuration(new BoardDimensions(6,9), 3);
+    private List<Move> advancedWrongCase4 = Arrays.asList(
+            new Move(39, GameSymbol.X),
+            new Move(33, GameSymbol.O),
+            new Move(34, GameSymbol.X),
+            new Move(30, GameSymbol.O),
+            new Move(31, GameSymbol.X),
+            new Move(24, GameSymbol.O),
+            new Move(25, GameSymbol.X),
+            new Move(16, GameSymbol.O),
+            new Move(0, GameSymbol.X),
+            new Move(23, GameSymbol.O),
+            new Move(32, GameSymbol.X),
+            new Move(35, GameSymbol.O),
+            new Move(26, GameSymbol.X),
+            new Move(27, GameSymbol.O),
+            new Move(19, GameSymbol.X)
+    );
 
     @DataProvider
     public Object[][] getData() {
@@ -194,7 +207,7 @@ public class ColumnData {
                 {advancedWrongCase1, configuration3},
                 {advancedWrongCase2, configuration3},
                 {advancedWrongCase3, configuration4},
-
+                {advancedWrongCase4, configuration5},
         };
     }
 }

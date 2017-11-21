@@ -21,4 +21,14 @@ public class RowResolverTest extends RowData {
         Assert.assertTrue(resolver.resolve(gameProgress));
     }
 
+    @Test(dataProvider = "getInvalidData")
+    public void invalidSimpleRow(List<Move> moves, Configuration configuration){
+        //given
+        WinResolver resolver = new RowResolver();
+        GameProgress gameProgress = boardCreator.createGame(moves, configuration);
+
+        //when-then
+        Assert.assertFalse(resolver.resolve(gameProgress));
+    }
+
 }

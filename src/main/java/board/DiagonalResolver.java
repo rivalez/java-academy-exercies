@@ -3,6 +3,7 @@ package board;
 import game.GameSymbol;
 import gameHistory.GameProgress;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,15 +17,20 @@ public class DiagonalResolver implements WinResolver {
         GameSymbol symbol = moves.get(moves.size() - 1).getGameSymbol();
         moves = moves.stream().filter(c -> c.getGameSymbol().equals(symbol)).collect(Collectors.toList());
         int counter = 1;
-        for (int i = 0; i < moves.size(); i++) {
-            Move lastMove = moves.get(i);
-            int row = lastMove.getPosition() / dimensions.getX();
-            int column = lastMove.getPosition() % dimensions.getX();
-            if(lastMove.getPosition() / dimensions.getX() == row
-                    && lastMove.getPosition() % dimensions.getX() == column){
+        boolean result = false;
+        Collections.sort(moves);
+        for (int i = 0; i < moves.size() - 1; i++) {
+            Move move = moves.get(i);
+            Move nextMove = moves.get(i + 1);
+            if(move.getPosition() + dimensions.getX() + 1 == nextMove.getPosition()){
                 counter++;
+            } else {
+                counter = 0;
+            }
+            if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){
+                result = true;
             }
         }
-        return counter == gameProgress.getConfiguration().getGameSymbolsToWin();
+        return result;
     }
 }

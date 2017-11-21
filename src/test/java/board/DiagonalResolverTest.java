@@ -21,5 +21,15 @@ public class DiagonalResolverTest extends DiagonalData {
         Assert.assertTrue(resolver.resolve(gameProgress));
     }
 
+    @Test(dataProvider = "getAssertFailData")
+    public void invalidSimpleDiagonal(List<Move> moves, Configuration configuration){
+        //given
+        WinResolver resolver = new DiagonalResolver();
+        GameProgress gameProgress = boardCreator.createGame(moves, configuration);
+
+        //when-then
+        Assert.assertFalse(resolver.resolve(gameProgress));
+    }
+
 
 }

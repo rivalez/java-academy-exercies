@@ -22,9 +22,11 @@ public class ColumnResolver implements WinResolver {
         boolean result = false;
         Collections.sort(moves);
         for (int i = 0; i < moves.size(); i++) {
-            lastMove = moves.get(i);
-            if(lastMove.getPosition() % dimensions.getX() == column){
+            Move move = moves.get(i);
+            if(move.getPosition() % dimensions.getX() == column){
                 counter++;
+            } else {
+                counter = 0;
             }
             if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){
                 result = true;

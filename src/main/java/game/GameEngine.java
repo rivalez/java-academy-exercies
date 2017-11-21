@@ -56,7 +56,9 @@ public class GameEngine {
 
                 System.out.println(boardPrinter.print(gameProgress));
 
-                if(columnResolver.resolve(gameProgress)){
+                if(columnResolver.resolve(gameProgress)
+                        || rowResolver.resolve(gameProgress)
+                        || diagonalResolver.resolve(gameProgress)){
                     isGameRunning = false;
                 }
 
