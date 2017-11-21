@@ -1,4 +1,4 @@
-package game;
+package UI;
 
 public class Communicate {
 

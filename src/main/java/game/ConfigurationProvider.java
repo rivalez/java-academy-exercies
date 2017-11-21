@@ -1,14 +1,17 @@
 package game;
 
+import UI.Communicate;
 import board.BoardDimensions;
 
 import java.util.Scanner;
+
+import static UI.Communicates.START_GAME;
 
 public class ConfigurationProvider {
 
     public BoardDimensions askForConfiguration(){
         Scanner scanner = new Scanner(System.in);
-        new Communicate("Start game").getMessage();
+        new Communicate(START_GAME).getMessage();
         new Communicate("Type horizontal size of field:").getMessage();
         int x = 3;
         int y = 3;

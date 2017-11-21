@@ -8,5 +8,6 @@ abstract class BaseTest {
     static Configuration configuration3 = new Configuration(new BoardDimensions(5,7), 4);
     static Configuration configuration4 = new Configuration(new BoardDimensions(6,9), 3);
     static Configuration configuration5 = new Configuration(new BoardDimensions(5,8), 3);
+    static Configuration configuration6 = new Configuration(new BoardDimensions(4,4), 3);
 
 }

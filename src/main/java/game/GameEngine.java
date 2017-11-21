@@ -1,14 +1,14 @@
 package game;
 
 import UI.BoardPrinter;
+import UI.Communicate;
 import board.*;
 import gameHistory.GameProgress;
 import player.Player;
 import player.SymbolResolver;
 import validators.MoveValidator;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class GameEngine {
 
@@ -17,8 +17,8 @@ public class GameEngine {
         gameEngine.run();
     }
 
-    public void run() {
-        Configuration configuration = new ConfiguratorChecker().check(configure());
+    private void run() {
+        Configuration configuration = new ConfigurationValidator().check(configure());
 
         new Communicate("Field created!").getMessage();
         new Communicate("Who start's: O or X ?").getMessage();
@@ -40,12 +40,9 @@ public class GameEngine {
         PositionAsker positionAsker = new PositionAsker();
         BoardPrinter boardPrinter = new BoardPrinter(configuration);
 
-        WinResolver rowResolver = new RowResolver();
-        WinResolver columnResolver = new ColumnResolver();
-        WinResolver diagonalResolver = new DiagonalResolver();
+        List<WinResolver> resolvers = Arrays.asList(new RowResolver(), new ColumnResolver(), new DiagonalResolver());
         System.out.println(boardPrinter.print());
         GameProgress gameProgress = new GameProgress(configuration);
-
 
         boolean isGameRunning = true;
         while (isGameRunning) {
@@ -53,15 +50,12 @@ public class GameEngine {
             if (moveValidator.validate(suggestedPosition)) {
                 Player currentPlayer = turn.getNext();
                 gameProgress.addMove(new Move(suggestedPosition, currentPlayer.getGameSymbol()));
-
                 System.out.println(boardPrinter.print(gameProgress));
-
-                if(columnResolver.resolve(gameProgress)
-                        || rowResolver.resolve(gameProgress)
-                        || diagonalResolver.resolve(gameProgress)){
-                    isGameRunning = false;
+                for(WinResolver resolver : resolvers){
+                    if(resolver.resolve(gameProgress)){
+                        isGameRunning = false;
+                    }
                 }
-
             } else {
                 System.out.println("Wrong move dude, you lost turn!");
             }
@@ -74,7 +68,5 @@ public class GameEngine {
         BoardDimensions boardDimensions = configurationProvider.askForConfiguration();
         int gameSymbolsToWin = configurationProvider.askForGameSymbolsToWin();
         return new Configuration(boardDimensions, gameSymbolsToWin);
-
     }
-
 }

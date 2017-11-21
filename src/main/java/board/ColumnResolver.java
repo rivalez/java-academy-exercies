@@ -13,20 +13,23 @@ public class ColumnResolver implements WinResolver {
     public boolean resolve(GameProgress gameProgress) {
         BoardDimensions dimensions = gameProgress.getConfiguration().getBoardDimensions();
         List<Move> moves = gameProgress.getMoves();
-
-        GameSymbol symbol = moves.get(moves.size() - 1).getGameSymbol();
-        moves = moves.stream().filter(c -> c.getGameSymbol().equals(symbol)).collect(Collectors.toList());
-        int counter = 0;
+        int counter = 1;
         Move lastMove = moves.get(moves.size() - 1);
         int column = lastMove.getPosition() % dimensions.getX();
+        GameSymbol symbol = moves.get(moves.size() - 1).getGameSymbol();
+        moves = moves.stream()
+                .filter(c -> c.getGameSymbol().equals(symbol))
+                .filter(c -> c.getPosition() % dimensions.getX() == column)
+                .sorted()
+                .collect(Collectors.toList());
+
         boolean result = false;
-        Collections.sort(moves);
-        for (int i = 0; i < moves.size(); i++) {
+        for (int i = 0; i < moves.size() - 1; i++) {
             Move move = moves.get(i);
-            if(move.getPosition() % dimensions.getX() == column){
+            if(Math.abs(moves.get(i + 1).getPosition() - move.getPosition()) == dimensions.getX()){
                 counter++;
             } else {
-                counter = 0;
+                counter = 1;
             }
             if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){
                 result = true;

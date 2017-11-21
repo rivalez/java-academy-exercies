@@ -95,6 +95,20 @@ public class ColumnData extends BaseTest {
             new Move(26, GameSymbol.O)
     );
 
+    private List<Move> advancedCase4 = Arrays.asList(
+            new Move(3, GameSymbol.X),
+            new Move(0, GameSymbol.O),
+            new Move(4, GameSymbol.X),
+            new Move(8, GameSymbol.O),
+            new Move(12, GameSymbol.X),
+            new Move(1, GameSymbol.O),
+            new Move(11, GameSymbol.X),
+            new Move(15, GameSymbol.O),
+            new Move(13, GameSymbol.X),
+            new Move(14, GameSymbol.O),
+            new Move(7, GameSymbol.X)
+    );
+
     private List<Move> simpleWrongCase1 = Arrays.asList(
             new Move(0, GameSymbol.O),
             new Move(1, GameSymbol.O),
@@ -194,7 +208,8 @@ public class ColumnData extends BaseTest {
                 {simpleCase3, configuration2},
                 {advancedCase1, configuration3},
                 {advancedCase2, configuration3},
-                {advancedCase3, configuration4}
+                {advancedCase3, configuration4},
+                {advancedCase4, configuration6}
         };
     }
 
