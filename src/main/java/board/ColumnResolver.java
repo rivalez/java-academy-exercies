@@ -1,40 +1,31 @@
 package board;
 
-import game.GameSymbol;
 import gameHistory.GameProgress;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class ColumnResolver implements WinResolver {
 
     @Override
     public boolean resolve(GameProgress gameProgress) {
-        BoardDimensions dimensions = gameProgress.getConfiguration().getBoardDimensions();
-        List<Move> moves = gameProgress.getMoves();
-        int counter = 1;
-        Move lastMove = moves.get(moves.size() - 1);
-        int column = lastMove.getPosition() % dimensions.getX();
-        GameSymbol symbol = moves.get(moves.size() - 1).getGameSymbol();
-        moves = moves.stream()
-                .filter(c -> c.getGameSymbol().equals(symbol))
-                .filter(c -> c.getPosition() % dimensions.getX() == column)
+        List<Move> moves = gameProgress.getMoves().stream()
+                .filter(getSymbolPredicate(gameProgress))
                 .sorted()
                 .collect(Collectors.toList());
-
-        boolean result = false;
-        for (int i = 0; i < moves.size() - 1; i++) {
-            Move move = moves.get(i);
-            if(Math.abs(moves.get(i + 1).getPosition() - move.getPosition()) == dimensions.getX()){
-                counter++;
-            } else {
-                counter = 1;
-            }
-            if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){
-                result = true;
+        Set<Move> correctMoves = new HashSet<>();
+        for(int i = 0 ; i < moves.size(); i++){
+            for (Move move : moves) {
+                if (Math.abs(moves.get(i).getPosition() - move.getPosition()) == gameProgress.getConfiguration().getBoardDimensions().getX()) {
+                    correctMoves.add(move);
+                }
             }
         }
-        return result;
+        return correctMoves.size() >= gameProgress.getConfiguration().getGameSymbolsToWin();
+    }
+
+    private Predicate<Move> getSymbolPredicate(GameProgress gameProgress) {
+        return m -> m.getGameSymbol() == gameProgress.getMoves().get(gameProgress.getMoves().size() - 1).getGameSymbol();
     }
 }

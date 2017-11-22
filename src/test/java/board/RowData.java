@@ -45,6 +45,20 @@ public class RowData extends BaseTest {
             new Move(5, GameSymbol.O)
     );
 
+    private List<Move> advancedCase2 = Arrays.asList(
+            new Move(8, GameSymbol.O),
+            new Move(30, GameSymbol.X),
+            new Move(31, GameSymbol.O),
+            new Move(18, GameSymbol.X),
+            new Move(1, GameSymbol.X),
+            new Move(7, GameSymbol.O),
+            new Move(13, GameSymbol.O),
+            new Move(19, GameSymbol.X),
+            new Move(20, GameSymbol.X),
+            new Move(5, GameSymbol.O),
+            new Move(21, GameSymbol.X)
+    );
+
     private List<Move> simpleWrongCase1 = Arrays.asList(
             new Move(8, GameSymbol.O),
             new Move(30, GameSymbol.X),
@@ -118,6 +132,7 @@ public class RowData extends BaseTest {
                 {simpleCase2, configuration2},
                 {simpleCase3, configuration2},
                 {advancedCase1, configuration3},
+                {advancedCase2, configurationRowMax},
         };
     }
 

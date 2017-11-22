@@ -1,6 +1,5 @@
 package board;
 
-import game.Configuration;
 import game.GameSymbol;
 import org.testng.annotations.DataProvider;
 
@@ -33,6 +32,14 @@ public class ColumnData extends BaseTest {
             new Move(4, GameSymbol.X),
             new Move(5, GameSymbol.O),
             new Move(1, GameSymbol.X)
+    );
+
+    private List<Move> simpleCase4 = Arrays.asList(
+            new Move(11, GameSymbol.X),
+            new Move(8, GameSymbol.O),
+            new Move(3, GameSymbol.X),
+            new Move(5, GameSymbol.O),
+            new Move(7, GameSymbol.X)
     );
 
     private List<Move> advancedCase1 = Arrays.asList(
@@ -109,6 +116,35 @@ public class ColumnData extends BaseTest {
             new Move(7, GameSymbol.X)
     );
 
+    private List<Move> advancedCase5 = Arrays.asList(
+            new Move(9700, GameSymbol.O),
+            new Move(59, GameSymbol.O),
+            new Move(9800, GameSymbol.O),
+            new Move(3, GameSymbol.O),
+            new Move(11, GameSymbol.X),
+            new Move(9600, GameSymbol.O),
+            new Move(15, GameSymbol.O),
+            new Move(13, GameSymbol.X),
+            new Move(14, GameSymbol.O),
+            new Move(7, GameSymbol.X),
+            new Move(9900, GameSymbol.O)
+    );
+
+    private List<Move> advancedCase6 = Arrays.asList(
+            new Move(102, GameSymbol.O),
+            new Move(59, GameSymbol.O),
+            new Move(201, GameSymbol.O),
+            new Move(3, GameSymbol.O),
+            new Move(11, GameSymbol.X),
+            new Move(300, GameSymbol.O),
+            new Move(15, GameSymbol.O),
+            new Move(13, GameSymbol.X),
+            new Move(399, GameSymbol.O),
+            new Move(7, GameSymbol.X),
+            new Move(498, GameSymbol.O)
+    );
+
+
     private List<Move> simpleWrongCase1 = Arrays.asList(
             new Move(0, GameSymbol.O),
             new Move(1, GameSymbol.O),
@@ -179,23 +215,6 @@ public class ColumnData extends BaseTest {
             new Move(40, GameSymbol.O)
     );
 
-    private List<Move> advancedWrongCase4 = Arrays.asList(
-            new Move(39, GameSymbol.X),
-            new Move(33, GameSymbol.O),
-            new Move(34, GameSymbol.X),
-            new Move(30, GameSymbol.O),
-            new Move(31, GameSymbol.X),
-            new Move(24, GameSymbol.O),
-            new Move(25, GameSymbol.X),
-            new Move(16, GameSymbol.O),
-            new Move(0, GameSymbol.X),
-            new Move(23, GameSymbol.O),
-            new Move(32, GameSymbol.X),
-            new Move(35, GameSymbol.O),
-            new Move(26, GameSymbol.X),
-            new Move(27, GameSymbol.O),
-            new Move(19, GameSymbol.X)
-    );
 
     @DataProvider
     public Object[][] getData() {
@@ -206,10 +225,13 @@ public class ColumnData extends BaseTest {
                 {simpleCase1, configuration2},
                 {simpleCase2, configuration2},
                 {simpleCase3, configuration2},
+                {simpleCase4, configuration7},
                 {advancedCase1, configuration3},
                 {advancedCase2, configuration3},
                 {advancedCase3, configuration4},
-                {advancedCase4, configuration6}
+                {advancedCase4, configuration6},
+                {advancedCase5, configurationMAX},
+                {advancedCase6, configurationMAX2},
         };
     }
 
@@ -222,7 +244,6 @@ public class ColumnData extends BaseTest {
                 {advancedWrongCase1, configuration3},
                 {advancedWrongCase2, configuration3},
                 {advancedWrongCase3, configuration4},
-                {advancedWrongCase4, configuration5},
         };
     }
 }

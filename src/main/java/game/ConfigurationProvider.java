@@ -11,11 +11,11 @@ public class ConfigurationProvider {
     public BoardDimensions askForConfiguration(){
         Scanner scanner = new Scanner(System.in);
         new Communicate("Start game").getMessage();
-        new Communicate("Type horizontal size of field:").getMessage();
         int x = 3;
         int y = 3;
         try{
-           x = scanner.nextInt();
+            new Communicate("Type horizontal size of field:").getMessage();
+            x = scanner.nextInt();
            new Communicate("Type vertical size of field:").getMessage();
            y = scanner.nextInt();
         } catch (Exception e) {

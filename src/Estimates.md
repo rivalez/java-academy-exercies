@@ -17,4 +17,4 @@
 |
 |30.11.2017|finish | game with good architecture | working all features
 |
-|31.11.2017|finish(if there will be no more additional features during iterations) | finish(if there will be no more additional features during iterations) | finish(if there will be no more additional features during iterations)
+|01.12.2017|finish(if there will be no more additional features during iterations) | finish(if there will be no more additional features during iterations) | finish(if there will be no more additional features during iterations)

@@ -41,14 +41,12 @@ public class GameEngine {
         MoveValidator moveValidator = new MoveValidator(configuration.getBoardDimensions().getX() * configuration.getBoardDimensions().getY());
         BoardPrinter boardPrinter = new BoardPrinter(configuration);
         List<WinResolver> resolvers = Arrays.asList(new RowResolver(), new ColumnResolver(), new DiagonalResolver());
-        GameProgress gameProgress = new GameProgress(configuration);
 
         int numbersOfGames = 3;
         while (numbersOfGames > 0) {
             System.out.println(boardPrinter.print());
-            new Game(moveValidator, configuration).start(turn, gameProgress, resolvers);
+            new Game(moveValidator, configuration).start(turn, new GameProgress(configuration), resolvers);
             numbersOfGames--;
-            gameProgress.getMoves().clear();
         }
 
     }

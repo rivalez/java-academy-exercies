@@ -3,8 +3,9 @@ package board;
 import game.GameSymbol;
 import gameHistory.GameProgress;
 
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class RowResolver implements WinResolver {
@@ -14,27 +15,23 @@ public class RowResolver implements WinResolver {
         BoardDimensions dimensions = gameProgress.getConfiguration().getBoardDimensions();
         List<Move> moves = gameProgress.getMoves();
 
+        Move lastMove = moves.get(moves.size() - 1);
+        int row = lastMove.getPosition() / dimensions.getX();
         GameSymbol symbol = moves.get(moves.size() - 1).getGameSymbol();
         moves = moves.stream()
                 .filter(c -> c.getGameSymbol().equals(symbol))
+                .filter(m -> m.getPosition() / dimensions.getX() == row)
+                .sorted()
                 .collect(Collectors.toList());
-        int counter = 1;
-        Move lastMove = moves.get(moves.size() - 1);
-        int row = lastMove.getPosition() / dimensions.getX();
-        boolean result = false;
-        Collections.sort(moves);
-        for (int i = 0; i < moves.size() - 1; i++) {
-            Move move = moves.get(i);
-            if(move.getPosition() / dimensions.getX() == row
-                    && Math.abs(moves.get(i + 1).getPosition() - move.getPosition()) == 1) {
-                counter++;
-            } else {
-                counter = 1;
-            }
-            if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){
-                result = true;
+
+        Set<Move> correctMoves = new HashSet<>();
+        for (int i = 0; i < moves.size(); i++) {
+            for (int j = 0; j < moves.size() - 1; j++) {
+                if(Math.abs(moves.get(i).getPosition() - moves.get(j + 1).getPosition()) == 1) {
+                    correctMoves.add(moves.get(i));
+                }
             }
         }
-        return result;
+        return correctMoves.size() >= gameProgress.getConfiguration().getGameSymbolsToWin();
     }
 }
