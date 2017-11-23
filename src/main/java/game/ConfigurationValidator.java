@@ -1,6 +1,6 @@
 package game;
 
-import UI.Communicate;
+import UI.CommunicatePrinter;
 import board.BoardDimensions;
 
 class ConfigurationValidator {
@@ -9,7 +9,7 @@ class ConfigurationValidator {
 
     Configuration check(Configuration configuration){
         if(!isValid(configuration)){
-            new Communicate("Your configuration was not correct, providing correct one...").getMessage();
+//            new CommunicatePrinter("Your configuration was not correct, providing correct one...").getMessage();
             BoardDimensions boardDimensions = new BoardDimensions(3,3);
             return new Configuration(boardDimensions, 3);
         }

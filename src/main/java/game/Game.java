@@ -1,7 +1,7 @@
 package game;
 
 import UI.BoardPrinter;
-import UI.Communicate;
+import UI.CommunicatePrinter;
 import UI.PlayerInteract;
 import board.Move;
 import board.WinResolver;
@@ -36,9 +36,9 @@ public class Game {
             if (moveValidator.validate(suggestedPosition)) {
                 movesAlreadyDone++;
                 currentPlayer = turn.getNext();
-                new Communicate(String.format("Current player's turn %s", currentPlayer.toString())).getMessage();
+//                new CommunicatePrinter(String.format("Current player's turn %s", currentPlayer.toString())).getMessage();
                 gameProgress.addMove(new Move(suggestedPosition, currentPlayer.getGameSymbol()));
-                new Communicate(boardPrinter.print(gameProgress)).getMessage();
+//                new CommunicatePrinter(boardPrinter.print(gameProgress)).getMessage();
                 for(WinResolver resolver : resolvers){
                     if(resolver.resolve(gameProgress)){
                         gameState = WIN;
@@ -50,9 +50,9 @@ public class Game {
                     arbiter.admitPoints(turn.getPlayers());
                 }
             } else {
-                new Communicate("Wrong move dude, you lost turn!").getMessage();
+//                new CommunicatePrinter("Wrong move dude, you lost turn!").getMessage();
             }
         }
-        new Communicate(String.format("Game finished! %s has", currentPlayer.toString())).getMessage();
+//        new CommunicatePrinter(String.format("Game finished! %s has", currentPlayer.toString())).getMessage();
     }
 }

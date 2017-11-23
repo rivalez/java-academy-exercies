@@ -1,7 +1,8 @@
 package game;
 
 import UI.BoardPrinter;
-import UI.Communicate;
+import UI.CommunicatePrinter;
+import UI.Language;
 import UI.PlayerInteract;
 import board.*;
 import gameHistory.GameProgress;
@@ -21,23 +22,23 @@ public class GameEngine {
     }
 
     private void run() {
-        new Communicate("OX-GAME-1.0 BETA. ENJOY.").getMessage();
-        new Communicate("To Exit Game press combination of ctrl + z").getMessage();
+//        new CommunicatePrinter("OX-GAME-1.0 BETA. ENJOY.").getMessage();
+//        new CommunicatePrinter("To Exit Game press combination of ctrl + z").getMessage();
         Configuration configuration = new ConfigurationValidator().check(configure());
         PlayerInteract playerInteract = new PlayerInteract();
-        new Communicate("Field created!").getMessage();
+//        new CommunicatePrinter("Field created!").getMessage();
         Scanner scanner = new Scanner(System.in);
         SymbolResolver symbolResolver = new SymbolResolver();
         GameSymbol gameSymbol = playerInteract.askForSymbol();
-        new Communicate("Provide Name of first player: ").getMessage();
+//        new CommunicatePrinter("Provide Name of first player: ").getMessage();
         String name = scanner.next();
         Player firstPlayer = new Player(gameSymbol, name);
 
-        new Communicate("Provide Name of second player: ").getMessage();
+//        new CommunicatePrinter("Provide Name of second player: ").getMessage();
         name = scanner.next();
         Player secondPlayer = new Player(symbolResolver.resolveSecondSymbol(firstPlayer.getGameSymbol()), name);
 
-        new Communicate(String.format("Player %s starts first", firstPlayer.toString())).getMessage();
+//        new CommunicatePrinter(String.format("Player %s starts first", firstPlayer.toString())).getMessage();
 
         Turn turn = new Turn(Arrays.asList(firstPlayer, secondPlayer));
         MoveValidator moveValidator = new MoveValidator(configuration.getBoardDimensions().getX() * configuration.getBoardDimensions().getY());
@@ -54,7 +55,10 @@ public class GameEngine {
     }
 
     private Configuration configure() {
-        ConfigurationProvider configurationProvider = new ConfigurationProvider();
+        //todo langauge resolver
+        Language language = Language.ENGLISH;
+        CommunicatePrinter communicatePrinter = new CommunicatePrinter(language);
+        ConfigurationProvider configurationProvider = new ConfigurationProvider(communicatePrinter);
         BoardDimensions boardDimensions = configurationProvider.askForConfiguration();
         int gameSymbolsToWin = configurationProvider.askForGameSymbolsToWin();
         return new Configuration(boardDimensions, gameSymbolsToWin);
