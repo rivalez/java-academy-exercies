@@ -4,7 +4,7 @@ import game.GameSymbol;
 
 public class SymbolResolver {
 
-    public GameSymbol resolveSymbolForSecondPlayer(GameSymbol gameSymbol){
+    public GameSymbol resolveSecondSymbol(GameSymbol gameSymbol){
         if(gameSymbol.equals(GameSymbol.O)) return GameSymbol.X;
         return GameSymbol.O;
     }

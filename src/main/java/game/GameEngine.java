@@ -2,6 +2,7 @@ package game;
 
 import UI.BoardPrinter;
 import UI.Communicate;
+import UI.PlayerInteract;
 import board.*;
 import gameHistory.GameProgress;
 import player.Player;
@@ -20,20 +21,20 @@ public class GameEngine {
     }
 
     private void run() {
+        new Communicate("OX-GAME-1.0 BETA. ENJOY.").getMessage();
         Configuration configuration = new ConfigurationValidator().check(configure());
-
+        PlayerInteract playerInteract = new PlayerInteract();
         new Communicate("Field created!").getMessage();
-        new Communicate("Who start's: O or X ?").getMessage();
         Scanner scanner = new Scanner(System.in);
-        String symbol = scanner.next();
         SymbolResolver symbolResolver = new SymbolResolver();
+        GameSymbol gameSymbol = playerInteract.askForSymbol();
         new Communicate("Provide Name of first player: ").getMessage();
         String name = scanner.next();
-        Player firstPlayer = new Player(GameSymbol.valueOf(symbol), name);
+        Player firstPlayer = new Player(gameSymbol, name);
 
         new Communicate("Provide Name of second player: ").getMessage();
         name = scanner.next();
-        Player secondPlayer = new Player(symbolResolver.resolveSymbolForSecondPlayer(firstPlayer.getGameSymbol()), name);
+        Player secondPlayer = new Player(symbolResolver.resolveSecondSymbol(firstPlayer.getGameSymbol()), name);
 
         new Communicate(String.format("Player %s with symbol %s starts first", firstPlayer.getName(), firstPlayer.getGameSymbol().name())).getMessage();
 

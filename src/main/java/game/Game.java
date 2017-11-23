@@ -2,7 +2,7 @@ package game;
 
 import UI.BoardPrinter;
 import UI.Communicate;
-import UI.PositionAsker;
+import UI.PlayerInteract;
 import board.Move;
 import board.WinResolver;
 import gameHistory.GameProgress;
@@ -11,9 +11,14 @@ import validators.MoveValidator;
 
 import java.util.List;
 
+import static game.GameState.DRAW;
+import static game.GameState.NOT_RESOLVED;
+import static game.GameState.WIN;
+
 public class Game {
 
-    private PositionAsker positionAsker = new PositionAsker();
+    private PlayerInteract interact = new PlayerInteract();
+    private Arbiter arbiter = new Arbiter();
     private MoveValidator moveValidator;
     private BoardPrinter boardPrinter;
 
@@ -22,31 +27,32 @@ public class Game {
         this.boardPrinter = new BoardPrinter(configuration);
     }
 
-    public void start(Turn turn, GameProgress gameProgress, List<WinResolver> resolvers){
-        boolean isGameRunning = true;
+    void start(Turn turn, GameProgress gameProgress, List<WinResolver> resolvers){
         Player currentPlayer = null;
-        while (isGameRunning) {
-            int suggestedPosition = positionAsker.askForPosition();
+        GameState gameState = NOT_RESOLVED;
+        int movesAlreadyDone = 0;
+        while (gameState == NOT_RESOLVED) {
+            int suggestedPosition = interact.askForPosition();
             if (moveValidator.validate(suggestedPosition)) {
+                movesAlreadyDone++;
                 currentPlayer = turn.getNext();
-                System.out.println(String.format("Current player's turn %s with symbol %s",
-                        currentPlayer.getName(),
-                        currentPlayer.getGameSymbol().name()));
+                new Communicate(String.format("Current player's turn %s", currentPlayer.toString())).getMessage();
                 gameProgress.addMove(new Move(suggestedPosition, currentPlayer.getGameSymbol()));
-                System.out.println(boardPrinter.print(gameProgress));
+                new Communicate(boardPrinter.print(gameProgress)).getMessage();
                 for(WinResolver resolver : resolvers){
                     if(resolver.resolve(gameProgress)){
-                        isGameRunning = false;
+                        gameState = WIN;
+                        arbiter.admitPoints(currentPlayer);
                     }
                 }
+                if(movesAlreadyDone == gameProgress.getConfiguration().getBoardDimensions().getX() * gameProgress.getConfiguration().getBoardDimensions().getY()){
+                    gameState = DRAW;
+                    arbiter.admitPoints(turn.getPlayers());
+                }
             } else {
-                System.out.println("Wrong move dude, you lost turn!");
+                new Communicate("Wrong move dude, you lost turn!").getMessage();
             }
         }
-        new Communicate(String.format("Game finished! %s has won", currentPlayer.getName())).getMessage();
+        new Communicate(String.format("Game finished! %s has won", currentPlayer.toString())).getMessage();
     }
-
-
-
-
 }

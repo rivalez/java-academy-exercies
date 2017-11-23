@@ -4,7 +4,7 @@ public class Score {
 
     private int score;
 
-    public int getValue() {
+    int getValue() {
         return score;
     }
 
@@ -14,8 +14,6 @@ public class Score {
 
     @Override
     public String toString() {
-        return "Score{" +
-                "score=" + score +
-                '}';
+        return "score=" + score;
     }
 }

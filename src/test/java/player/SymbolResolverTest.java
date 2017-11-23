@@ -15,7 +15,7 @@ public class SymbolResolverTest {
     @Test(dataProvider = "getData")
     public void resolveSecondPlayerSymbol(GameSymbol input, GameSymbol expected){
         SymbolResolver symbolResolver = new SymbolResolver();
-        GameSymbol symbol = symbolResolver.resolveSymbolForSecondPlayer(input);
+        GameSymbol symbol = symbolResolver.resolveSecondSymbol(input);
         Assert.assertEquals(symbol, expected);
     }
 }

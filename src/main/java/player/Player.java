@@ -28,8 +28,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "gameSymbol=" + gameSymbol +
-                ", name='" + name;
+        return "name " + name + " with symbol " + gameSymbol + " has " + score;
     }
 }
