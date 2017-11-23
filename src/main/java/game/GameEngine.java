@@ -22,6 +22,7 @@ public class GameEngine {
 
     private void run() {
         new Communicate("OX-GAME-1.0 BETA. ENJOY.").getMessage();
+        new Communicate("To Exit Game press combination of ctrl + z").getMessage();
         Configuration configuration = new ConfigurationValidator().check(configure());
         PlayerInteract playerInteract = new PlayerInteract();
         new Communicate("Field created!").getMessage();
@@ -36,7 +37,7 @@ public class GameEngine {
         name = scanner.next();
         Player secondPlayer = new Player(symbolResolver.resolveSecondSymbol(firstPlayer.getGameSymbol()), name);
 
-        new Communicate(String.format("Player %s with symbol %s starts first", firstPlayer.getName(), firstPlayer.getGameSymbol().name())).getMessage();
+        new Communicate(String.format("Player %s starts first", firstPlayer.toString())).getMessage();
 
         Turn turn = new Turn(Arrays.asList(firstPlayer, secondPlayer));
         MoveValidator moveValidator = new MoveValidator(configuration.getBoardDimensions().getX() * configuration.getBoardDimensions().getY());

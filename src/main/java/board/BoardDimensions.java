@@ -25,8 +25,7 @@ public class BoardDimensions {
 
         BoardDimensions boardDimensions = (BoardDimensions) o;
 
-        if (x != boardDimensions.x) return false;
-        return y == boardDimensions.y;
+        return x == boardDimensions.x && y == boardDimensions.y;
     }
 
     @Override

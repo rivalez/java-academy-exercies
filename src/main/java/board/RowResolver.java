@@ -19,7 +19,7 @@ public class RowResolver implements WinResolver {
         int row = lastMove.getPosition() / dimensions.getX();
         GameSymbol symbol = moves.get(moves.size() - 1).getGameSymbol();
         moves = moves.stream()
-                .filter(c -> c.getGameSymbol().equals(symbol))
+                .filter(m -> m.getGameSymbol().equals(symbol))
                 .filter(m -> m.getPosition() / dimensions.getX() == row)
                 .sorted()
                 .collect(Collectors.toList());

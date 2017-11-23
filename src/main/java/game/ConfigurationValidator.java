@@ -5,6 +5,8 @@ import board.BoardDimensions;
 
 class ConfigurationValidator {
 
+    private static final int MAX = 100;
+
     Configuration check(Configuration configuration){
         if(!isValid(configuration)){
             new Communicate("Your configuration was not correct, providing correct one...").getMessage();
@@ -18,7 +20,11 @@ class ConfigurationValidator {
 
     private boolean isValid(Configuration configuration) {
         return (configuration.getGameSymbolsToWin() >= 1 && isRowValid(configuration))
-                || (isColumnValid(configuration) && configuration.getGameSymbolsToWin() >= 1);
+                && (isColumnValid(configuration) && configuration.getGameSymbolsToWin() >= 1) && isTooBig(configuration);
+    }
+
+    private boolean isTooBig(Configuration configuration) {
+        return configuration.getBoardDimensions().getX() <= MAX || configuration.getBoardDimensions().getY() <= MAX;
     }
 
     private boolean isRowValid(Configuration configuration){

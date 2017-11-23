@@ -53,6 +53,6 @@ public class Game {
                 new Communicate("Wrong move dude, you lost turn!").getMessage();
             }
         }
-        new Communicate(String.format("Game finished! %s has won", currentPlayer.toString())).getMessage();
+        new Communicate(String.format("Game finished! %s has", currentPlayer.toString())).getMessage();
     }
 }

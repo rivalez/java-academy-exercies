@@ -11,7 +11,7 @@ public class GameProgress {
 
     private Configuration configuration;
 
-    private List<Move> moves = new LinkedList<>();
+    private List<Move> moves = new ArrayList<>();
 
     public GameProgress(Configuration configuration) {
         this.configuration = configuration;

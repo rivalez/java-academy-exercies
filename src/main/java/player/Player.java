@@ -18,12 +18,8 @@ public class Player {
         return gameSymbol;
     }
 
-    public Score getScore() {
-        return score;
-    }
-
-    public String getName() {
-        return name;
+    public void addScore(int i){
+        score.addScore(i);
     }
 
     @Override

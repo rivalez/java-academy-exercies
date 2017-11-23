@@ -21,9 +21,9 @@ public class DiagonalResolver implements WinResolver {
         int counter = 1;
         boolean result = false;
         Collections.sort(moves);
-        for (int i = 0; i < moves.size() - 1; i++) {
-            Move move = moves.get(i);
-            Move nextMove = moves.get(i + 1);
+        for (int c = 0; c < moves.size() - 1; c++) {
+            Move move = moves.get(c);
+            Move nextMove = moves.get(c + 1);
             if(move.getPosition() + dimensions.getX() + 1 == nextMove.getPosition()){
                 counter++;
             } else {
