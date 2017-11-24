@@ -1,8 +1,6 @@
 package game;
 
-import UI.BoardPrinter;
-import UI.CommunicatePrinter;
-import UI.PlayerInteract;
+import UI.*;
 import board.Move;
 import board.WinResolver;
 import gameHistory.GameProgress;
@@ -17,14 +15,18 @@ import static game.GameState.WIN;
 
 public class Game {
 
-    private PlayerInteract interact = new PlayerInteract();
+    private PlayerInteract interact;
     private Arbiter arbiter = new Arbiter();
     private MoveValidator moveValidator;
     private BoardPrinter boardPrinter;
+    private CommunicateProvider communicateProvider;
+    private Output output = new SystemPrintOut();
 
-    public Game(MoveValidator moveValidator, Configuration configuration){
-        this.moveValidator = moveValidator;
+    public Game(CommunicateProvider communicateProvider, Configuration configuration){
+        this.interact = new PlayerInteract(communicateProvider);
+        this.communicateProvider = communicateProvider;
         this.boardPrinter = new BoardPrinter(configuration);
+        this.moveValidator = new MoveValidator(configuration.getBoardDimensions().getX() * configuration.getBoardDimensions().getY());
     }
 
     void start(Turn turn, GameProgress gameProgress, List<WinResolver> resolvers){
@@ -36,9 +38,9 @@ public class Game {
             if (moveValidator.validate(suggestedPosition)) {
                 movesAlreadyDone++;
                 currentPlayer = turn.getNext();
-//                new CommunicatePrinter(String.format("Current player's turn %s", currentPlayer.toString())).getMessage();
+                output.display(communicateProvider.getCommunicate(Communicate.CURRENT_PLAYER_TURN) + currentPlayer.toString());
                 gameProgress.addMove(new Move(suggestedPosition, currentPlayer.getGameSymbol()));
-//                new CommunicatePrinter(boardPrinter.print(gameProgress)).getMessage();
+                output.display(boardPrinter.print(gameProgress));
                 for(WinResolver resolver : resolvers){
                     if(resolver.resolve(gameProgress)){
                         gameState = WIN;
@@ -50,9 +52,9 @@ public class Game {
                     arbiter.admitPoints(turn.getPlayers());
                 }
             } else {
-//                new CommunicatePrinter("Wrong move dude, you lost turn!").getMessage();
+                output.display(communicateProvider.getCommunicate(Communicate.WRONG_TURN));
             }
         }
-//        new CommunicatePrinter(String.format("Game finished! %s has", currentPlayer.toString())).getMessage();
+            output.display(communicateProvider.getCommunicate(Communicate.FINISH) + currentPlayer.toString());
     }
 }

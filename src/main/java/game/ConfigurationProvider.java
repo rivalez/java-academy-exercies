@@ -1,6 +1,6 @@
 package game;
 
-import UI.CommunicatePrinter;
+import UI.*;
 import board.BoardDimensions;
 
 import java.util.Scanner;
@@ -9,36 +9,37 @@ import java.util.Scanner;
 public class ConfigurationProvider {
 
     private Scanner scanner = new Scanner(System.in);
-    private CommunicatePrinter communicatePrinter;
+    private CommunicateProvider communicatePrinter;
+    private Output printOut = new SystemPrintOut();
+    private Output printErr = new SystemErrOut();
 
-    public ConfigurationProvider(CommunicatePrinter communicatePrinter){
+    public ConfigurationProvider(CommunicateProvider communicatePrinter){
         this.communicatePrinter = communicatePrinter;
     }
 
     BoardDimensions askForConfiguration(){
-        communicatePrinter.getStart();
-//        new CommunicatePrinter("Start game").getMessage();
+        printOut.display(communicatePrinter.getCommunicate(Communicate.START));
         int x = 3;
         int y = 3;
         try{
-//            new CommunicatePrinter("Type horizontal size of field:").getMessage();
+            printOut.display(communicatePrinter.getCommunicate(Communicate.HORIZONTAL));
             x = scanner.nextInt();
-//           new CommunicatePrinter("Type vertical size of field:").getMessage();
-           y = scanner.nextInt();
+            printOut.display(communicatePrinter.getCommunicate(Communicate.VERTICAL));
+            y = scanner.nextInt();
         } catch (Exception e) {
-//            new CommunicatePrinter("Please provide correct input").getMessage();
+            printErr.display(communicatePrinter.getCommunicate(Communicate.CORRECT_INPUT));
             askForConfiguration();
         }
         return new BoardDimensions(x, y);
     }
 
     int askForGameSymbolsToWin(){
-//        new CommunicatePrinter("Type number of game symbols necessary to win game").getMessage();
+        printOut.display(communicatePrinter.getCommunicate(Communicate.SYMBOL_TO_WIN));
         int result = 3;
         try {
             result = scanner.nextInt();
         } catch (Exception e){
-//            new CommunicatePrinter("Please provide correct input").getMessage();
+            printErr.display(communicatePrinter.getCommunicate(Communicate.CORRECT_INPUT));
             askForGameSymbolsToWin();
         }
         return result;

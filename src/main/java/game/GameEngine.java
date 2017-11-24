@@ -1,14 +1,10 @@
 package game;
 
-import UI.BoardPrinter;
-import UI.CommunicatePrinter;
-import UI.Language;
-import UI.PlayerInteract;
+import UI.*;
 import board.*;
 import gameHistory.GameProgress;
 import player.Player;
 import player.SymbolResolver;
-import validators.MoveValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,33 +18,34 @@ public class GameEngine {
     }
 
     private void run() {
-//        new CommunicatePrinter("OX-GAME-1.0 BETA. ENJOY.").getMessage();
-//        new CommunicatePrinter("To Exit Game press combination of ctrl + z").getMessage();
-        Configuration configuration = new ConfigurationValidator().check(configure());
-        PlayerInteract playerInteract = new PlayerInteract();
-//        new CommunicatePrinter("Field created!").getMessage();
+        Language language = Language.ENGLISH;
+        CommunicateProvider communicateProvider = new CommunicateProvider().populate(language);
+        Output output = new SystemPrintOut();
+        output.display(communicateProvider.getCommunicate(Communicate.GAME));
+        output.display(communicateProvider.getCommunicate(Communicate.RULES));
+        output.display(communicateProvider.getCommunicate(Communicate.EXIT));
+        Configuration configuration = new ConfigurationValidator(communicateProvider).check(configure());
+        PlayerInteract playerInteract = new PlayerInteract(communicateProvider);
+        output.display(communicateProvider.getCommunicate(Communicate.CREATED));
         Scanner scanner = new Scanner(System.in);
         SymbolResolver symbolResolver = new SymbolResolver();
         GameSymbol gameSymbol = playerInteract.askForSymbol();
-//        new CommunicatePrinter("Provide Name of first player: ").getMessage();
+        output.display(communicateProvider.getCommunicate(Communicate.FIRST_PLAYER));
         String name = scanner.next();
         Player firstPlayer = new Player(gameSymbol, name);
-
-//        new CommunicatePrinter("Provide Name of second player: ").getMessage();
+        output.display(communicateProvider.getCommunicate(Communicate.SECOND_PLAYER));
         name = scanner.next();
         Player secondPlayer = new Player(symbolResolver.resolveSecondSymbol(firstPlayer.getGameSymbol()), name);
-
-//        new CommunicatePrinter(String.format("Player %s starts first", firstPlayer.toString())).getMessage();
+        output.display(communicateProvider.getCommunicate(Communicate.FIRST_PLAYER) + firstPlayer.toString());
 
         Turn turn = new Turn(Arrays.asList(firstPlayer, secondPlayer));
-        MoveValidator moveValidator = new MoveValidator(configuration.getBoardDimensions().getX() * configuration.getBoardDimensions().getY());
         BoardPrinter boardPrinter = new BoardPrinter(configuration);
         List<WinResolver> resolvers = Arrays.asList(new RowResolver(), new ColumnResolver(), new DiagonalResolver());
 
         int numbersOfGames = 3;
         while (numbersOfGames > 0) {
-            System.out.println(boardPrinter.print());
-            new Game(moveValidator, configuration).start(turn, new GameProgress(configuration), resolvers);
+            output.display(boardPrinter.print());
+            new Game(communicateProvider, configuration).start(turn, new GameProgress(configuration), resolvers);
             numbersOfGames--;
         }
 
@@ -57,7 +54,7 @@ public class GameEngine {
     private Configuration configure() {
         //todo langauge resolver
         Language language = Language.ENGLISH;
-        CommunicatePrinter communicatePrinter = new CommunicatePrinter(language);
+        CommunicateProvider communicatePrinter = new CommunicateProvider().populate(language);
         ConfigurationProvider configurationProvider = new ConfigurationProvider(communicatePrinter);
         BoardDimensions boardDimensions = configurationProvider.askForConfiguration();
         int gameSymbolsToWin = configurationProvider.askForGameSymbolsToWin();

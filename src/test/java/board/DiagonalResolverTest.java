@@ -30,6 +30,4 @@ public class DiagonalResolverTest extends DiagonalData {
         //when-then
         Assert.assertFalse(resolver.resolve(gameProgress));
     }
-
-
 }
