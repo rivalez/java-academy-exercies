@@ -2,6 +2,7 @@ package game;
 
 import UI.Communicate;
 import UI.CommunicateProvider;
+import UI.Language;
 import UI.Output;
 import board.BoardDimensions;
 
@@ -12,10 +13,12 @@ class ConfigurationValidator {
 
     private CommunicateProvider communicateProvider;
     private Output output;
+    private Language language;
 
-    ConfigurationValidator(CommunicateProvider communicateProvider, Output output){
+    ConfigurationValidator(CommunicateProvider communicateProvider, Output output, Language language){
         this.output = output;
         this.communicateProvider = communicateProvider;
+        this.language = language;
     }
 
     Configuration check(Configuration configuration){
@@ -24,8 +27,7 @@ class ConfigurationValidator {
         }
         output.display(communicateProvider.getCommunicate(Communicate.INCORRECT_CONFIG));
         BoardDimensions boardDimensions = new BoardDimensions(MIN,MIN);
-        return new Configuration(boardDimensions, MIN);
-//        Optional
+        return new Configuration(boardDimensions, MIN, language, output);
     }
 
     private boolean isValid(Configuration configuration) {

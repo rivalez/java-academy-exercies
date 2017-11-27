@@ -18,14 +18,19 @@ public class GameEngine {
     }
 
     private void run() {
-        Language language = Language.ENGLISH;
+        OutputProvider outputProvider = new OutputProvider();
+        Output output = outputProvider.askForOutputType();
+
+        LanguageProvider languageProvider = new LanguageProvider(output);
+        Language language = languageProvider.askForLanguage();
+
         CommunicateProvider communicateProvider = new CommunicateProvider().populate(language);
         //todo
-        Output output = new SystemPrintOut();
+
         output.display(communicateProvider.getCommunicate(Communicate.GAME));
         output.display(communicateProvider.getCommunicate(Communicate.RULES));
         output.display(communicateProvider.getCommunicate(Communicate.EXIT));
-        Configuration configuration = new ConfigurationValidator(communicateProvider, output).check(configure(output));
+        Configuration configuration = new ConfigurationValidator(communicateProvider, output, language).check(configure(language, output));
         PlayerInteract playerInteract = new PlayerInteract(communicateProvider, output);
         output.display(communicateProvider.getCommunicate(Communicate.CREATED));
         Scanner scanner = new Scanner(System.in);
@@ -52,13 +57,11 @@ public class GameEngine {
 
     }
 
-    private Configuration configure(Output output) {
-        //todo langauge resolver
-        Language language = Language.ENGLISH;
+    private Configuration configure(Language language, Output output) {
         CommunicateProvider communicatePrinter = new CommunicateProvider().populate(language);
         ConfigurationProvider configurationProvider = new ConfigurationProvider(communicatePrinter, output);
         BoardDimensions boardDimensions = configurationProvider.askForConfiguration();
         int gameSymbolsToWin = configurationProvider.askForGameSymbolsToWin();
-        return new Configuration(boardDimensions, gameSymbolsToWin);
+        return new Configuration(boardDimensions, gameSymbolsToWin, language, output);
     }
 }

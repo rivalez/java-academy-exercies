@@ -8,11 +8,14 @@ import org.testng.annotations.Test;
 
 public class BoardPrinterTest {
 
+    private Output output = new SystemPrintOut();
+    private Language language = Language.ENGLISH;
+
     @Test
     public void boardPrinter(){
         //given
         BoardDimensions boardDimensions = new BoardDimensions(3,4);
-        Configuration configuration = new Configuration(boardDimensions, 3);
+        Configuration configuration = new Configuration(boardDimensions, 3, language, output);
         GameProgress gameProgress = new GameProgress(configuration);
         BoardPrinter boardPrinter = new BoardPrinter(configuration);
         //when

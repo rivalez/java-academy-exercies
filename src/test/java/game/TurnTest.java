@@ -20,6 +20,5 @@ public class TurnTest {
         Assert.assertEquals(turn.getNext(), player2);
         Assert.assertEquals(turn.getNext(), player1);
         Assert.assertEquals(turn.getNext(), player2);
-
     }
 }

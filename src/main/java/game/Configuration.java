@@ -1,14 +1,28 @@
 package game;
 
+import UI.Language;
+import UI.Output;
 import board.BoardDimensions;
 
 public class Configuration {
     private BoardDimensions boardDimensions;
     private int gameSymbolsToWin;
+    private Language language;
+    private Output output;
 
-    public Configuration(BoardDimensions board, int gameSymbolsToWin) {
+    public Configuration(BoardDimensions board, int gameSymbolsToWin, Language language, Output output) {
         this.boardDimensions = board;
         this.gameSymbolsToWin = gameSymbolsToWin;
+        this.language = language;
+        this.output = output;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public Output getOutput() {
+        return output;
     }
 
     public BoardDimensions getBoardDimensions() {
