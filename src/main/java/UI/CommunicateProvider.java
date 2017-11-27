@@ -8,11 +8,10 @@ import static UI.Communicate.*;
 
 public class CommunicateProvider {
 
-    private ResourceBundle resourceBundle;
     private Map<Communicate, String> communicates = new HashMap<>();
 
     public CommunicateProvider populate(Language language){
-        this.resourceBundle = ResourceBundle.getBundle(language.name());
+        ResourceBundle resourceBundle = ResourceBundle.getBundle(language.name());
         communicates.put(GAME, resourceBundle.getString(GAME.name()));
         communicates.put(START, resourceBundle.getString(START.name()));
         communicates.put(RULES, resourceBundle.getString(RULES.name()));

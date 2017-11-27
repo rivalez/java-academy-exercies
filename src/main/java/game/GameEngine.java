@@ -20,12 +20,13 @@ public class GameEngine {
     private void run() {
         Language language = Language.ENGLISH;
         CommunicateProvider communicateProvider = new CommunicateProvider().populate(language);
+        //todo
         Output output = new SystemPrintOut();
         output.display(communicateProvider.getCommunicate(Communicate.GAME));
         output.display(communicateProvider.getCommunicate(Communicate.RULES));
         output.display(communicateProvider.getCommunicate(Communicate.EXIT));
-        Configuration configuration = new ConfigurationValidator(communicateProvider).check(configure());
-        PlayerInteract playerInteract = new PlayerInteract(communicateProvider);
+        Configuration configuration = new ConfigurationValidator(communicateProvider, output).check(configure(output));
+        PlayerInteract playerInteract = new PlayerInteract(communicateProvider, output);
         output.display(communicateProvider.getCommunicate(Communicate.CREATED));
         Scanner scanner = new Scanner(System.in);
         SymbolResolver symbolResolver = new SymbolResolver();
@@ -45,17 +46,17 @@ public class GameEngine {
         int numbersOfGames = 3;
         while (numbersOfGames > 0) {
             output.display(boardPrinter.print());
-            new Game(communicateProvider, configuration).start(turn, new GameProgress(configuration), resolvers);
+            new Game(communicateProvider, configuration, output).start(turn, new GameProgress(configuration), resolvers);
             numbersOfGames--;
         }
 
     }
 
-    private Configuration configure() {
+    private Configuration configure(Output output) {
         //todo langauge resolver
         Language language = Language.ENGLISH;
         CommunicateProvider communicatePrinter = new CommunicateProvider().populate(language);
-        ConfigurationProvider configurationProvider = new ConfigurationProvider(communicatePrinter);
+        ConfigurationProvider configurationProvider = new ConfigurationProvider(communicatePrinter, output);
         BoardDimensions boardDimensions = configurationProvider.askForConfiguration();
         int gameSymbolsToWin = configurationProvider.askForGameSymbolsToWin();
         return new Configuration(boardDimensions, gameSymbolsToWin);

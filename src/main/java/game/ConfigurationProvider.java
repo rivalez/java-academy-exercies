@@ -6,40 +6,40 @@ import board.BoardDimensions;
 import java.util.Scanner;
 
 
-public class ConfigurationProvider {
+class ConfigurationProvider {
 
     private Scanner scanner = new Scanner(System.in);
     private CommunicateProvider communicatePrinter;
-    private Output printOut = new SystemPrintOut();
-    private Output printErr = new SystemErrOut();
+    private Output output;
 
-    public ConfigurationProvider(CommunicateProvider communicatePrinter){
+    ConfigurationProvider(CommunicateProvider communicatePrinter, Output output){
         this.communicatePrinter = communicatePrinter;
+        this.output = output;
     }
 
     BoardDimensions askForConfiguration(){
-        printOut.display(communicatePrinter.getCommunicate(Communicate.START));
+        output.display(communicatePrinter.getCommunicate(Communicate.START));
         int x = 3;
         int y = 3;
         try{
-            printOut.display(communicatePrinter.getCommunicate(Communicate.HORIZONTAL));
+            output.display(communicatePrinter.getCommunicate(Communicate.HORIZONTAL));
             x = scanner.nextInt();
-            printOut.display(communicatePrinter.getCommunicate(Communicate.VERTICAL));
+            output.display(communicatePrinter.getCommunicate(Communicate.VERTICAL));
             y = scanner.nextInt();
         } catch (Exception e) {
-            printErr.display(communicatePrinter.getCommunicate(Communicate.CORRECT_INPUT));
+            output.display(communicatePrinter.getCommunicate(Communicate.CORRECT_INPUT));
             askForConfiguration();
         }
         return new BoardDimensions(x, y);
     }
 
     int askForGameSymbolsToWin(){
-        printOut.display(communicatePrinter.getCommunicate(Communicate.SYMBOL_TO_WIN));
+        output.display(communicatePrinter.getCommunicate(Communicate.SYMBOL_TO_WIN));
         int result = 3;
         try {
             result = scanner.nextInt();
         } catch (Exception e){
-            printErr.display(communicatePrinter.getCommunicate(Communicate.CORRECT_INPUT));
+            output.display(communicatePrinter.getCommunicate(Communicate.CORRECT_INPUT));
             askForGameSymbolsToWin();
         }
         return result;

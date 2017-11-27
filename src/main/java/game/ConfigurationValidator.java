@@ -3,17 +3,18 @@ package game;
 import UI.Communicate;
 import UI.CommunicateProvider;
 import UI.Output;
-import UI.SystemPrintOut;
 import board.BoardDimensions;
 
 class ConfigurationValidator {
 
     private static final int MAX = 100;
+    private static final int MIN = 3;
 
     private CommunicateProvider communicateProvider;
-    private Output output = new SystemPrintOut();
+    private Output output;
 
-    ConfigurationValidator(CommunicateProvider communicateProvider){
+    ConfigurationValidator(CommunicateProvider communicateProvider, Output output){
+        this.output = output;
         this.communicateProvider = communicateProvider;
     }
 
@@ -22,14 +23,14 @@ class ConfigurationValidator {
             return configuration;
         }
         output.display(communicateProvider.getCommunicate(Communicate.INCORRECT_CONFIG));
-        BoardDimensions boardDimensions = new BoardDimensions(3,3);
-        return new Configuration(boardDimensions, 3);
+        BoardDimensions boardDimensions = new BoardDimensions(MIN,MIN);
+        return new Configuration(boardDimensions, MIN);
 //        Optional
     }
 
     private boolean isValid(Configuration configuration) {
-        return (configuration.getGameSymbolsToWin() >= 3 && isRowValid(configuration))
-                && (isColumnValid(configuration) && configuration.getGameSymbolsToWin() >= 3) && isTooBig(configuration);
+        return (configuration.getGameSymbolsToWin() >= MIN && isRowValid(configuration))
+                && (isColumnValid(configuration) && configuration.getGameSymbolsToWin() >= MIN) && isTooBig(configuration);
     }
 
     private boolean isTooBig(Configuration configuration) {
@@ -37,11 +38,11 @@ class ConfigurationValidator {
     }
 
     private boolean isRowValid(Configuration configuration){
-        return configuration.getBoardDimensions().getX() >= 3 && configuration.getBoardDimensions().getX() >= configuration.getGameSymbolsToWin();
+        return configuration.getBoardDimensions().getX() >= MIN && configuration.getBoardDimensions().getX() >= configuration.getGameSymbolsToWin();
     }
 
     private boolean isColumnValid(Configuration configuration){
-        return configuration.getBoardDimensions().getY() >= 3 && configuration.getBoardDimensions().getY() >= configuration.getGameSymbolsToWin();
+        return configuration.getBoardDimensions().getY() >= MIN && configuration.getBoardDimensions().getY() >= configuration.getGameSymbolsToWin();
     }
 
 }

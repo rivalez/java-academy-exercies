@@ -26,4 +26,8 @@ public class Player {
     public String toString() {
         return "name " + name + " with symbol " + gameSymbol + " has " + score;
     }
+
+    public Score getScore() {
+        return score;
+    }
 }

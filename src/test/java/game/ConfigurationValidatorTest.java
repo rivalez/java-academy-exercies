@@ -2,6 +2,8 @@ package game;
 
 import UI.CommunicateProvider;
 import UI.Language;
+import UI.Output;
+import UI.SystemPrintOut;
 import board.BoardDimensions;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -11,6 +13,8 @@ import static org.testng.AssertJUnit.assertEquals;
 
 @Test
 public class ConfigurationValidatorTest {
+
+    private Output output = new SystemPrintOut();
 
     @DataProvider
     public Object[][] getConfigInc(){
@@ -47,7 +51,7 @@ public class ConfigurationValidatorTest {
         CommunicateProvider communicateProvider = new CommunicateProvider().populate(Language.ENGLISH);
         BoardDimensions boardDimensions = new BoardDimensions(3,3);
         Configuration invalidInputConfiguration = new Configuration(boardDimensions, 3);
-        ConfigurationValidator cv = new ConfigurationValidator(communicateProvider);
+        ConfigurationValidator cv = new ConfigurationValidator(communicateProvider, output);
 
         //when-then
         assertEquals(cv.check(configuration), invalidInputConfiguration);
@@ -60,7 +64,7 @@ public class ConfigurationValidatorTest {
         CommunicateProvider communicateProvider = new CommunicateProvider().populate(Language.ENGLISH);
         BoardDimensions boardDimensions = new BoardDimensions(3,3);
         Configuration invalidInputConfiguration = new Configuration(boardDimensions, 3);
-        ConfigurationValidator cv = new ConfigurationValidator(communicateProvider);
+        ConfigurationValidator cv = new ConfigurationValidator(communicateProvider, output);
 
         //when-then
         assertNotEquals(cv.check(configuration), invalidInputConfiguration);

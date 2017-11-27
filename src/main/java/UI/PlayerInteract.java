@@ -11,28 +11,28 @@ public class PlayerInteract {
     private Logger logger = Logger.getLogger(String.valueOf(PlayerInteract.class));
     private Scanner scanner = new Scanner(System.in);
     private CommunicateProvider communicateProvider;
-    private Output outputPrint = new SystemPrintOut();
-    private Output outputErr = new SystemErrOut();
+    private Output output;
 
-    public PlayerInteract(CommunicateProvider communicateProvider){
+    public PlayerInteract(CommunicateProvider communicateProvider, Output output){
+        this.output = output;
         this.communicateProvider = communicateProvider;
     }
 
     public int askForPosition(){
-        outputPrint.display(communicateProvider.getCommunicate(Communicate.SYMBOL));
+        output.display(communicateProvider.getCommunicate(Communicate.SYMBOL));
         int i = 0;
         try {
             i = scanner.nextInt();
         } catch (Exception e){
             logger.warning(e.getMessage());
-            outputErr.display(communicateProvider.getCommunicate(Communicate.WRONG_GLOBAL));
+            output.display(communicateProvider.getCommunicate(Communicate.WRONG_GLOBAL));
             askForPosition();
         }
         return i;
     }
 
     public GameSymbol askForSymbol(){
-        outputPrint.display(communicateProvider.getCommunicate(Communicate.WHO_START));
+        output.display(communicateProvider.getCommunicate(Communicate.WHO_START));
         String symbol = scanner.next();
         GameSymbol gameSymbol = GameSymbol.X;
         try {

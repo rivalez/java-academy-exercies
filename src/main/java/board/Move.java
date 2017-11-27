@@ -21,15 +21,15 @@ public class Move implements Comparable<Move> {
         this.position = position;
     }
 
-    public boolean isEmpty(){
+    private boolean isEmpty(){
         return gameSymbol == null;
     }
 
-    public GameSymbol getGameSymbol() {
+    GameSymbol getGameSymbol() {
         return gameSymbol;
     }
 
-    public int getPosition() {
+    int getPosition() {
         return position;
     }
 

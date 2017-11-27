@@ -4,11 +4,11 @@ public class Score {
 
     private int score;
 
-    int getValue() {
+    public int getValue() {
         return score;
     }
 
-    public void addScore(int score) {
+    void addScore(int score) {
             this.score += score;
     }
 

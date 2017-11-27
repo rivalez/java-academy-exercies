@@ -20,10 +20,11 @@ public class Game {
     private MoveValidator moveValidator;
     private BoardPrinter boardPrinter;
     private CommunicateProvider communicateProvider;
-    private Output output = new SystemPrintOut();
+    private Output output;
 
-    public Game(CommunicateProvider communicateProvider, Configuration configuration){
-        this.interact = new PlayerInteract(communicateProvider);
+    public Game(CommunicateProvider communicateProvider, Configuration configuration, Output output){
+        this.output = output;
+        this.interact = new PlayerInteract(communicateProvider, output);
         this.communicateProvider = communicateProvider;
         this.boardPrinter = new BoardPrinter(configuration);
         this.moveValidator = new MoveValidator(configuration.getBoardDimensions().getX() * configuration.getBoardDimensions().getY());
