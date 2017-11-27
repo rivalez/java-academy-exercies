@@ -25,7 +25,6 @@ public class GameEngine {
         Language language = languageProvider.askForLanguage();
 
         CommunicateProvider communicateProvider = new CommunicateProvider().populate(language);
-        //todo
 
         output.display(communicateProvider.getCommunicate(Communicate.GAME));
         output.display(communicateProvider.getCommunicate(Communicate.RULES));
@@ -33,7 +32,7 @@ public class GameEngine {
         Configuration configuration = new ConfigurationValidator(communicateProvider, output, language).check(configure(language, output));
         PlayerInteract playerInteract = new PlayerInteract(communicateProvider, output);
         output.display(communicateProvider.getCommunicate(Communicate.CREATED));
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in, "UTF-8");
         SymbolResolver symbolResolver = new SymbolResolver();
         GameSymbol gameSymbol = playerInteract.askForSymbol();
         output.display(communicateProvider.getCommunicate(Communicate.FIRST_PLAYER));

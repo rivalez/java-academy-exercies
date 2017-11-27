@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class PlayerInteract {
 
     private Logger logger = Logger.getLogger(String.valueOf(PlayerInteract.class));
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in, "UTF-8");
     private CommunicateProvider communicateProvider;
     private Output output;
 

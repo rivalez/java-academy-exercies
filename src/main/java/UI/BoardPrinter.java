@@ -11,7 +11,6 @@ import java.util.List;
 public class BoardPrinter {
 
     private Configuration configuration;
-
     private BoardBuilder boardBuilder;
 
     public BoardPrinter(Configuration configuration) {
@@ -34,7 +33,7 @@ public class BoardPrinter {
     private String print(StringBuilder stringBuilder, List<Move> board) {
         BoardDimensions dimensions = configuration.getBoardDimensions();
         int counter = 0;
-        for(int i = 0 ; i < dimensions.getX(); i++){
+        for(int i = 0 ; i < dimensions.getX(); i++) {
             for(int j = 0; j < dimensions.getY(); j++){
                 stringBuilder.append(board.get(counter++)).append(" ");
             }

@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 class ConfigurationProvider {
 
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in, "UTF-8");
     private CommunicateProvider communicatePrinter;
     private Output output;
 
@@ -28,7 +28,6 @@ class ConfigurationProvider {
             y = scanner.nextInt();
         } catch (Exception e) {
             output.display(communicatePrinter.getCommunicate(Communicate.CORRECT_INPUT));
-            askForConfiguration();
         }
         return new BoardDimensions(x, y);
     }
@@ -40,7 +39,6 @@ class ConfigurationProvider {
             result = scanner.nextInt();
         } catch (Exception e){
             output.display(communicatePrinter.getCommunicate(Communicate.CORRECT_INPUT));
-            askForGameSymbolsToWin();
         }
         return result;
     }

@@ -5,11 +5,7 @@ import java.util.Scanner;
 
 public class OutputProvider {
 
-    private Scanner scanner = new Scanner(System.in);
-
-    public OutputProvider(){
-
-    }
+    private Scanner scanner = new Scanner(System.in, "UTF-8");
 
     public Output askForOutputType(){
         System.out.println("Press 0 for standard output, 1 for err type output");
@@ -22,6 +18,9 @@ public class OutputProvider {
                     break;
                 case 1:
                     output = new SystemErrOut();
+                    break;
+                default:
+                    output = new SystemPrintOut();
                     break;
             }
         } catch (InputMismatchException e){

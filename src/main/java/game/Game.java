@@ -7,13 +7,15 @@ import gameHistory.GameProgress;
 import player.Player;
 import validators.MoveValidator;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 import static game.GameState.DRAW;
 import static game.GameState.NOT_RESOLVED;
 import static game.GameState.WIN;
 
-public class Game {
+public class Game implements KeyListener{
 
     private PlayerInteract interact;
     private Arbiter arbiter = new Arbiter();
@@ -21,6 +23,7 @@ public class Game {
     private BoardPrinter boardPrinter;
     private CommunicateProvider communicateProvider;
     private Output output;
+    private GameState gameState = NOT_RESOLVED;
 
     public Game(CommunicateProvider communicateProvider, Configuration configuration, Output output){
         this.output = output;
@@ -32,7 +35,6 @@ public class Game {
 
     void start(Turn turn, GameProgress gameProgress, List<WinResolver> resolvers){
         Player currentPlayer = null;
-        GameState gameState = NOT_RESOLVED;
         int movesAlreadyDone = 0;
         while (gameState == NOT_RESOLVED) {
             int suggestedPosition = interact.askForPosition();
@@ -57,5 +59,26 @@ public class Game {
             }
         }
             output.display(communicateProvider.getCommunicate(Communicate.FINISH) + currentPlayer.toString());
+    }
+
+    public GameState getGameState() {
+        return gameState;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if (e.getKeyChar() == '-'){
+            System.exit(0);
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }

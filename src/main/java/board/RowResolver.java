@@ -14,7 +14,6 @@ public class RowResolver implements WinResolver {
     public boolean resolve(GameProgress gameProgress) {
         BoardDimensions dimensions = gameProgress.getConfiguration().getBoardDimensions();
         List<Move> moves = gameProgress.getMoves();
-
         Move lastMove = moves.get(moves.size() - 1);
         int row = lastMove.getPosition() / dimensions.getX();
         GameSymbol symbol = moves.get(moves.size() - 1).getGameSymbol();
