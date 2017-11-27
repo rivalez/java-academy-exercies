@@ -41,7 +41,7 @@ public class GameEngine {
         output.display(communicateProvider.getCommunicate(Communicate.SECOND_PLAYER));
         name = scanner.next();
         Player secondPlayer = new Player(symbolResolver.resolveSecondSymbol(firstPlayer.getGameSymbol()), name);
-        output.display(communicateProvider.getCommunicate(Communicate.FIRST_PLAYER) + firstPlayer.toString());
+        output.display(String.format(communicateProvider.getCommunicate(Communicate.START_FIRST),firstPlayer.toString()));
 
         Turn turn = new Turn(Arrays.asList(firstPlayer, secondPlayer));
         BoardPrinter boardPrinter = new BoardPrinter(configuration);

@@ -41,7 +41,7 @@ public class Game implements KeyListener{
             if (moveValidator.validate(suggestedPosition)) {
                 movesAlreadyDone++;
                 currentPlayer = turn.getNext();
-                output.display(communicateProvider.getCommunicate(Communicate.CURRENT_PLAYER_TURN) + currentPlayer.toString());
+                output.display(communicateProvider.getCommunicate(Communicate.CURRENT_PLAYER_TURN) + ": " + currentPlayer.toString());
                 gameProgress.addMove(new Move(suggestedPosition, currentPlayer.getGameSymbol()));
                 output.display(boardPrinter.print(gameProgress));
                 for(WinResolver resolver : resolvers){
