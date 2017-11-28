@@ -11,10 +11,11 @@ public class ColumnResolver implements WinResolver {
     @Override
     public boolean resolve(GameProgress gameProgress) {
         Move last = gameProgress.getLast();
-        int column = last.getPosition() % gameProgress.getConfiguration().getBoardDimensions().getX();
+        int boardWidth = gameProgress.getConfiguration().getBoardDimensions().getX();
+        int column = last.getPosition() % boardWidth;
         List<Move> moves = gameProgress.getMoves().stream()
                 .filter(getSymbolPredicate(gameProgress))
-                .filter(m -> m.getPosition() % gameProgress.getConfiguration().getBoardDimensions().getX() == column)
+                .filter(m -> m.getPosition() % boardWidth == column)
                 .sorted()
                 .collect(Collectors.toList());
 
@@ -22,7 +23,7 @@ public class ColumnResolver implements WinResolver {
         for (int i = 0; i < moves.size() - 1; i++) {
             Move prev = moves.get(i);
             Move next = moves.get(i + 1);
-            if(Math.abs(next.getPosition() - prev.getPosition()) == gameProgress.getConfiguration().getBoardDimensions().getX()){
+            if(Math.abs(next.getPosition() - prev.getPosition()) == boardWidth){
                 movesToWin.add(prev);
                 movesToWin.add(next);
             }
