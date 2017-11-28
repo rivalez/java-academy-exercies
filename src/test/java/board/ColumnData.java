@@ -144,7 +144,6 @@ public class ColumnData extends BaseTest {
             new Move(498, GameSymbol.O)
     );
 
-
     private List<Move> simpleWrongCase1 = Arrays.asList(
             new Move(0, GameSymbol.O),
             new Move(1, GameSymbol.O),
@@ -169,6 +168,28 @@ public class ColumnData extends BaseTest {
             new Move(8, GameSymbol.X)
     );
 
+    private List<Move> simpleWrongCase4 = Arrays.asList(
+            new Move(0, GameSymbol.X),
+            new Move(1, GameSymbol.O),
+            new Move(3, GameSymbol.X),
+            new Move(6, GameSymbol.O),
+            new Move(5, GameSymbol.X),
+            new Move(4, GameSymbol.O),
+            new Move(2, GameSymbol.X)
+    );
+
+    private List<Move> simpleWrongCase5 = Arrays.asList(
+            new Move(0, GameSymbol.X),
+            new Move(1, GameSymbol.O),
+            new Move(3, GameSymbol.X),
+            new Move(6, GameSymbol.O),
+            new Move(5, GameSymbol.X),
+            new Move(4, GameSymbol.O),
+            new Move(7, GameSymbol.X),
+            new Move(8, GameSymbol.O),
+            new Move(9, GameSymbol.X),
+            new Move(10, GameSymbol.O)
+    );
 
     private List<Move> advancedWrongCase1 = Arrays.asList(
             new Move(5, GameSymbol.O),
@@ -241,6 +262,8 @@ public class ColumnData extends BaseTest {
                 {simpleWrongCase1, configuration1},
                 {simpleWrongCase2, configuration1},
                 {simpleWrongCase3, configuration1},
+                {simpleWrongCase4, configuration1},
+                {simpleWrongCase5, configuration8},
                 {advancedWrongCase1, configuration3},
                 {advancedWrongCase2, configuration3},
                 {advancedWrongCase3, configuration4},

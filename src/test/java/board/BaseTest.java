@@ -16,6 +16,7 @@ abstract class BaseTest {
     static Configuration configuration5 = new Configuration(new BoardDimensions(5,8), 3, language, output);
     static Configuration configuration6 = new Configuration(new BoardDimensions(4,4), 3, language, output);
     static Configuration configuration7 = new Configuration(new BoardDimensions(4,5), 3, language, output);
+    static Configuration configuration8 = new Configuration(new BoardDimensions(3,4), 3, language, output);
     static Configuration configurationMAX = new Configuration(new BoardDimensions(100,100), 4, language, output);
     static Configuration configurationMAX2 = new Configuration(new BoardDimensions(99,101), 3, language, output);
     static Configuration configurationRowMax = new Configuration(new BoardDimensions(101,1), 4, language, output);
