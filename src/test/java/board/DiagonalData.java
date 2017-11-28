@@ -34,6 +34,18 @@ public class DiagonalData extends BaseTest {
             new Move(0, GameSymbol.X)
     );
 
+    private List<Move> simpleCase4 = Arrays.asList(
+            new Move(0, GameSymbol.X),
+            new Move(1, GameSymbol.O),
+            new Move(2, GameSymbol.X),
+            new Move(3, GameSymbol.X),
+            new Move(5, GameSymbol.O),
+            new Move(6, GameSymbol.X),
+            new Move(7, GameSymbol.X),
+            new Move(10, GameSymbol.O),
+            new Move(9, GameSymbol.X)
+    );
+
     private List<Move> advancedCase1 = Arrays.asList(
             new Move(0, GameSymbol.O),
             new Move(30, GameSymbol.X),
@@ -57,6 +69,7 @@ public class DiagonalData extends BaseTest {
                 {simpleCase1, configuration2},
                 {simpleCase2, configuration2},
                 {simpleCase3, configuration2},
+                {simpleCase4, configuration9},
                 {advancedCase1, configuration3},
         };
     }
