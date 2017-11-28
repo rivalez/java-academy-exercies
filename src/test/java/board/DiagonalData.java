@@ -1,6 +1,5 @@
 package board;
 
-import game.Configuration;
 import game.GameSymbol;
 import org.testng.annotations.DataProvider;
 

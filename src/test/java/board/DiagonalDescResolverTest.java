@@ -7,14 +7,14 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class DiagonalResolverTest extends DiagonalData {
+public class DiagonalDescResolverTest extends DiagonalData {
 
     private BoardCreator boardCreator = new BoardCreator();
 
     @Test(dataProvider = "getData")
     public void simpleDiagonalTest(List<Move> moves, Configuration configuration) {
         //given
-        WinResolver resolver = new DiagonalResolver();
+        WinResolver resolver = new DiagonalDescResolver();
         GameProgress gameProgress = boardCreator.createGame(moves, configuration);
 
         //when-then
@@ -24,7 +24,7 @@ public class DiagonalResolverTest extends DiagonalData {
     @Test(dataProvider = "getAssertFailData")
     public void invalidSimpleDiagonal(List<Move> moves, Configuration configuration){
         //given
-        WinResolver resolver = new DiagonalResolver();
+        WinResolver resolver = new DiagonalDescResolver();
         GameProgress gameProgress = boardCreator.createGame(moves, configuration);
 
         //when-then

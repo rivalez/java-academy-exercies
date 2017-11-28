@@ -24,6 +24,10 @@ public class GameProgress {
         return new ArrayList<>(moves);
     }
 
+    public Move getLast() {
+        return moves.get(moves.size() - 1);
+    }
+
     public Configuration getConfiguration() {
         return configuration;
     }

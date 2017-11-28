@@ -9,21 +9,34 @@ import java.util.List;
 
 
 @Test
-public class GameEngineTest {
+public class GameEngineTest extends GameEngineData {
 
-    public void threeDrawInRow() throws IOException {
-        String gameString = "0\n1\n3\n3\n3\nx\njozek\nczesiek\n0\n1\n2\n3\n4\n5\n6\n7\n8\n0\n1\n2\n3\n4\n5\n6\n7\n8\n0\n1\n2\n3\n4\n5\n6\n7\n8\n";
-        System.setIn(new ByteArrayInputStream(gameString.getBytes()));
+    @Test(dataProvider = "drawTests")
+    public void threeDrawInRow(String input, String expected) throws IOException {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(byteArrayOutputStream);
         System.setOut(ps);
         GameEngine.main(new String[]{});
         System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
         List testList = Arrays.asList(byteArrayOutputStream.toString().split("\n"));
-        try(OutputStream outputStream = new FileOutputStream("draw.txt")) {
+        try(OutputStream outputStream = new FileOutputStream(expected + ".txt")) {
             byteArrayOutputStream.writeTo(outputStream);
         }
 
         Assert.assertTrue(testList.contains("REMIS! czesiek  -  O  -  score=3 jozek  -  X  -  score=3"));
+    }
+
+    @Test(dataProvider = "randomTests")
+    public void sequenceOfTests(String input, String expected) throws IOException {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(byteArrayOutputStream);
+        System.setOut(ps);
+        GameEngine.main(new String[]{});
+        System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
+        try(OutputStream outputStream = new FileOutputStream(expected + ".txt")) {
+            byteArrayOutputStream.writeTo(outputStream);
+        }
     }
 }

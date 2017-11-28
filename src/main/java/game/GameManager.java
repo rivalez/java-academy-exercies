@@ -18,12 +18,20 @@ class GameManager {
 
     String result() {
         List<Player> players = turn.getPlayers();
+        StringBuilder sb = new StringBuilder();
         if(players.get(0).getScore().getValue() > players.get(1).getScore().getValue()){
-            return players.get(0) + communicateProvider.getCommunicate(Communicate.WON);
+            return sb.append(players.get(0))
+                    .append(" ")
+                    .append(communicateProvider.getCommunicate(Communicate.WON)).toString();
         } else if (players.get(0).getScore().getValue() < players.get(1).getScore().getValue()) {
-            return players.get(1) + communicateProvider.getCommunicate(Communicate.WON);
+            return sb.append(players.get(1))
+                    .append(" ")
+                    .append(communicateProvider.getCommunicate(Communicate.WON)).toString();
         } else {
-            return communicateProvider.getCommunicate(Communicate.DRAW) + players.get(0) + " " + players.get(1);
+            return sb.append(communicateProvider.getCommunicate(Communicate.DRAW))
+                    .append(players.get(0))
+                    .append(" ")
+                    .append(players.get(1)).toString();
         }
     }
 }

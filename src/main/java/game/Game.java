@@ -58,7 +58,7 @@ public class Game {
                 output.display(communicateProvider.getCommunicate(Communicate.WRONG_TURN));
             }
         }
-        output.display(communicateProvider.getCommunicate(Communicate.FINISH) + currentPlayer.toString());
+        output.display(communicateProvider.getCommunicate(Communicate.FINISH) + currentPlayer);
         return gameState;
     }
 
