@@ -8,13 +8,14 @@ import java.util.Scanner;
 
 class ConfigurationProvider {
 
-    private Scanner scanner = new Scanner(System.in, "UTF-8");
+    private MyScanner scanner;
     private CommunicateProvider communicatePrinter;
     private Output output;
 
-    ConfigurationProvider(CommunicateProvider communicatePrinter, Output output){
+    ConfigurationProvider(CommunicateProvider communicatePrinter, Output output, MyScanner scanner){
         this.communicatePrinter = communicatePrinter;
         this.output = output;
+        this.scanner = scanner;
     }
 
     BoardDimensions askForConfiguration(){
@@ -23,9 +24,9 @@ class ConfigurationProvider {
         int y = 3;
         try{
             output.display(communicatePrinter.getCommunicate(Communicate.HORIZONTAL));
-            x = scanner.nextInt();
+            x = Integer.valueOf(scanner.nextLine());
             output.display(communicatePrinter.getCommunicate(Communicate.VERTICAL));
-            y = scanner.nextInt();
+            y = Integer.valueOf(scanner.nextLine());
         } catch (Exception e) {
             output.display(communicatePrinter.getCommunicate(Communicate.CORRECT_INPUT));
         }
@@ -36,7 +37,7 @@ class ConfigurationProvider {
         output.display(communicatePrinter.getCommunicate(Communicate.SYMBOL_TO_WIN));
         int result = 3;
         try {
-            result = scanner.nextInt();
+            result = Integer.valueOf(scanner.nextLine());
         } catch (Exception e){
             output.display(communicatePrinter.getCommunicate(Communicate.CORRECT_INPUT));
         }

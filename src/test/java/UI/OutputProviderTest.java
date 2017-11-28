@@ -14,7 +14,7 @@ public class OutputProviderTest {
         //given
         InputStream in = new ByteArrayInputStream("0\n".getBytes(Charset.forName("UTF-8")));
         System.setIn(in);
-        OutputProvider outputProvider = new OutputProvider();
+        OutputProvider outputProvider = new OutputProvider(new MyScannerImpl());
 
         //when
         Output output = outputProvider.askForOutputType();
@@ -27,7 +27,7 @@ public class OutputProviderTest {
         //given
         InputStream in = new ByteArrayInputStream("1\n".getBytes(Charset.forName("UTF-8")));
         System.setIn(in);
-        OutputProvider outputProvider = new OutputProvider();
+        OutputProvider outputProvider = new OutputProvider(new MyScannerImpl());
 
         //when
         Output output = outputProvider.askForOutputType();
@@ -40,7 +40,7 @@ public class OutputProviderTest {
         //given
         InputStream in = new ByteArrayInputStream("gfdsgdf';;;;;\n".getBytes(Charset.forName("UTF-8")));
         System.setIn(in);
-        OutputProvider outputProvider = new OutputProvider();
+        OutputProvider outputProvider = new OutputProvider(new MyScannerImpl());
 
         //when
         Output output = outputProvider.askForOutputType();

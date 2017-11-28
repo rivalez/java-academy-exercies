@@ -15,7 +15,7 @@ import static game.GameState.DRAW;
 import static game.GameState.NOT_RESOLVED;
 import static game.GameState.WIN;
 
-public class Game implements KeyListener{
+public class Game {
 
     private PlayerInteract interact;
     private Arbiter arbiter = new Arbiter();
@@ -25,15 +25,15 @@ public class Game implements KeyListener{
     private Output output;
     private GameState gameState = NOT_RESOLVED;
 
-    public Game(CommunicateProvider communicateProvider, Configuration configuration, Output output){
+    public Game(CommunicateProvider communicateProvider, Configuration configuration, Output output, PlayerInteract interact){
         this.output = output;
-        this.interact = new PlayerInteract(communicateProvider, output);
+        this.interact = interact;
         this.communicateProvider = communicateProvider;
         this.boardPrinter = new BoardPrinter(configuration);
         this.moveValidator = new MoveValidator(configuration.getBoardDimensions().getX() * configuration.getBoardDimensions().getY());
     }
 
-    void start(Turn turn, GameProgress gameProgress, List<WinResolver> resolvers){
+    GameState start(Turn turn, GameProgress gameProgress, List<WinResolver> resolvers){
         Player currentPlayer = null;
         int movesAlreadyDone = 0;
         while (gameState == NOT_RESOLVED) {
@@ -58,27 +58,8 @@ public class Game implements KeyListener{
                 output.display(communicateProvider.getCommunicate(Communicate.WRONG_TURN));
             }
         }
-            output.display(communicateProvider.getCommunicate(Communicate.FINISH) + currentPlayer.toString());
-    }
-
-    public GameState getGameState() {
+        output.display(communicateProvider.getCommunicate(Communicate.FINISH) + currentPlayer.toString());
         return gameState;
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        if (e.getKeyChar() == '-'){
-            System.exit(0);
-        }
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
 }

@@ -15,27 +15,30 @@ public class PlayerInteractTest {
         //given
         InputStream in = new ByteArrayInputStream("0\n".getBytes(Charset.forName("UTF-8")));
         System.setIn(in);
+        MyScanner myScanner = new MyScannerImpl();
         CommunicateProvider communicateProvider = new CommunicateProvider();
-        PlayerInteract playerInteract = new PlayerInteract(communicateProvider, new SystemErrOut());
+        PlayerInteract playerInteract = new PlayerInteract(communicateProvider, new SystemErrOut(), myScanner);
         //when-then
         Assert.assertEquals(playerInteract.askForPosition(), 0);
     }
     public void askForSymbolO() {
         //given
-        InputStream in = new ByteArrayInputStream("o\n".getBytes(Charset.forName("UTF-8")));
+        InputStream in = new ByteArrayInputStream("o".getBytes(Charset.forName("UTF-8")));
         System.setIn(in);
+        MyScanner myScanner = new MyScannerImpl();
         CommunicateProvider communicateProvider = new CommunicateProvider();
-        PlayerInteract playerInteract = new PlayerInteract(communicateProvider, new SystemErrOut());
+        PlayerInteract playerInteract = new PlayerInteract(communicateProvider, new SystemErrOut(), myScanner);
         //when-then
         Assert.assertEquals(playerInteract.askForSymbol(), GameSymbol.O);
     }
 
     public void askForSymbolX() {
         //given
-        InputStream in = new ByteArrayInputStream("x\n".getBytes(Charset.forName("UTF-8")));
+        InputStream in = new ByteArrayInputStream("x".getBytes(Charset.forName("UTF-8")));
         System.setIn(in);
+        MyScanner myScanner = new MyScannerImpl();
         CommunicateProvider communicateProvider = new CommunicateProvider();
-        PlayerInteract playerInteract = new PlayerInteract(communicateProvider, new SystemErrOut());
+        PlayerInteract playerInteract = new PlayerInteract(communicateProvider, new SystemErrOut(), myScanner);
         //when-then
         Assert.assertEquals(playerInteract.askForSymbol(), GameSymbol.X);
     }

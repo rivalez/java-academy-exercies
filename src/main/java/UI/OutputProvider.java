@@ -1,17 +1,19 @@
 package UI;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class OutputProvider {
 
-    private Scanner scanner = new Scanner(System.in, "UTF-8");
+    private MyScanner scanner;
 
-    public Output askForOutputType(){
+    public OutputProvider(MyScanner scanner){
+        this.scanner = scanner;
+    }
+
+    public Output askForOutputType() {
         System.out.println("Press 0 for standard output, 1 for err type output");
         Output output = new SystemPrintOut();
         try {
-            int symbol = scanner.nextInt();
+            int symbol = Integer.valueOf(scanner.nextLine());
             switch (symbol){
                 case 0:
                     output = new SystemPrintOut();
@@ -23,7 +25,7 @@ public class OutputProvider {
                     output = new SystemPrintOut();
                     break;
             }
-        } catch (InputMismatchException e){
+        } catch (Exception e){
             output.display("invalid number");
         }
         return output;

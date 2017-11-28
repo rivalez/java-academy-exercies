@@ -16,7 +16,7 @@ public class CommunicatePrinterTest {
         Assert.assertEquals(communicateProvider.getCommunicate(Communicate.SYMBOL_TO_WIN),"Proszę podaj ilość znaków koniecznych do skończenia gry");
         Assert.assertEquals(communicateProvider.getCommunicate(Communicate.CREATED),"Plansza została utworzona!");
         Assert.assertEquals(communicateProvider.getCommunicate(Communicate.CURRENT_PLAYER_TURN),"Bierząca tura gracza");
-        Assert.assertEquals(communicateProvider.getCommunicate(Communicate.EXIT),"żeby wyjść wcisnij '-'");
+        Assert.assertEquals(communicateProvider.getCommunicate(Communicate.EXIT),"żeby wyjść wpisz exit");
         Assert.assertEquals(communicateProvider.getCommunicate(Communicate.HORIZONTAL),"Podaj szerokość planszy:");
         Assert.assertEquals(communicateProvider.getCommunicate(Communicate.WHO_START),"Kto zaczyna: O czy X ?");
         Assert.assertEquals(communicateProvider.getCommunicate(Communicate.WRONG_GLOBAL),"Coś poszło nie tak, spróbuj ponownie...");

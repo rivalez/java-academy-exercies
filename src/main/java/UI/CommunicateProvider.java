@@ -31,6 +31,8 @@ public class CommunicateProvider {
         communicates.put(SYMBOL, resourceBundle.getString(SYMBOL.name()));
         communicates.put(WRONG_GLOBAL, resourceBundle.getString(WRONG_GLOBAL.name()));
         communicates.put(WHO_START, resourceBundle.getString(WHO_START.name()));
+        communicates.put(DRAW, resourceBundle.getString(DRAW.name()));
+        communicates.put(WON, resourceBundle.getString(WON.name()));
         return this;
     }
 

@@ -11,22 +11,22 @@ public class PlayerInteract {
     private Logger logger = Logger.getLogger(String.valueOf(PlayerInteract.class));
     private CommunicateProvider communicateProvider;
     private Output output;
+    private MyScanner scanner;
 
-    public PlayerInteract(CommunicateProvider communicateProvider, Output output){
+    public PlayerInteract(CommunicateProvider communicateProvider, Output output, MyScanner scanner){
         this.output = output;
         this.communicateProvider = communicateProvider;
+        this.scanner = scanner;
     }
 
     public int askForPosition() {
         int i = 0;
         try {
-            Scanner scanner = new Scanner(System.in, "UTF-8");
             output.display(communicateProvider.getCommunicate(Communicate.SYMBOL));
-            i = scanner.nextInt();
+            i = Integer.valueOf(scanner.nextLine());
         } catch (Exception e){
             logger.warning(e.getMessage());
             output.display(communicateProvider.getCommunicate(Communicate.WRONG_GLOBAL));
-            askForPosition();
         }
         return i;
     }
@@ -34,13 +34,11 @@ public class PlayerInteract {
     public GameSymbol askForSymbol() {
         GameSymbol gameSymbol = GameSymbol.X;
         try {
-            Scanner scanner = new Scanner(System.in, "UTF-8");
             output.display(communicateProvider.getCommunicate(Communicate.WHO_START));
-            String symbol = scanner.next();
+            String symbol = scanner.nextLine();
             gameSymbol = GameSymbol.valueOf(symbol.toUpperCase());
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.warning(communicateProvider.getCommunicate(Communicate.WRONG_GLOBAL));
-            askForSymbol();
         }
         return gameSymbol;
     }

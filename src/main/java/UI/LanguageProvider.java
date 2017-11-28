@@ -1,23 +1,20 @@
 package UI;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 public class LanguageProvider {
 
     private Output output;
-    private Scanner scanner;
+    private MyScanner scanner;
 
-    public LanguageProvider(Output output){
+    public LanguageProvider(Output output, MyScanner scanner){
         this.output = output;
-        this.scanner = new Scanner(System.in, "UTF-8");
+        this.scanner = scanner;
     }
 
     public Language askForLanguage(){
         output.display("Press 0 for English, 1 for Polish Language");
         Language language = Language.ENGLISH;
         try {
-            int symbol = scanner.nextInt();
+            int symbol = Integer.valueOf(scanner.nextLine());
             switch (symbol){
                 case 0:
                     language = Language.ENGLISH;
@@ -29,7 +26,7 @@ public class LanguageProvider {
                     language = Language.ENGLISH;
                     break;
             }
-        } catch (InputMismatchException e){
+        } catch (Exception e){
             output.display("invalid number");
         }
         return language;

@@ -1,9 +1,4 @@
 
-16.In future we want to add more languages:
-messages are to be read from a file for chosen language.
-Choosing the language depends on configuration variable.
-
-
 |Date       | Requirements |    
 |-----------| --------------------------------------------------------------------------------------:|
 |    |1. It is "best of three", though I can quit mid-way through.                    |                                        

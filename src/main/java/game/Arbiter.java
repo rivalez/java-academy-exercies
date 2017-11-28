@@ -6,12 +6,15 @@ import java.util.List;
 
 class Arbiter {
 
+    private static final int WIN = 3;
+    private static final int DRAW = 1;
+
     void admitPoints(Player player){
-        player.addScore(3);
+        player.addScore(WIN);
     }
 
     void admitPoints(List<Player> players){
-        players.forEach(player -> player.addScore(1));
+        players.forEach(player -> player.addScore(DRAW));
     }
 
 }

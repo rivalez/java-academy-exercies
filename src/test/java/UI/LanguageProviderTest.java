@@ -15,7 +15,7 @@ public class LanguageProviderTest {
         InputStream in = new ByteArrayInputStream("1\n".getBytes(Charset.forName("UTF-8")));
         System.setIn(in);
 
-        LanguageProvider languageProvider = new LanguageProvider(new SystemPrintOut());
+        LanguageProvider languageProvider = new LanguageProvider(new SystemPrintOut(), new MyScannerImpl());
 
         //when
         Language language = languageProvider.askForLanguage();
@@ -29,7 +29,7 @@ public class LanguageProviderTest {
         InputStream in = new ByteArrayInputStream("0\n".getBytes(Charset.forName("UTF-8")));
         System.setIn(in);
 
-        LanguageProvider languageProvider = new LanguageProvider(new SystemPrintOut());
+        LanguageProvider languageProvider = new LanguageProvider(new SystemPrintOut(), new MyScannerImpl());
 
         //when
         Language language = languageProvider.askForLanguage();
@@ -44,7 +44,7 @@ public class LanguageProviderTest {
         InputStream in = new ByteArrayInputStream("ssd---k///0\n".getBytes(Charset.forName("UTF-8")));
         System.setIn(in);
 
-        LanguageProvider languageProvider = new LanguageProvider(new SystemPrintOut());
+        LanguageProvider languageProvider = new LanguageProvider(new SystemPrintOut(), new MyScannerImpl());
 
         //when
         Language language = languageProvider.askForLanguage();
