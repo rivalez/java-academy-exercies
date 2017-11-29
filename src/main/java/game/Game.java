@@ -43,8 +43,8 @@ public class Game {
                     output.display(communicateProvider.getCommunicate(Communicate.WRONG_TURN));
                 }
                 output.display(boardPrinter.print(gameProgress));
-                for(WinResolver resolver : resolvers){
-                    if(resolver.resolve(gameProgress)){
+                for(WinResolver resolver : resolvers) {
+                    if(resolver.resolve(gameProgress)) {
                         gameState = WIN;
                         arbiter.admitPoints(currentPlayer);
                     }
@@ -57,6 +57,7 @@ public class Game {
                 output.display(communicateProvider.getCommunicate(Communicate.WRONG_TURN));
             }
         }
+        //todo poprawic komunikat w razie remisu
         output.display(communicateProvider.getCommunicate(Communicate.FINISH) + currentPlayer);
         return gameState;
     }

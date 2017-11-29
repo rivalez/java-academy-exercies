@@ -20,12 +20,12 @@ public class PlayerInteract {
     public int askForPosition() {
         int i = -1;
         int counter = 3;
-        while(counter > 0){
+        while(counter > 0) {
             try {
                 output.display(communicateProvider.getCommunicate(Communicate.SYMBOL));
                 i = Integer.valueOf(scanner.nextLine());
                 return i;
-            } catch (Exception e){
+            } catch (Exception e) {
                 counter--;
                 logger.warning(e.getMessage());
                 output.display(communicateProvider.getCommunicate(Communicate.WRONG_GLOBAL));

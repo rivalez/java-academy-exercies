@@ -28,7 +28,6 @@ public class CommunicatePrinterTest {
 
         //when-then
         Assert.assertEquals(communicateProvider.getCommunicate(Communicate.GAME),"OX-GAME-1.0 BETA. ENJOY.");
-        Assert.assertEquals(communicateProvider.getCommunicate(Communicate.RULES),"To create game system will ask you for configuration data. In case if your data isn't correct system will provide standard 3x3 board.");
         Assert.assertEquals(communicateProvider.getCommunicate(Communicate.START_FIRST),"Player %s starts first");
         Assert.assertEquals(communicateProvider.getCommunicate(Communicate.INCORRECT_CONFIG),"Your configuration was not correct, providing correct one...");
         Assert.assertEquals(communicateProvider.getCommunicate(Communicate.WRONG_TURN),"Wrong move dude!");
