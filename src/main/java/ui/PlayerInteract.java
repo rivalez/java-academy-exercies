@@ -18,13 +18,19 @@ public class PlayerInteract {
     }
 
     public int askForPosition() {
-        int i = 0;
-        try {
-            output.display(communicateProvider.getCommunicate(Communicate.SYMBOL));
-            i = Integer.valueOf(scanner.nextLine());
-        } catch (Exception e){
-            logger.warning(e.getMessage());
-            output.display(communicateProvider.getCommunicate(Communicate.WRONG_GLOBAL));
+        int i = -1;
+        int counter = 3;
+        while(counter > 0){
+            try {
+                output.display(communicateProvider.getCommunicate(Communicate.SYMBOL));
+                i = Integer.valueOf(scanner.nextLine());
+                return i;
+            } catch (Exception e){
+                counter--;
+                logger.warning(e.getMessage());
+                output.display(communicateProvider.getCommunicate(Communicate.WRONG_GLOBAL));
+                output.display(String.format(communicateProvider.getCommunicate(Communicate.TRIES), counter));
+            }
         }
         return i;
     }

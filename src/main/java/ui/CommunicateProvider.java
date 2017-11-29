@@ -33,6 +33,7 @@ public class CommunicateProvider {
         communicates.put(WHO_START, resourceBundle.getString(WHO_START.name()));
         communicates.put(DRAW, resourceBundle.getString(DRAW.name()));
         communicates.put(WON, resourceBundle.getString(WON.name()));
+        communicates.put(TRIES, resourceBundle.getString(TRIES.name()));
         return this;
     }
 
