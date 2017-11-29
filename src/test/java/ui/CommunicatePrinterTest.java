@@ -31,7 +31,7 @@ public class CommunicatePrinterTest {
         Assert.assertEquals(communicateProvider.getCommunicate(Communicate.RULES),"To create game system will ask you for configuration data. In case if your data isn't correct system will provide standard 3x3 board.");
         Assert.assertEquals(communicateProvider.getCommunicate(Communicate.START_FIRST),"Player %s starts first");
         Assert.assertEquals(communicateProvider.getCommunicate(Communicate.INCORRECT_CONFIG),"Your configuration was not correct, providing correct one...");
-        Assert.assertEquals(communicateProvider.getCommunicate(Communicate.WRONG_TURN),"Wrong move dude, you lost turn!");
+        Assert.assertEquals(communicateProvider.getCommunicate(Communicate.WRONG_TURN),"Wrong move dude!");
         Assert.assertEquals(communicateProvider.getCommunicate(Communicate.SECOND_PLAYER),"Provide name of second player: ");
         Assert.assertEquals(communicateProvider.getCommunicate(Communicate.SYMBOL_TO_WIN),"Type number of game symbols necessary to win game");
     }
