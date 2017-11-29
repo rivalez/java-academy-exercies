@@ -47,18 +47,18 @@ public class Game {
                     if(resolver.resolve(gameProgress)) {
                         gameState = WIN;
                         arbiter.admitPoints(currentPlayer);
+                        output.display(String.format(communicateProvider.getCommunicate(Communicate.FINISH), currentPlayer));
                     }
                 }
                 if(gameProgress.getMoves().size() == gameProgress.getConfiguration().getBoardDimensions().getX() * gameProgress.getConfiguration().getBoardDimensions().getY()){
                     gameState = DRAW;
                     arbiter.admitPoints(turn.getPlayers());
+                    output.display(communicateProvider.getCommunicate(Communicate.DRAW));
                 }
             } else {
                 output.display(communicateProvider.getCommunicate(Communicate.WRONG_TURN));
             }
         }
-        //todo poprawic komunikat w razie remisu
-        output.display(communicateProvider.getCommunicate(Communicate.FINISH) + currentPlayer);
         return gameState;
     }
 
