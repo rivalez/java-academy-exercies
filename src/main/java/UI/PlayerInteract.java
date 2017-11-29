@@ -27,7 +27,6 @@ public class PlayerInteract {
         } catch (Exception e){
             logger.warning(e.getMessage());
             output.display(communicateProvider.getCommunicate(Communicate.WRONG_GLOBAL));
-            askForPosition();
         }
         return i;
     }
@@ -40,7 +39,6 @@ public class PlayerInteract {
             gameSymbol = GameSymbol.valueOf(symbol.toUpperCase());
         } catch (Exception e) {
             logger.warning(communicateProvider.getCommunicate(Communicate.WRONG_GLOBAL));
-            askForSymbol();
         }
         return gameSymbol;
     }

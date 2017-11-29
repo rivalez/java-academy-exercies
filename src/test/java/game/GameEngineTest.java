@@ -54,4 +54,15 @@ public class GameEngineTest extends GameEngineData {
             byteArrayOutputStream.writeTo(outputStream);
         }
     }
+
+    @Test(dataProvider = "randomInputs")
+    public void randomInput(String input) throws IOException {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(byteArrayOutputStream);
+        System.setOut(ps);
+        GameEngine.main(new String[]{});
+        System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
+        fw.write(Collections.singletonList(byteArrayOutputStream.toString()).toString());
+    }
 }

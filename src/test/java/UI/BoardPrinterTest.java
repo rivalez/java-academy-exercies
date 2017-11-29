@@ -23,8 +23,8 @@ public class BoardPrinterTest {
 
         //then
         Assert.assertEquals(result,
-                "0 1 2 3 \n" +
-                        "4 5 6 7 \n" +
-                        "8 9 10 11 \n");
+                "| 0 || 1 || 2 || 3 |\n" +
+                "| 4 || 5 || 6 || 7 |\n" +
+                "| 8 || 9 || 10|| 11|\n");
     }
 }

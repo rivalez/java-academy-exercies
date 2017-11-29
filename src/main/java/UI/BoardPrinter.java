@@ -35,7 +35,13 @@ public class BoardPrinter {
         int counter = 0;
         for(int i = 0 ; i < dimensions.getX(); i++) {
             for(int j = 0; j < dimensions.getY(); j++){
-                stringBuilder.append(board.get(counter++)).append(" ");
+                if(counter < 10) {
+                    stringBuilder.append("| ").append(board.get(counter++)).append(" |");
+                } else if(counter < 100){
+                    stringBuilder.append("| ").append(board.get(counter++)).append("|");
+                } else {
+                    stringBuilder.append("|").append(board.get(counter++)).append("|");
+                }
             }
             stringBuilder.append("\n");
         }

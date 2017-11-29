@@ -27,7 +27,7 @@ class GameEngineData {
     }
 
     @DataProvider
-    public Object[][] inputs(){
+    public Object[][] randomInputs(){
         return new Object[][]{
                 {"0\n1\n3\n3\n3\nx\njozek\nczesiek\n" + createScenario()},
                 {"0\n1\n4\n3\n3\nx\njozek\nczesiek\n" + createScenario()},
