@@ -7,24 +7,25 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class DiagonalDescResolverTest extends DiagonalData {
+@Test
+public class CounterDiagonalResolverTest extends DiagonalData {
 
     private BoardCreator boardCreator = new BoardCreator();
 
-    @Test(dataProvider = "getData")
-    public void simpleDiagonalTest(List<Move> moves, Configuration configuration) {
+    @Test(dataProvider = "getCorrect")
+    public void leftToRightCorrect(List<Move> moves, Configuration configuration){
         //given
-        WinResolver resolver = new DiagonalDescResolver();
+        WinResolver resolver = new CounterDiagonalResolver();
         GameProgress gameProgress = boardCreator.createGame(moves, configuration);
 
         //when-then
         Assert.assertTrue(resolver.resolve(gameProgress));
     }
 
-    @Test(dataProvider = "getAssertFailData")
-    public void invalidSimpleDiagonal(List<Move> moves, Configuration configuration){
+    @Test(dataProvider = "getInvalid")
+    public void leftToRightInvalid(List<Move> moves, Configuration configuration){
         //given
-        WinResolver resolver = new DiagonalDescResolver();
+        WinResolver resolver = new CounterDiagonalResolver();
         GameProgress gameProgress = boardCreator.createGame(moves, configuration);
 
         //when-then

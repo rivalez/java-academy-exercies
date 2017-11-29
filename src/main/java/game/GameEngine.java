@@ -34,7 +34,7 @@ public class GameEngine {
         output.display(communicateProvider.getCommunicate(Communicate.CREATED));
         Turn turn = createTurn(myScanner, output, communicateProvider, playerInteract);
         BoardPrinter boardPrinter = new BoardPrinter(configuration);
-        List<WinResolver> resolvers = Arrays.asList(new RowResolver(), new ColumnResolver(), new DiagonalDescResolver(), new RightToLeft());
+        List<WinResolver> resolvers = Arrays.asList(new RowResolver(), new ColumnResolver(), new DiagonalResolver(), new CounterDiagonalResolver());
 
         int numbersOfGames = 3;
         while (numbersOfGames > 0) {

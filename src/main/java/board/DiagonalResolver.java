@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DiagonalDescResolver implements WinResolver {
+public class DiagonalResolver implements WinResolver {
 
     @Override
     public boolean resolve(GameProgress gameProgress) {
@@ -25,6 +25,9 @@ public class DiagonalDescResolver implements WinResolver {
             Move move = moves.get(c);
             Move nextMove = moves.get(c + 1);
             if(move.getPosition() + dimensions.getX() + 1 == nextMove.getPosition()){
+                if (move.getPosition() % dimensions.getX() == dimensions.getX() - 1) {
+                    break;
+                }
                 counter++;
             } else {
                 counter = 0;

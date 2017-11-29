@@ -28,7 +28,7 @@ public class GameTest {
         Configuration configuration = new Configuration(boardDimensions, 3, Language.POLISH, output);
         Game game = new Game(communicateProvider, configuration, output, playerInteract);
         GameProgress gameProgress = new GameProgress(configuration);
-        List<WinResolver> resolvers = Arrays.asList(new RowResolver(), new ColumnResolver(), new DiagonalDescResolver());
+        List<WinResolver> resolvers = Arrays.asList(new RowResolver(), new ColumnResolver(), new DiagonalResolver());
         Player player1 = new Player(GameSymbol.O, "henio");
         Player player2 = new Player(GameSymbol.X, "jozek");
         Turn turn = new Turn(Arrays.asList(player1, player2));

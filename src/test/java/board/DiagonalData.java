@@ -175,11 +175,41 @@ public class DiagonalData extends BaseTest {
         };
     }
 
-
     private List<Move> simpleLeftToRightCase1 = Arrays.asList(
             new Move(2, GameSymbol.X),
             new Move(4, GameSymbol.X),
             new Move(6, GameSymbol.X));
+
+
+    private List<Move> simpleLeftToRightCase2 = Arrays.asList(
+            new Move(6, GameSymbol.X),
+            new Move(3, GameSymbol.X),
+            new Move(9, GameSymbol.X));
+
+
+    private List<Move> simpleLeftToRightCase3 = Arrays.asList(
+            new Move(7, GameSymbol.X),
+            new Move(10, GameSymbol.X),
+            new Move(13, GameSymbol.X));
+
+    private List<Move> simpleLeftToRightCase4 = Arrays.asList(
+            new Move(12, GameSymbol.X),
+            new Move(9, GameSymbol.X),
+            new Move(6, GameSymbol.X));
+
+
+    private List<Move> advancedLeftToRightCase1 = Arrays.asList(
+            new Move(9, GameSymbol.X),
+            new Move(18, GameSymbol.X),
+            new Move(36, GameSymbol.X),
+            new Move(27, GameSymbol.X));
+
+    private List<Move> advancedLeftToRightCase2 = Arrays.asList(
+            new Move(3, GameSymbol.X),
+            new Move(12, GameSymbol.X),
+            new Move(21, GameSymbol.X),
+            new Move(30, GameSymbol.X));
+
 
     private List<Move> simpleLeftToWrongCase1 = Arrays.asList(
             new Move(0, GameSymbol.X),
@@ -189,18 +219,21 @@ public class DiagonalData extends BaseTest {
             new Move(4, GameSymbol.X));
 
     @DataProvider
-    public Object[][] getLeftToRight(){
+    public Object[][] getCorrect(){
         return new Object[][] {
                 {simpleLeftToRightCase1, configuration1},
+                {simpleLeftToRightCase2, configuration6},
+                {simpleLeftToRightCase3, configuration6},
+                {simpleLeftToRightCase4, configuration6},
+                {advancedLeftToRightCase1, configuration10},
+                {advancedLeftToRightCase2, configuration10},
         };
     }
 
     @DataProvider
-    public Object[][] getLeftToRightInvalid() {
+    public Object[][] getInvalid() {
         return new Object[][] {
                 {simpleLeftToWrongCase1, configuration1},
         };
     }
-
-
 }
