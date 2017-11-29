@@ -1,4 +1,4 @@
-package UI;
+package ui;
 
 import game.GameSymbol;
 import org.testng.Assert;

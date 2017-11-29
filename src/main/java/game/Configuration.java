@@ -1,7 +1,7 @@
 package game;
 
-import UI.Language;
-import UI.Output;
+import ui.Language;
+import ui.Output;
 import board.BoardDimensions;
 
 public class Configuration {

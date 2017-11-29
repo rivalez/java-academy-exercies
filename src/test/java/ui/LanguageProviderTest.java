@@ -1,4 +1,4 @@
-package UI;
+package ui;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;

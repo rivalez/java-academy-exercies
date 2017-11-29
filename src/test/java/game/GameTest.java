@@ -1,8 +1,8 @@
 package game;
 
-import UI.*;
+import ui.*;
 import board.*;
-import gameHistory.GameProgress;
+import gamehistory.GameProgress;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import player.Player;

@@ -1,4 +1,4 @@
-package UI;
+package ui;
 
 public enum Communicate {
     GAME, START, RULES, HORIZONTAL, VERTICAL, CORRECT_INPUT, SYMBOL_TO_WIN, INCORRECT_CONFIG,

@@ -1,7 +1,7 @@
 package board;
 
 import game.GameSymbol;
-import gameHistory.GameProgress;
+import gamehistory.GameProgress;
 
 import java.util.Collections;
 import java.util.List;

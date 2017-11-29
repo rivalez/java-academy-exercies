@@ -1,8 +1,8 @@
-package UI;
+package ui;
 
 import board.BoardDimensions;
 import game.Configuration;
-import gameHistory.GameProgress;
+import gamehistory.GameProgress;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

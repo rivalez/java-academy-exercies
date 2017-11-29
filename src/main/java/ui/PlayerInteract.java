@@ -1,9 +1,7 @@
-package UI;
+package ui;
 
 import game.GameSymbol;
-import player.Player;
 
-import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class PlayerInteract {

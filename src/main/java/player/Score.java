@@ -2,18 +2,18 @@ package player;
 
 public class Score {
 
-    private int score;
+    private int points;
 
     public int getValue() {
-        return score;
+        return points;
     }
 
     void addScore(int score) {
-            this.score += score;
+            this.points += score;
     }
 
     @Override
     public String toString() {
-        return "score=" + score;
+        return "points=" + points;
     }
 }

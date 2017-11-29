@@ -1,9 +1,9 @@
 package game;
 
-import UI.CommunicateProvider;
-import UI.Language;
-import UI.Output;
-import UI.SystemPrintOut;
+import ui.CommunicateProvider;
+import ui.Language;
+import ui.Output;
+import ui.SystemPrintOut;
 import board.BoardDimensions;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

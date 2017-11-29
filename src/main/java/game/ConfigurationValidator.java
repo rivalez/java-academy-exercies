@@ -1,9 +1,9 @@
 package game;
 
-import UI.Communicate;
-import UI.CommunicateProvider;
-import UI.Language;
-import UI.Output;
+import ui.Communicate;
+import ui.CommunicateProvider;
+import ui.Language;
+import ui.Output;
 import board.BoardDimensions;
 
 class ConfigurationValidator {

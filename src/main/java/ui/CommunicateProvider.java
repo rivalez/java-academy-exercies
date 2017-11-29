@@ -1,10 +1,10 @@
-package UI;
+package ui;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import static UI.Communicate.*;
+import static ui.Communicate.*;
 
 public class CommunicateProvider {
 

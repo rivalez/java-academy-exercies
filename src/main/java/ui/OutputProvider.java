@@ -1,4 +1,4 @@
-package UI;
+package ui;
 
 
 public class OutputProvider {
@@ -10,8 +10,8 @@ public class OutputProvider {
     }
 
     public Output askForOutputType() {
-        System.out.println("Press 0 for standard output, 1 for err type output");
         Output output = new SystemPrintOut();
+        output.display("Press 0 for standard output, 1 for err type output");
         try {
             int symbol = Integer.valueOf(scanner.nextLine());
             switch (symbol){

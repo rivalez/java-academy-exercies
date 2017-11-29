@@ -1,4 +1,4 @@
-package gameHistory;
+package gamehistory;
 
 import board.Move;
 import game.Configuration;

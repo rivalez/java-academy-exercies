@@ -11,7 +11,7 @@ public class PlayerTest {
         Player player = new Player(GameSymbol.O, "zbysio");
 
         //when-then
-        Assert.assertEquals(player.toString(), "zbysio  -  O  -  score=0");
+        Assert.assertEquals(player.toString(), "zbysio  -  O  -  points=0");
 
     }
 }

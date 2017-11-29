@@ -1,6 +1,6 @@
 package board;
 
-import gameHistory.GameProgress;
+import gamehistory.GameProgress;
 
 import java.util.HashSet;
 import java.util.List;

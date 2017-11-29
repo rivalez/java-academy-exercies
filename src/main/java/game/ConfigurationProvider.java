@@ -1,9 +1,7 @@
 package game;
 
-import UI.*;
+import ui.*;
 import board.BoardDimensions;
-
-import java.util.Scanner;
 
 
 class ConfigurationProvider {

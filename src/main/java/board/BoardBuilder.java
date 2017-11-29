@@ -17,6 +17,10 @@ public class BoardBuilder {
         this.configuration = configuration;
     }
 
+    private static Move apply(int c) {
+        return new Move(c);
+    }
+
     public List<Move> build(List<Move> moves) {
         if(moves.isEmpty()) {
             return build();
@@ -24,7 +28,7 @@ public class BoardBuilder {
         List<Move> board;
         BoardDimensions boardDimensions = configuration.getBoardDimensions();
         int numberOfFields = boardDimensions.getX() * boardDimensions.getY();
-        board = IntStream.range(0, numberOfFields).mapToObj(c-> new Move(c)).collect(Collectors.toList());
+        board = IntStream.range(0, numberOfFields).mapToObj(BoardBuilder::apply).collect(Collectors.toList());
         for (Move move : moves) {
             board.set(move.getPosition(), move);
         }
@@ -35,7 +39,7 @@ public class BoardBuilder {
         List<Move> board;
         BoardDimensions boardDimensions = configuration.getBoardDimensions();
         int numberOfFields = boardDimensions.getX() * boardDimensions.getY();
-        board = IntStream.range(0, numberOfFields).mapToObj(c-> new Move(c)).collect(Collectors.toList());
+        board = IntStream.range(0, numberOfFields).mapToObj(BoardBuilder::apply).collect(Collectors.toList());
         return board;
     }
 

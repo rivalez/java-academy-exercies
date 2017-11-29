@@ -1,8 +1,8 @@
 package game;
 
-import UI.*;
+import ui.*;
 import board.*;
-import gameHistory.GameProgress;
+import gamehistory.GameProgress;
 import player.Player;
 import player.SymbolResolver;
 

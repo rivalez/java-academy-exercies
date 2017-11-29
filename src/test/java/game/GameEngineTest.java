@@ -38,7 +38,7 @@ public class GameEngineTest extends GameEngineData {
             byteArrayOutputStream.writeTo(outputStream);
         }
 
-        Assert.assertTrue(testList.contains("REMIS! czesiek  -  O  -  score=3 jozek  -  X  -  score=3"));
+        Assert.assertTrue(testList.contains("REMIS! czesiek  -  O  -  points=3 jozek  -  X  -  points=3"));
     }
 
     @Test(dataProvider = "randomTests")

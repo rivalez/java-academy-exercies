@@ -1,10 +1,10 @@
-package UI;
+package ui;
 
 import board.BoardBuilder;
 import board.BoardDimensions;
 import board.Move;
 import game.Configuration;
-import gameHistory.GameProgress;
+import gamehistory.GameProgress;
 
 import java.util.List;
 

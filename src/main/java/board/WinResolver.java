@@ -1,6 +1,6 @@
 package board;
 
-import gameHistory.GameProgress;
+import gamehistory.GameProgress;
 
 public interface WinResolver {
     boolean resolve(GameProgress gameProgress);

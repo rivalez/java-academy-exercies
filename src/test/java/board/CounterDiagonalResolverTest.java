@@ -1,7 +1,7 @@
 package board;
 
 import game.Configuration;
-import gameHistory.GameProgress;
+import gamehistory.GameProgress;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

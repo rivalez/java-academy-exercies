@@ -1,4 +1,4 @@
-package UI;
+package ui;
 
 public class SystemPrintOut implements Output {
     @Override

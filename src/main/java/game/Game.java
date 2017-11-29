@@ -1,9 +1,9 @@
 package game;
 
-import UI.*;
+import ui.*;
 import board.Move;
 import board.WinResolver;
-import gameHistory.GameProgress;
+import gamehistory.GameProgress;
 import player.Player;
 import validators.MoveValidator;
 
