@@ -174,4 +174,33 @@ public class DiagonalData extends BaseTest {
                 {advancedWrongCase5, configuration5},
         };
     }
+
+
+    private List<Move> simpleLeftToRightCase1 = Arrays.asList(
+            new Move(2, GameSymbol.X),
+            new Move(4, GameSymbol.X),
+            new Move(6, GameSymbol.X));
+
+    private List<Move> simpleLeftToWrongCase1 = Arrays.asList(
+            new Move(0, GameSymbol.X),
+            new Move(1, GameSymbol.O),
+            new Move(2, GameSymbol.X),
+            new Move(3, GameSymbol.O),
+            new Move(4, GameSymbol.X));
+
+    @DataProvider
+    public Object[][] getLeftToRight(){
+        return new Object[][] {
+                {simpleLeftToRightCase1, configuration1},
+        };
+    }
+
+    @DataProvider
+    public Object[][] getLeftToRightInvalid() {
+        return new Object[][] {
+                {simpleLeftToWrongCase1, configuration1},
+        };
+    }
+
+
 }

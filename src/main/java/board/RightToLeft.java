@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DiagonalAscResolver implements WinResolver {
+public class RightToLeft implements WinResolver {
 
     @Override
     public boolean resolve(GameProgress gameProgress) {
@@ -29,9 +29,9 @@ public class DiagonalAscResolver implements WinResolver {
             } else {
                 counter = 0;
             }
-            if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){
-                result = true;
-            }
+        }
+        if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){
+            result = true;
         }
         return result;
     }
