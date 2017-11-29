@@ -25,7 +25,7 @@ public class BoardBuilder {
         BoardDimensions boardDimensions = configuration.getBoardDimensions();
         int numberOfFields = boardDimensions.getX() * boardDimensions.getY();
         board = IntStream.range(0, numberOfFields).mapToObj(c-> new Move(c)).collect(Collectors.toList());
-        for (Move move : moves){
+        for (Move move : moves) {
             board.set(move.getPosition(), move);
         }
         return board;
