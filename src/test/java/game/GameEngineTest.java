@@ -1,15 +1,29 @@
 package game;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
-@Test
 public class GameEngineTest extends GameEngineData {
+
+    private FileWriter fw;
+
+    @BeforeTest
+    public void setUp() throws IOException {
+        fw = new FileWriter("all.txt", true);
+    }
+
+    @AfterTest
+    public void tearDown() throws IOException {
+        fw.close();
+    }
 
     @Test(dataProvider = "drawTests")
     public void threeDrawInRow(String input, String expected) throws IOException {
@@ -35,6 +49,7 @@ public class GameEngineTest extends GameEngineData {
         System.setOut(ps);
         GameEngine.main(new String[]{});
         System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
+        fw.write(Collections.singletonList(byteArrayOutputStream.toString()).toString());
         try(OutputStream outputStream = new FileOutputStream(expected + ".txt")) {
             byteArrayOutputStream.writeTo(outputStream);
         }

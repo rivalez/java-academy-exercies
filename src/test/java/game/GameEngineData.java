@@ -26,6 +26,28 @@ class GameEngineData {
         };
     }
 
+    @DataProvider
+    public Object[][] inputs(){
+        return new Object[][]{
+                {"0\n1\n3\n3\n3\nx\njozek\nczesiek\n" + createScenario()},
+                {"0\n1\n4\n3\n3\nx\njozek\nczesiek\n" + createScenario()},
+                {"0\n1\n5\n3\n3\nx\njozek\nczesiek\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n"},
+                {"0\n1\n6\n3\n3\nx\njozek\nczesiek\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n"},
+                {"0\n1\n4\n4\n3\nx\njozek\nczesiek\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n"},
+                {"0\n1\n4\n5\n3\nx\njozek\nczesiek\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n"},
+                {"0\n1\n4\n6\n3\nx\njozek\nczesiek\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n"},
+                {"0\n1\n6\n7\n3\nx\njozek\nczesiek\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n"},
+                {"0\n1\n4\n6\n3\nx\njozek\nczesiek\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n"},
+                {"0\n1\n3\n2\n3\nx\njozek\nczesiek\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n"},
+                {"0\n1\n4\n7\n3\nx\njozek\nczesiek\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n"},
+                {"0\n1\n10\n15\n4\nx\njozek\nczesiek\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n"},
+                {"0\n1\n9\n13\n3\nx\njozek\nczesiek\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n"},
+                {"0\n1\n7\n7\n5\nx\njozek\nczesiek\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n"},
+                {"0\n1\n4\n8\n3\nx\njozek\nczesiek\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n"},
+                {"0\n1\n9\n9\n4\nx\njozek\nczesiek\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n1\n0\n2\n4\n5\n3\n7\n6\n8\n"},
+        };
+    }
+
     private Object createScenario(){
         StringBuilder moves = new StringBuilder();
         for (int i = 0; i < 100; i++) {

@@ -20,6 +20,10 @@ public class GameProgress {
         moves.add(move);
     }
 
+    public boolean isOccupied(Move move){
+        return moves.contains(move);
+    }
+
     public List<Move> getMoves() {
         return new ArrayList<>(moves);
     }

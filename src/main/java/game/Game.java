@@ -7,8 +7,6 @@ import gameHistory.GameProgress;
 import player.Player;
 import validators.MoveValidator;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.List;
 
 import static game.GameState.DRAW;
@@ -42,7 +40,12 @@ public class Game {
                 movesAlreadyDone++;
                 currentPlayer = turn.getNext();
                 output.display(communicateProvider.getCommunicate(Communicate.CURRENT_PLAYER_TURN) + ": " + currentPlayer.toString());
-                gameProgress.addMove(new Move(suggestedPosition, currentPlayer.getGameSymbol()));
+                Move next = new Move(suggestedPosition, currentPlayer.getGameSymbol());
+                if(!gameProgress.isOccupied(next)){
+                    gameProgress.addMove(next);
+                } else {
+                    output.display(communicateProvider.getCommunicate(Communicate.WRONG_TURN));
+                }
                 output.display(boardPrinter.print(gameProgress));
                 for(WinResolver resolver : resolvers){
                     if(resolver.resolve(gameProgress)){

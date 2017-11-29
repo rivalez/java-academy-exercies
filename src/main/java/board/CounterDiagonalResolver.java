@@ -17,6 +17,7 @@ public class CounterDiagonalResolver implements WinResolver {
         GameSymbol symbol = moves.get(moves.size() - 1).getGameSymbol();
         moves = moves.stream()
                 .filter(c -> c.getGameSymbol().equals(symbol))
+                .filter(m -> m.getPosition() != 0)
                 .collect(Collectors.toList());
         int counter = 1;
         boolean result = false;
@@ -24,11 +25,9 @@ public class CounterDiagonalResolver implements WinResolver {
         for (int c = 0; c < moves.size() - 1; c++) {
             Move move = moves.get(c);
             Move nextMove = moves.get(c + 1);
-            if (move.getPosition() % dimensions.getX() == 0) break;
             if(move.getPosition() + dimensions.getX() - 1 == nextMove.getPosition()){
+                if (move.getPosition() % dimensions.getX() == 0) break;
                 counter++;
-            } else {
-                counter = 0;
             }
         }
         if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){

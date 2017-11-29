@@ -25,12 +25,10 @@ public class DiagonalResolver implements WinResolver {
             Move move = moves.get(c);
             Move nextMove = moves.get(c + 1);
             if(move.getPosition() + dimensions.getX() + 1 == nextMove.getPosition()){
+                counter++;
                 if (move.getPosition() % dimensions.getX() == dimensions.getX() - 1) {
                     break;
                 }
-                counter++;
-            } else {
-                counter = 0;
             }
             if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){
                 result = true;

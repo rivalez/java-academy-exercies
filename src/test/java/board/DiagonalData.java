@@ -48,6 +48,7 @@ public class DiagonalData extends BaseTest {
             new Move(18, GameSymbol.O)
     );
 
+
     @DataProvider
     public Object[][] getData() {
         return new Object[][] {
@@ -218,6 +219,16 @@ public class DiagonalData extends BaseTest {
             new Move(3, GameSymbol.O),
             new Move(4, GameSymbol.X));
 
+    private List<Move> rightUpToDownLeftCase1 = Arrays.asList(
+            new Move(0, GameSymbol.O),
+            new Move(5, GameSymbol.X),
+            new Move(2, GameSymbol.O),
+            new Move(1, GameSymbol.X),
+            new Move(4, GameSymbol.O),
+            new Move(3, GameSymbol.X),
+            new Move(6, GameSymbol.O));
+
+
     @DataProvider
     public Object[][] getCorrect(){
         return new Object[][] {
@@ -227,6 +238,7 @@ public class DiagonalData extends BaseTest {
                 {simpleLeftToRightCase4, configuration6},
                 {advancedLeftToRightCase1, configuration10},
                 {advancedLeftToRightCase2, configuration10},
+                {rightUpToDownLeftCase1, configuration1},
         };
     }
 
