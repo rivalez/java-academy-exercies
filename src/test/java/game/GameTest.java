@@ -1,11 +1,11 @@
 package game;
 
-import ui.*;
 import board.*;
 import gamehistory.GameProgress;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import player.Player;
+import ui.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

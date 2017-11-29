@@ -1,9 +1,9 @@
 package game;
 
-import validators.MoveValidator;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import validators.MoveValidator;
 
 public class MoveValidatorTest {
 

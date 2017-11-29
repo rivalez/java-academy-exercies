@@ -5,10 +5,6 @@ import gamehistory.GameProgress;
 
 import java.util.List;
 
-/**
- * @author
- * @since
- */
 class BoardCreator {
 
     GameProgress createGame(List<Move> moves, Configuration configuration){

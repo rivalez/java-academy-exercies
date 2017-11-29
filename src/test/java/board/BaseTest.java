@@ -1,9 +1,9 @@
 package board;
 
+import game.Configuration;
 import ui.Language;
 import ui.Output;
 import ui.SystemPrintOut;
-import game.Configuration;
 
 abstract class BaseTest {
 

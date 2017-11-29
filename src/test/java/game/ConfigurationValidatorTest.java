@@ -1,12 +1,12 @@
 package game;
 
+import board.BoardDimensions;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import ui.CommunicateProvider;
 import ui.Language;
 import ui.Output;
 import ui.SystemPrintOut;
-import board.BoardDimensions;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertNotEquals;
 import static org.testng.AssertJUnit.assertEquals;

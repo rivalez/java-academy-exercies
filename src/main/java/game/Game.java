@@ -1,17 +1,15 @@
 package game;
 
-import ui.*;
 import board.Move;
 import board.WinResolver;
 import gamehistory.GameProgress;
 import player.Player;
+import ui.*;
 import validators.MoveValidator;
 
 import java.util.List;
 
-import static game.GameState.DRAW;
-import static game.GameState.NOT_RESOLVED;
-import static game.GameState.WIN;
+import static game.GameState.*;
 
 public class Game {
 
@@ -33,11 +31,9 @@ public class Game {
 
     GameState start(Turn turn, GameProgress gameProgress, List<WinResolver> resolvers){
         Player currentPlayer = null;
-        int movesAlreadyDone = 0;
         while (gameState == NOT_RESOLVED) {
             int suggestedPosition = interact.askForPosition();
             if (moveValidator.validate(suggestedPosition)) {
-                movesAlreadyDone++;
                 currentPlayer = turn.getNext();
                 output.display(communicateProvider.getCommunicate(Communicate.CURRENT_PLAYER_TURN) + ": " + currentPlayer.toString());
                 Move next = new Move(suggestedPosition, currentPlayer.getGameSymbol());
@@ -53,7 +49,7 @@ public class Game {
                         arbiter.admitPoints(currentPlayer);
                     }
                 }
-                if(movesAlreadyDone == gameProgress.getConfiguration().getBoardDimensions().getX() * gameProgress.getConfiguration().getBoardDimensions().getY()){
+                if(gameProgress.getMoves().size() == gameProgress.getConfiguration().getBoardDimensions().getX() * gameProgress.getConfiguration().getBoardDimensions().getY()){
                     gameState = DRAW;
                     arbiter.admitPoints(turn.getPlayers());
                 }

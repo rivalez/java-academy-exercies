@@ -1,8 +1,8 @@
 package game;
 
+import board.BoardDimensions;
 import ui.Language;
 import ui.Output;
-import board.BoardDimensions;
 
 public class Configuration {
     private BoardDimensions boardDimensions;

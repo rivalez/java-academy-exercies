@@ -1,7 +1,10 @@
 package game;
 
-import ui.*;
 import board.BoardDimensions;
+import ui.Communicate;
+import ui.CommunicateProvider;
+import ui.MyScanner;
+import ui.Output;
 
 
 class ConfigurationProvider {

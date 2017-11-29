@@ -1,8 +1,8 @@
 package game;
 
+import player.Player;
 import ui.Communicate;
 import ui.CommunicateProvider;
-import player.Player;
 
 import java.util.List;
 

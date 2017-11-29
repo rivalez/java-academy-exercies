@@ -1,10 +1,10 @@
 package game;
 
-import ui.*;
 import board.*;
 import gamehistory.GameProgress;
 import player.Player;
 import player.SymbolResolver;
+import ui.*;
 
 import java.util.Arrays;
 import java.util.List;

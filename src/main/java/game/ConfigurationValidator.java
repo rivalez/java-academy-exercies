@@ -1,10 +1,10 @@
 package game;
 
+import board.BoardDimensions;
 import ui.Communicate;
 import ui.CommunicateProvider;
 import ui.Language;
 import ui.Output;
-import board.BoardDimensions;
 
 class ConfigurationValidator {
 
