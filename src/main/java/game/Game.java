@@ -30,12 +30,12 @@ public class Game {
     }
 
     GameState start(Turn turn, GameProgress gameProgress, List<WinResolver> resolvers){
-        Player currentPlayer = null;
+        Player currentPlayer = turn.getLast();
         while (gameState == NOT_RESOLVED) {
             int suggestedPosition = interact.askForPosition();
             if (moveValidator.validate(suggestedPosition)) {
-                currentPlayer = turn.getNext();
                 output.display(communicateProvider.getCommunicate(Communicate.CURRENT_PLAYER_TURN) + ": " + currentPlayer.toString());
+                currentPlayer = turn.getNext();
                 Move next = new Move(suggestedPosition, currentPlayer.getGameSymbol());
                 if(!gameProgress.isOccupied(next)){
                     gameProgress.addMove(next);

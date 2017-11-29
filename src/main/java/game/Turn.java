@@ -13,6 +13,10 @@ class Turn {
         this.players = players;
     }
 
+    Player getLast(){
+        return players.get(1);
+    }
+
     Player getNext() {
         Collections.reverse(players);
         return players.get(1);
