@@ -50,7 +50,7 @@ public class GameEngine {
         SymbolResolver symbolResolver = new SymbolResolver();
         Player firstPlayer = createFirstPlayer(output, communicateProvider, playerInteract, myScanner);
         Player secondPlayer = createSecondPlayer(output, communicateProvider, myScanner, symbolResolver, firstPlayer);
-        output.display(String.format(communicateProvider.getCommunicate(Communicate.START_FIRST),firstPlayer.toString()));
+        output.display(String.format(communicateProvider.getCommunicate(Communicate.START_FIRST), firstPlayer.toString()));
 
         return new Turn(Arrays.asList(firstPlayer, secondPlayer));
     }
