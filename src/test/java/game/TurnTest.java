@@ -16,9 +16,9 @@ public class TurnTest {
         Turn turn = new Turn(Arrays.asList(player1, player2));
 
         //when-then
-        Assert.assertEquals(turn.getNext(), player1);
         Assert.assertEquals(turn.getNext(), player2);
         Assert.assertEquals(turn.getNext(), player1);
         Assert.assertEquals(turn.getNext(), player2);
+        Assert.assertEquals(turn.getNext(), player1);
     }
 }

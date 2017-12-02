@@ -36,6 +36,10 @@ public class GameEngine {
         BoardPrinter boardPrinter = new BoardPrinter(configuration);
         List<WinResolver> resolvers = Arrays.asList(new RowResolver(), new ColumnResolver(), new DiagonalResolver(), new CounterDiagonalResolver());
 
+        gameStart(output, communicateProvider, configuration, playerInteract, turn, boardPrinter, resolvers);
+    }
+
+    private void gameStart(Output output, CommunicateProvider communicateProvider, Configuration configuration, PlayerInteract playerInteract, Turn turn, BoardPrinter boardPrinter, List<WinResolver> resolvers) {
         int numbersOfGames = 3;
         while (numbersOfGames > 0) {
             output.display(boardPrinter.print());

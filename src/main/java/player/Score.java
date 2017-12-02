@@ -14,6 +14,6 @@ public class Score {
 
     @Override
     public String toString() {
-        return "points=" + points;
+        return "P: " + points;
     }
 }

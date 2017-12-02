@@ -32,7 +32,7 @@ public class Game {
     GameState start(Turn turn, GameProgress gameProgress, List<WinResolver> resolvers) {
         Player currentPlayer = turn.getFirst();
         while (gameState == NOT_RESOLVED) {
-                output.display(communicateProvider.getCommunicate(Communicate.CURRENT_PLAYER_TURN) + ": " + currentPlayer.toString());
+                output.display(communicateProvider.getCommunicate(Communicate.CURRENT_PLAYER_TURN) + ": " + currentPlayer);
                 output.display(boardPrinter.print(gameProgress));
                 int suggestedPosition = interact.askForPosition();
             if (moveValidator.validate(suggestedPosition)) {

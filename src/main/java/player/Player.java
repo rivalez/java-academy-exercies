@@ -24,7 +24,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return String.format("%s  -  %s  -  %s", this.name, this.gameSymbol.name(), this.score.toString());
+        return String.format("%s  -  %s  -  %s", this.name, this.gameSymbol, this.score);
     }
 
     public Score getScore() {
