@@ -38,6 +38,7 @@ public class CounterDiagonalResolver implements WinResolver {
                 counter++;
             }
         }
+
         return counter;
     }
 }
