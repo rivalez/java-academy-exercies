@@ -26,6 +26,7 @@ public class CounterDiagonalResolver implements WinResolver {
         if(counter == gameProgress.getConfiguration().getGameSymbolsToWin()){
             result = true;
         }
+
         return result;
     }
 
