@@ -8,7 +8,7 @@ public class MoveValidator {
         this.boardSize = boardSize;
     }
 
-    public boolean validate(int position) {
+    public boolean validateOutOfBounds(int position) {
         return position < boardSize && position >= 0;
     }
 }

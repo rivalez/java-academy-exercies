@@ -35,16 +35,22 @@ public class BoardPrinter {
         int counter = 0;
         for(int i = 0 ; i < dimensions.getX(); i++) {
             for(int j = 0; j < dimensions.getY(); j++){
-                if(counter < 10) {
-                    stringBuilder.append("| ").append(board.get(counter++)).append(" |");
-                } else if(counter < 100){
-                    stringBuilder.append("| ").append(board.get(counter++)).append("|");
-                } else {
-                    stringBuilder.append("|").append(board.get(counter++)).append("|");
-                }
+                //pretty printer
+                counter = prettyPrinter(stringBuilder, board, counter);
             }
             stringBuilder.append("\n");
         }
         return stringBuilder.toString();
+    }
+
+    private int prettyPrinter(StringBuilder stringBuilder, List<Move> board, int counter) {
+        if(counter < 10) {
+            stringBuilder.append("| ").append(board.get(counter++)).append(" |");
+        } else if(counter < 100){
+            stringBuilder.append("| ").append(board.get(counter++)).append("|");
+        } else {
+            stringBuilder.append("|").append(board.get(counter++)).append("|");
+        }
+        return counter;
     }
 }

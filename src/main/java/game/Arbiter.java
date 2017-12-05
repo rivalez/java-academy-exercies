@@ -6,6 +6,7 @@ import java.util.List;
 
 class Arbiter {
 
+    //do pliku
     private static final int WIN = 3;
     private static final int DRAW = 1;
 

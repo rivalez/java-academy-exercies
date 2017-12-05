@@ -18,7 +18,7 @@ public class MoveValidatorTest {
         MoveValidator moveValidator = new MoveValidator(boardSize);
 
         //when - then
-        Assert.assertFalse(moveValidator.validate(position));
+        Assert.assertFalse(moveValidator.validateOutOfBounds(position));
     }
 
     @Test
@@ -27,7 +27,7 @@ public class MoveValidatorTest {
         MoveValidator moveValidator = new MoveValidator(10);
 
         //when - then
-        Assert.assertTrue(moveValidator.validate(0));
+        Assert.assertTrue(moveValidator.validateOutOfBounds(0));
     }
 
 }

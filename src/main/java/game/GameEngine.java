@@ -17,7 +17,10 @@ public class GameEngine {
         gameEngine.run(myScanner);
     }
 
+    //no SRP
     void run(MyScanner myScanner) {
+
+        //separate class gameInit
         OutputProvider outputProvider = new OutputProvider(myScanner);
         Output output = outputProvider.askForOutputType();
 
@@ -26,20 +29,25 @@ public class GameEngine {
 
         CommunicateProvider communicateProvider = new CommunicateProvider().populate(language);
 
-        output.display(communicateProvider.getCommunicate(Communicate.GAME));
-        output.display(communicateProvider.getCommunicate(Communicate.RULES));
-        output.display(communicateProvider.getCommunicate(Communicate.EXIT));
+        displayStartingCommunicates(output, communicateProvider);
         Configuration configuration = new ConfigurationValidator(communicateProvider, output, language).check(configure(language, output, myScanner));
         PlayerInteract playerInteract = new PlayerInteract(communicateProvider, output, myScanner);
         output.display(communicateProvider.getCommunicate(Communicate.CREATED));
-        Turn turn = createTurn(myScanner, output, communicateProvider, playerInteract);
+        TurnManager turn = createTurn(myScanner, output, communicateProvider, playerInteract);
         BoardPrinter boardPrinter = new BoardPrinter(configuration);
         List<WinResolver> resolvers = Arrays.asList(new RowResolver(), new ColumnResolver(), new DiagonalResolver(), new CounterDiagonalResolver());
+
 
         gameStart(output, communicateProvider, configuration, playerInteract, turn, boardPrinter, resolvers);
     }
 
-    private void gameStart(Output output, CommunicateProvider communicateProvider, Configuration configuration, PlayerInteract playerInteract, Turn turn, BoardPrinter boardPrinter, List<WinResolver> resolvers) {
+    private void displayStartingCommunicates(Output output, CommunicateProvider communicateProvider) {
+        output.display(communicateProvider.getCommunicate(Communicate.GAME));
+        output.display(communicateProvider.getCommunicate(Communicate.RULES));
+        output.display(communicateProvider.getCommunicate(Communicate.EXIT));
+    }
+
+    private void gameStart(Output output, CommunicateProvider communicateProvider, Configuration configuration, PlayerInteract playerInteract, TurnManager turn, BoardPrinter boardPrinter, List<WinResolver> resolvers) {
         int numbersOfGames = 3;
         while (numbersOfGames > 0) {
             output.display(boardPrinter.print());
@@ -50,13 +58,13 @@ public class GameEngine {
         output.display(gameManager.result());
     }
 
-    private Turn createTurn(MyScanner myScanner, Output output, CommunicateProvider communicateProvider, PlayerInteract playerInteract) {
+    private TurnManager createTurn(MyScanner myScanner, Output output, CommunicateProvider communicateProvider, PlayerInteract playerInteract) {
         SymbolResolver symbolResolver = new SymbolResolver();
         Player firstPlayer = createFirstPlayer(output, communicateProvider, playerInteract, myScanner);
         Player secondPlayer = createSecondPlayer(output, communicateProvider, myScanner, symbolResolver, firstPlayer);
         output.display(String.format(communicateProvider.getCommunicate(Communicate.START_FIRST), firstPlayer.toString()));
 
-        return new Turn(Arrays.asList(firstPlayer, secondPlayer));
+        return new TurnManager(Arrays.asList(firstPlayer, secondPlayer));
     }
 
     private Player createSecondPlayer(Output output, CommunicateProvider communicateProvider, MyScanner scanner, SymbolResolver symbolResolver, Player firstPlayer) {

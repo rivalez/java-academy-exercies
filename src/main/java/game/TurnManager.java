@@ -9,11 +9,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-class Turn {
+class TurnManager {
 
     private List<Player> players;
 
-    Turn(List<Player> players) {
+    TurnManager(List<Player> players) {
         this.players = players;
     }
     Player getFirst(){

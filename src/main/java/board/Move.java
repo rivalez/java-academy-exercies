@@ -8,10 +8,6 @@ public class Move implements Comparable<Move> {
 
     private int position;
 
-    public Move(){
-
-    }
-
     public Move(int position){
         this.position = position;
     }

@@ -31,7 +31,7 @@ public class GameTest {
         List<WinResolver> resolvers = Arrays.asList(new RowResolver(), new ColumnResolver(), new DiagonalResolver());
         Player player1 = new Player(GameSymbol.O, "henio");
         Player player2 = new Player(GameSymbol.X, "jozek");
-        Turn turn = new Turn(Arrays.asList(player1, player2));
+        TurnManager turn = new TurnManager(Arrays.asList(player1, player2));
         //when
         GameState state = game.start(turn, gameProgress, resolvers);
 

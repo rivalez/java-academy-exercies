@@ -6,7 +6,7 @@ import ui.CommunicateProvider;
 import ui.Language;
 import ui.Output;
 
-class ConfigurationValidator {
+class ConfigurationValidator implements Validator {
 
     private static final int MAX = 100;
     private static final int MIN = 3;
@@ -21,7 +21,7 @@ class ConfigurationValidator {
         this.language = language;
     }
 
-    Configuration check(Configuration configuration){
+    public Configuration check(Configuration configuration){
         if(isValid(configuration)){
             return configuration;
         }

@@ -8,10 +8,10 @@ import java.util.List;
 
 class GameManager {
 
-    private Turn turn;
+    private TurnManager turn;
     private CommunicateProvider communicateProvider;
 
-    GameManager(Turn turn, CommunicateProvider communicateProvider){
+    GameManager(TurnManager turn, CommunicateProvider communicateProvider){
         this.turn = turn;
         this.communicateProvider = communicateProvider;
     }
@@ -19,6 +19,7 @@ class GameManager {
     String result() {
         List<Player> players = turn.getPlayers();
         StringBuilder sb = new StringBuilder();
+        //strategy, alert, get 0,1 bad smell
         if(players.get(0).getScore().getValue() > players.get(1).getScore().getValue()){
             return sb.append(players.get(0))
                     .append(" ")

@@ -9,6 +9,7 @@ import ui.Output;
 
 class ConfigurationProvider {
 
+    private static final int DEFAULT_SIZE = 3;
     private MyScanner scanner;
     private CommunicateProvider communicatePrinter;
     private Output output;
@@ -21,8 +22,8 @@ class ConfigurationProvider {
 
     BoardDimensions askForConfiguration(){
         output.display(communicatePrinter.getCommunicate(Communicate.START));
-        int x = 3;
-        int y = 3;
+        int x = DEFAULT_SIZE;
+        int y = DEFAULT_SIZE;
         try{
             output.display(communicatePrinter.getCommunicate(Communicate.HORIZONTAL));
             x = Integer.valueOf(scanner.nextLine());
@@ -36,7 +37,7 @@ class ConfigurationProvider {
 
     int askForGameSymbolsToWin(){
         output.display(communicatePrinter.getCommunicate(Communicate.SYMBOL_TO_WIN));
-        int result = 3;
+        int result = DEFAULT_SIZE;
         try {
             result = Integer.valueOf(scanner.nextLine());
         } catch (Exception e){

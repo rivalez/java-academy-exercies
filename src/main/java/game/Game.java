@@ -29,19 +29,16 @@ public class Game {
         this.moveValidator = new MoveValidator(configuration.getBoardDimensions().getX() * configuration.getBoardDimensions().getY());
     }
 
-    GameState start(Turn turn, GameProgress gameProgress, List<WinResolver> resolvers) {
+    GameState start(TurnManager turn, GameProgress gameProgress, List<WinResolver> resolvers) {
         Player currentPlayer = turn.getFirst();
         while (gameState == NOT_RESOLVED) {
                 output.display(communicateProvider.getCommunicate(Communicate.CURRENT_PLAYER_TURN) + ": " + currentPlayer);
                 output.display(boardPrinter.print(gameProgress));
                 int suggestedPosition = interact.askForPosition();
-            if (moveValidator.validate(suggestedPosition)) {
+            if (moveValidator.validateOutOfBounds(suggestedPosition)) {
                 Move next = new Move(suggestedPosition, currentPlayer.getGameSymbol());
-                if(!gameProgress.isOccupied(next)){
-                    gameProgress.addMove(next);
-                } else {
-                    output.display(communicateProvider.getCommunicate(Communicate.WRONG_TURN));
-                }
+                //2 classes for occupied and outofboard validator
+                isOccupied(gameProgress, next);
                 checkForWin(gameProgress, resolvers, currentPlayer);
                 checkDraw(turn, gameProgress);
                 currentPlayer = turn.getNext();
@@ -52,7 +49,17 @@ public class Game {
         return gameState;
     }
 
-    private void checkDraw(Turn turn, GameProgress gameProgress) {
+    //validator
+    private void isOccupied(GameProgress gameProgress, Move next) {
+        if(!gameProgress.isOccupied(next)){
+            gameProgress.addMove(next);
+        } else {
+            output.display(communicateProvider.getCommunicate(Communicate.WRONG_TURN));
+        }
+    }
+
+    //SRP validation
+    private void checkDraw(TurnManager turn, GameProgress gameProgress) {
         if(gameProgress.getMoves().size() == gameProgress.getConfiguration().getBoardDimensions().getX() * gameProgress.getConfiguration().getBoardDimensions().getY()) {
             gameState = DRAW;
             arbiter.admitPoints(turn.getPlayers());
@@ -60,6 +67,7 @@ public class Game {
         }
     }
 
+    //SRP validation
     private void checkForWin(GameProgress gameProgress, List<WinResolver> resolvers, Player currentPlayer) {
         for(WinResolver resolver : resolvers) {
             if(resolver.resolve(gameProgress)) {

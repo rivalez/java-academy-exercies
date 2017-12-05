@@ -4,10 +4,12 @@ import java.util.Scanner;
 
 public class MyScannerImpl implements MyScanner {
 
+    private static final String UTF_8 = "UTF-8";
+    private static final String EXIT = "exit";
     private final Scanner scanner;
 
     public MyScannerImpl(){
-        scanner = new Scanner(System.in, "UTF-8");
+        scanner = new Scanner(System.in, UTF_8);
     }
 
     @Override
@@ -18,7 +20,7 @@ public class MyScannerImpl implements MyScanner {
     }
 
     private void exit(String nextLine) {
-        if(nextLine.equals("exit")) System.exit(0);
+        if(nextLine.equals(EXIT)) System.exit(0);
     }
 
 }

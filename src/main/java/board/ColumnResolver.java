@@ -22,6 +22,12 @@ public class ColumnResolver implements WinResolver {
                 .collect(Collectors.toList());
 
         Set<Move> movesToWin = new HashSet<>();
+        validate(boardWidth, moves, movesToWin);
+
+        return movesToWin.size() >= gameProgress.getConfiguration().getGameSymbolsToWin();
+    }
+
+    private void validate(int boardWidth, List<Move> moves, Set<Move> movesToWin) {
         for (int i = 0; i < moves.size() - 1; i++) {
             Move prev = moves.get(i);
             Move next = moves.get(i + 1);
@@ -30,8 +36,6 @@ public class ColumnResolver implements WinResolver {
                 movesToWin.add(next);
             }
         }
-
-        return movesToWin.size() >= gameProgress.getConfiguration().getGameSymbolsToWin();
     }
 
     private Predicate<Move> getSymbolPredicate(GameProgress gameProgress) {
